@@ -1,8 +1,10 @@
 <x-landing-layout>
     <body class="bg-white text-gray-800 scroll-smooth">
 
+
         <!-- Header -->
         <x-navbar></x-navbar>
+
 
         <!-- Hero Section -->
         <section class="bg-[url({{ asset('images/fotoHero.jpg') }})] bg-cover bg-center py-96">
@@ -17,6 +19,7 @@
                     <a href="#kontak"
                         class="absolute right-0 top-1/2 -translate-y-1/2 bg-blue-500 text-white px-4 py-2 rounded-xl hover:bg-[3D90D7]">Cari</a>
                 </div>
+
 
             </div>
         </section>
@@ -43,6 +46,7 @@
                         <h4 class="text-xl text-center font-semibold mb-2">Desainer Grafis</h4>
                         <p class="text-gray-600">Illustrator, desainer poster, deasin produk.</p>
                     </div>
+
                 </div>
             </div>
         </section>
