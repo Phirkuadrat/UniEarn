@@ -1,69 +1,72 @@
-@extends('layout.app')
-<body class="bg-white text-gray-800 font-[montserrat] scroll-smooth">
+<x-landing-layout>
+    <body class="bg-white text-gray-800 scroll-smooth">
 
-    <!-- Header -->
-    <x-navbar></x-navbar>
+        <!-- Header -->
+        <x-navbar></x-navbar>
 
-    <!-- Hero Section -->
-    <section class="bg-[url({{asset('images/fotoHero.jpg')}})] bg-cover bg-center py-96">
-        <div class="mx-32 px-4 text-end font-[montserrat] ">
-            <h2 class="text-6xl font-bold mb-4">Selamat Datang Mahasiswa</h2>
-            <p class="text-4xl text-gray-600 mb-6">kembangkan potensimu dengan kami.</p>
-            {{-- <input type="text" placeholder="masukan bidangmu" class="border border-gray-300 rounded-xl px-6 py-1.5">
+        <!-- Hero Section -->
+        <section class="bg-[url({{ asset('images/fotoHero.jpg') }})] bg-cover bg-center py-96">
+            <div class="mx-32 px-4 text-end font-[montserrat] ">
+                <h2 class="text-6xl font-bold mb-4">Selamat Datang Mahasiswa</h2>
+                <p class="text-4xl text-gray-600 mb-6">kembangkan potensimu dengan kami.</p>
+                {{-- <input type="text" placeholder="masukan bidangmu" class="border border-gray-300 rounded-xl px-6 py-1.5">
             <a href="#kontak" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 ">Cari</a> --}}
-            <div class="relative inline-block md:w-1/2 w-full">
-                <input type="text" placeholder="masukan bidangmu" class="border border-gray-300 rounded-xl px-6 py-1.5 pr-20 hover:border-blue-500 focus:outline-none focus:ring-blue-500 focus:ring-2 md:w-1/2 w-full">
-                <a href="#kontak" class="absolute right-0 top-1/2 -translate-y-1/2 bg-blue-500 text-white px-4 py-2 rounded-xl hover:bg-[3D90D7]">Cari</a>
+                <div class="relative inline-block md:w-1/2 w-full">
+                    <input type="text" placeholder="masukan bidangmu"
+                        class="border border-gray-300 rounded-xl px-6 py-1.5 pr-20 hover:border-blue-500 focus:outline-none focus:ring-blue-500 focus:ring-2 md:w-1/2 w-full">
+                    <a href="#kontak"
+                        class="absolute right-0 top-1/2 -translate-y-1/2 bg-blue-500 text-white px-4 py-2 rounded-xl hover:bg-[3D90D7]">Cari</a>
+                </div>
+
             </div>
+        </section>
 
-        </div>
-    </section>
-
-    <!-- Fitur -->
-    <section id="fitur" class="py-16 bg-[FCFEFC]">
-        <div class="max-w-6xl mx-auto px-4">
-            <h3 class="text-3xl font-bold text-center mb-10">Bidang Kerja Populer</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="p-0 bg-gray-50 rounded-lg shadow-lg hover:scale-110 transition-transform duration-300">
-                    <img src="{{ asset('images/bidang1.jpg') }}" class="bg-cover rounded-t-lg" alt="">
-                    <div class="p-6">
-                        <h4 class="text-xl text-center font-semibold mb-2">Program Developer</h4>
-                        <p class="text-gray-600">Pengembangan website, pengembangan software, pengembangan game.</p>
+        <!-- Fitur -->
+        <section id="fitur" class="py-16 bg-[FCFEFC]">
+            <div class="max-w-6xl mx-auto px-4">
+                <h3 class="text-3xl font-bold text-center mb-10">Bidang Kerja Populer</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="p-0 bg-gray-50 rounded-lg shadow-lg hover:scale-110 transition-transform duration-300">
+                        <img src="{{ asset('images/bidang1.jpg') }}" class="bg-cover rounded-t-lg" alt="">
+                        <div class="p-6">
+                            <h4 class="text-xl text-center font-semibold mb-2">Program Developer</h4>
+                            <p class="text-gray-600">Pengembangan website, pengembangan software, pengembangan game.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-gray-50 rounded-lg shadow hover:scale-110 transition-transform duration-300">
+                        <img src="{{ asset('images/bidang2.jpg') }}" class="bg-cover mb-4 rounded" alt="">
+                        <h4 class="text-xl text-center font-semibold mb-2">Data Analis</h4>
+                        <p class="text-gray-600">Mechine leraning, deep learning, bisnis intelijen.</p>
+                    </div>
+                    <div class="p-6 bg-gray-50 rounded-lg shadow hover:scale-110 transition-transform duration-300">
+                        <img src="{{ asset('images/bidang3.jpg') }}" class="bg-cover mb-4 rounded" alt="">
+                        <h4 class="text-xl text-center font-semibold mb-2">Desainer Grafis</h4>
+                        <p class="text-gray-600">Illustrator, desainer poster, deasin produk.</p>
                     </div>
                 </div>
-                <div class="p-6 bg-gray-50 rounded-lg shadow hover:scale-110 transition-transform duration-300">
-                    <img src="{{ asset('images/bidang2.jpg') }}" class="bg-cover mb-4 rounded" alt="">
-                    <h4 class="text-xl text-center font-semibold mb-2">Data Analis</h4>
-                    <p class="text-gray-600">Mechine leraning, deep learning, bisnis intelijen.</p>
-                </div>
-                <div class="p-6 bg-gray-50 rounded-lg shadow hover:scale-110 transition-transform duration-300">
-                    <img src="{{ asset('images/bidang3.jpg') }}" class="bg-cover mb-4 rounded" alt="">
-                    <h4 class="text-xl text-center font-semibold mb-2">Desainer Grafis</h4>
-                    <p class="text-gray-600">Illustrator, desainer poster, deasin produk.</p>
-                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Tentang -->
-    <section id="tentang" class="py-16 bg-[F2FAFC]">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <h3 class="text-3xl font-bold mb-4">Tentang Kami</h3>
-            <p class="text-gray-700">Kami adalah tim profesional yang berkomitmen untuk memberikan solusi digital
-                terbaik dan inovatif bagi bisnis Anda.</p>
-        </div>
-    </section>
+        <!-- Tentang -->
+        <section id="tentang" class="py-16 bg-[F2FAFC]">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <h3 class="text-3xl font-bold mb-4">Tentang Kami</h3>
+                <p class="text-gray-700">Kami adalah tim profesional yang berkomitmen untuk memberikan solusi digital
+                    terbaik dan inovatif bagi bisnis Anda.</p>
+            </div>
+        </section>
 
-    <!-- Kontak -->
-    <section id="kontak" class="py-16 bg-[FCFEFC]">
-        <div class="max-w-2xl mx-auto px-4 text-center">
-            <h3 class="text-3xl font-bold mb-4">Hubungi Kami</h3>
-            <p class="mb-6 text-gray-600">Siap bekerja sama? Kirim email ke <a href="mailto:info@brandku.com"
-                    class="text-blue-600 underline">info@brandku.com</a></p>
-        </div>
-    </section>
+        <!-- Kontak -->
+        <section id="kontak" class="py-16 bg-[FCFEFC]">
+            <div class="max-w-2xl mx-auto px-4 text-center">
+                <h3 class="text-3xl font-bold mb-4">Hubungi Kami</h3>
+                <p class="mb-6 text-gray-600">Siap bekerja sama? Kirim email ke <a href="mailto:info@brandku.com"
+                        class="text-blue-600 underline">info@brandku.com</a></p>
+            </div>
+        </section>
 
-    <!-- Footer -->
-    <x-footer></x-footer>
+        <!-- Footer -->
+        <x-footer></x-footer>
 
-</body>
+    </body>
+</x-landing-layout>
