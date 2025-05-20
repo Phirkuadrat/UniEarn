@@ -7,7 +7,7 @@
             <nav class="space-x-5 flex items-center justify-center font-semibold">
 
                 {{-- <a href="" class="hover:underline hover:text-2xl hover:text-cyan-200">Overview</a> --}}
-                <a href="" class="hover:underline hover:text-2xl hover:text-cyan-200">Jadi Rekruter</a>
+                <a href="" class="hover:text-2xl hover:text-cyan-200">Jadi Rekruter</a>
                 <a href="#tentang" class="hover:text-2xl hover:text-cyan-200">Tentang Kami</a>
                 <a href="{{ route('login') }}" class="hover:text-2xl hover:text-cyan-300">Login to Join</a>
             </nav>
