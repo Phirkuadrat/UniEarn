@@ -9,54 +9,66 @@
 
 
         <!-- Hero Section -->
-        <section class="bg-[url({{ asset('images/fotoHero.jpg') }})] bg-cover bg-center py-96">
-            <div class="mx-32 px-4 text-end font-[montserrat] ">
-                <h2 class="text-6xl font-bold mb-4">Selamat Datang Mahasiswa</h2>
+        <section style="background-image: url('{{ asset('images/fotoHero.webp') }}')"
+            class="bg-cover bg-center py-48 justify-end items-center flex">
+            {{-- <section class="bg-[url({{asset('images/fotoHero.webp')}})] bg-cover bg-center py-48 justify-end items-center flex"> --}}
+            <div class="mx-32 w-auto max-w-3xl text-end text-clip bg-white bg-opacity-70 rounded-lg py-9 pr-8 shadow-lg">
+                <h1 class="text-6xl font-bold mb-4 text-[#3674B5]">uniEarn akan membantumu</h1>
+                <h2 class="text-7xl font-bold mb-4 text-black">Selamat Datang Mahasiswa</h2>
                 <p class="text-4xl text-gray-600 mb-6">kembangkan potensimu dengan kami.</p>
                 {{-- <input type="text" placeholder="masukan bidangmu" class="border border-gray-300 rounded-xl px-6 py-1.5">
             <a href="#kontak" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 ">Cari</a> --}}
-                <div class="relative inline-block md:w-1/2 w-full">
+                <div class="relative inline-block w-full">
                     <input type="text" placeholder="masukan bidangmu"
-                        class="border border-gray-300 rounded-xl px-6 py-1.5 pr-20 hover:border-blue-500 focus:outline-none focus:ring-blue-500 focus:ring-2 md:w-1/2 w-full">
+                        class="border border-gray-300 rounded-xl ml-0 px-6 py-1.5 pr-20 hover:border-blue-500 focus:outline-none focus:ring-blue-500 focus:ring-2 md:w-1/2 w-full">
                     <a href="#kontak"
                         class="absolute right-0 top-1/2 -translate-y-1/2 bg-blue-500 text-white px-4 py-2 rounded-xl hover:bg-[3D90D7]">Cari</a>
                 </div>
-
-
-
 
             </div>
         </section>
 
         <!-- Fitur -->
-        <section id="fitur" class="py-16 bg-[FCFEFC]">
-            <div class="max-w-6xl mx-auto px-4">
+        <section id="fitur" class="py-16 bg-[#FCFEFC]">
+            <div class=" mx-auto px-4">
                 <h3 class="text-3xl font-bold text-center mb-10">Bidang Kerja Populer</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="p-0 bg-gray-50 rounded-lg shadow-lg hover:scale-110 transition-transform duration-300">
-                        <img src="{{ asset('images/bidang1.jpg') }}" class="bg-cover rounded-t-lg" alt="">
-                        <div class="p-6">
-                            <h4 class="text-xl text-center font-semibold mb-2">Program Developer</h4>
-                            <p class="text-gray-600">Pengembangan website, pengembangan software, pengembangan game.</p>
+                <div class="flex mx-56 justify-center items-center">
+                    <div class="flex overflow-x-auto space-x-6 p-4 scroll-smooth snap-x snap-mandatory">
+                        <div action=""
+                            class="min-w-[280px] max-w-sm snap-center flex-shrink-0 bg-gray-50 rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 hover:cursor-pointer">
+                            <img src="{{ asset('images/bidang1.webp') }}" class="w-full h-40 object-cover rounded-t-lg"
+                                alt="">
+                            <div class="p-6">
+                                <h4 class="text-xl text-center font-semibold mb-2">Program Developer</h4>
+                                <p class="text-pretty text-gray-600 ">Pengembangan website, pengembangan software,
+                                    pengembangan
+                                    game.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="p-6 bg-gray-50 rounded-lg shadow hover:scale-110 transition-transform duration-300">
-                        <img src="{{ asset('images/bidang2.jpg') }}" class="bg-cover mb-4 rounded" alt="">
-                        <h4 class="text-xl text-center font-semibold mb-2">Data Analis</h4>
-                        <p class="text-gray-600">Mechine leraning, deep learning, bisnis intelijen.</p>
-                    </div>
-                    <div class="p-6 bg-gray-50 rounded-lg shadow hover:scale-110 transition-transform duration-300">
-                        <img src="{{ asset('images/bidang3.jpg') }}" class="bg-cover mb-4 rounded" alt="">
-                        <h4 class="text-xl text-center font-semibold mb-2">Desainer Grafis</h4>
-                        <p class="text-gray-600">Illustrator, desainer poster, deasin produk.</p>
-                    </div>
+                        <div action=""
+                            class="min-w-[280px] snap-center flex-shrink-0 bg-gray-50 rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 hover:cursor-pointer">
+                            <img src="{{ asset('images/bidang2.webp') }}" class="w-full h-40 object-cover rounded-t-lg"
+                                alt="">
+                            <div class="p-6">
+                                <h4 class="text-xl text-center font-semibold mb-2">Data Analis</h4>
+                                <p class="text-gray-600">Machine learning, deep learning, bisnis intelijen.</p>
+                            </div>
+                        </div>
+                        <div action=""
+                            class="min-w-[280px] snap-center flex-shrink-0 bg-gray-50 rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 hover:cursor-pointer">
+                            <img src="{{ asset('images/bidang3.webp') }}" class="w-full h-40 object-cover rounded-t-lg"
+                                alt="">
+                            <div class="p-6">
+                                <h4 class="text-xl text-center font-semibold mb-2">Desainer Grafis</h4>
+                                <p class="text-gray-600">Illustrator, desain poster, desain produk.</p>
+                            </div>
+                        </div>
 
-
+                    </div>
                 </div>
             </div>
-
-            </div>
         </section>
+
         <!-- CTA -->
         <section class="py-16 bg-[FCFEFC]">
             <div class="max-w-4xl mx-auto px-4 text-center">
