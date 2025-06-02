@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () { return view('landingPage'); });
+Route::get('/', function () { return view('landingPage'); })->name('landing');
 
 Route::get('/dashboard', function () {
     return view('user/dashboard');
@@ -17,3 +17,10 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';
+
+route::get('/seeker', function () {
+    return view('user.seekerPage');
+})->name('seekerPage');
+route::get('/recuiter', function () {
+    return view('user.recuiterPage');
+})->name('recuiterPage');
