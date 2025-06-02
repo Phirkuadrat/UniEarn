@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 
 Route::get('/login-admin', [\App\Http\Controllers\Admin\AuthController::class, 'showLoginForm'])->name('admin.login');
@@ -10,6 +12,12 @@ Route::post('/login-admin', [\App\Http\Controllers\Admin\AuthController::class, 
 Route::middleware('auth:admin')->group(function () {
     Route::get('/admin/dashboard', fn() => view('admin.dashboard'))->name('admin.dashboard');
     Route::post('/logout-admin', [\App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('admin.logout');
+
+    // User Management
+    Route::get('/admin/user', [UserController::class, 'index'])->name('user.manage');
+
+    // Category Management
+    Route::get('/admin/category', [CategoryController::class, 'index'])->name('category.manage');
 });
 
 
