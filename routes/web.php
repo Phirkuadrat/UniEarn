@@ -17,6 +17,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Recruiter Dashboard
+    Route::get('/dashboardRecruiter', [RecruiterController::class, 'index'])->name('recruiter.index');
+
+    // Seeker Dashboard
+    Route::get('/dashboardSeeker', [SeekerController::class, 'index'])->name('seeker.index');
 });
 
 require __DIR__ . '/auth.php';
