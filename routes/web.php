@@ -1,9 +1,13 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RecruiterController;
+use App\Http\Controllers\SeekerController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () { return view('landingPage'); })->name('landing');
+Route::get('/', function () {
+    return view('landingPage');
+})->name('landing');
 
 Route::get('/dashboard', function () {
     return view('user/dashboard');
@@ -15,8 +19,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
-require __DIR__.'/admin.php';
+require __DIR__ . '/auth.php';
+require __DIR__ . '/admin.php';
 
 route::get('/seeker', function () {
     return view('user.seekerPage');
