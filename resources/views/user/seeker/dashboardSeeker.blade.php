@@ -20,7 +20,7 @@
                         <p class="text-3xl font-bold text-[#3674B5]">{{ $summary['totalPortfolios'] ?? 0 }}</p>
                     </div>
                     <div class="bg-[#F2FAFC] p-6 rounded-lg shadow">
-                        <h4 class="text-lg font-semibold text-gray-700">Total Aplikasi Proyek</h4>
+                        <h4 class="text-lg font-semibold text-gray-700"> Aplikasi Proyek</h4>
                         <p class="text-3xl font-bold text-[#3674B5]">{{ $summary['totalApplications'] ?? 0 }}</p>
                     </div>
                     <div class="bg-[#F2FAFC] p-6 rounded-lg shadow">
