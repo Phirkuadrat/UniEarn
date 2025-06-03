@@ -29,7 +29,7 @@
         </section>
 
         <!-- Fitur -->
-        <section id="fitur" class="py-16 bg-[#FCFEFC]">
+        <section id="fitur" class="py-16 bg-[#F2FAFC]">
             <div class=" mx-auto px-4">
                 <h3 class="text-3xl font-bold text-center mb-10">Bidang Kerja Populer</h3>
                 <div class="flex mx-56 justify-center items-center">
@@ -128,7 +128,7 @@
 
 
         <!-- Tentang -->
-        <section id="tentang" class="py-16 bg-[F2FAFC]">
+        <section id="tentang" class="py-16 bg-[#F2FAFC]">
             <div class="max-w-4xl mx-auto px-4 text-center">
                 <h3 class="text-3xl font-bold mb-4">Tentang Kami</h3>
                 <p class="text-gray-700">Kami adalah tim profesional yang berkomitmen untuk memberikan solusi digital
