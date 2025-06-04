@@ -1,4 +1,5 @@
-<x-app-layout>
+<x-landing-layout>
+    <x-navbar></x-navbar>
 
     <body class="bg-[#F2FAFC]">
 
@@ -230,4 +231,4 @@
 
     </body>
 
-</x-app-layout>
+</x-landing-layout>
