@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RecruiterController;
+use App\Http\Controllers\SeekerController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () { return view('landingPage'); });
+Route::get('/', function () { return view('landingPage'); })->name('landing');
 
 Route::get('/dashboard', function () {
     return view('user/dashboard');
@@ -13,7 +15,21 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Recruiter Dashboard
+    Route::get('/dashboardRecruiter', [RecruiterController::class, 'index'])->name('recruiter.index');
+
+    // Seeker Dashboard
+    Route::get('/dashboardSeeker', [SeekerController::class, 'index'])->name('seeker.index');
 });
+
 
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';
+
+route::get('/seeker', function () {
+    return view('user.seekerPage');
+})->name('seekerPage');
+route::get('/recuiter', function () {
+    return view('user.recuiterPage');
+})->name('recuiterPage');

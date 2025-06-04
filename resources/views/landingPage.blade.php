@@ -56,6 +56,7 @@
             </div>
         </section>
 
+
         <!-- Kategori Pekerjaan -->
         <section class="py-16 bg-[#FCFEFC]">
             <div class="container mx-auto px-4">
@@ -73,6 +74,7 @@
                             <h3 class="font-semibold text-lg">Software Developer</h3>
                             <p class="text-sm text-gray-500 mt-1">Front-end Developer, Back-end Developer, Full-stack
                                 Developer</p>
+
                         </div>
                     </div>
                     <!-- Desain -->
@@ -546,6 +548,7 @@
                         mendapatkan pekerjaan melalui platform kami</p>
                 </div>
 
+
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <!-- Testimonial 1 -->
                     <div class="bg-white rounded-xl shadow-lg p-6 relative">
@@ -605,6 +608,7 @@
                     </div>
 
                 </div>
+
             </div>
         </section>
 
