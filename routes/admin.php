@@ -22,7 +22,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/admin/category', [CategoryController::class, 'index'])->name('category.manage');
     Route::get('/admin/category/data', [CategoryController::class, 'getData'])->name('category.data');
     Route::post('/admin/category/store', [CategoryController::class, 'store'])->name('category.store');
-    Route::post('/admin/category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
+    Route::put('/admin/category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
     Route::delete('/admin/category/delete/{id}', [CategoryController::class, 'destroy'])->name('category.delete');
 
 });
