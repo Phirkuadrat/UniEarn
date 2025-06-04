@@ -22,7 +22,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboardRecruiter', [RecruiterController::class, 'index'])->name('recruiter.index');
 
     // Seeker Dashboard
-    Route::get('/dashboardSeeker', [SeekerController::class, 'index'])->name('seeker.index');
+    Route::prefix('seeker')->name('seeker.')->group(function () {
+        Route::get('/dashboardSeeker', [SeekerController::class, 'index'])->name('index');
+        Route::get('/portfolios', [SeekerController::class, 'portfolios'])->name('portfolios');
+        Route::get('/applications', [SeekerController::class, 'applications'])->name('applications');
+     });
 });
 
 require __DIR__ . '/auth.php';
