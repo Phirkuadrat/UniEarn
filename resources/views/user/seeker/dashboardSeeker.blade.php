@@ -1,4 +1,6 @@
-<x-app-layout> {{-- Asumsi Anda menggunakan layout ini --}}
+<x-landing-layout>
+    <x-navbar></x-navbar> 
+{{-- Asumsi Anda menggunakan layout ini --}}
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard Seeker') }}
@@ -48,4 +50,6 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+
+
+</x-landing-layout>
