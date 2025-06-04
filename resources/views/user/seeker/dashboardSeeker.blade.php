@@ -1,3 +1,5 @@
-<x-app-layout>
+<x-landing-layout>
+    <x-navbar></x-navbar>
 
-</x-app-layout>
+
+</x-landing-layout>

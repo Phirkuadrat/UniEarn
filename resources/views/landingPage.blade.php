@@ -10,34 +10,18 @@
             class="bg-cover bg-center py-32 flex items-center h-screen">
             <div class="container mx-auto px-4 text-center md:text-right">
                 <div class="bg-white bg-opacity-80 rounded-xl shadow-md text-clip px-8 py-14 inline-block max-w-4xl">
-                    <h1 class="text-3xl md:text-5xl font-bold text-[#3674B5] mb-2">uniEarn akan membantumu</h1>
-                    <h1 class="text-4xl md:text-6xl font-bold text-black mb-2">Selamat Datang Seeker</h1>
-                    <p class="text-xl md:text-2xl text-gray-700 mb-8">kembangkan potensimu dengan kami.</p>
+                    <h1 class="text-4xl md:text-6xl font-bold text-[#3674B5] mb-2">uniEarn can help you</h1>
+                    <h1 class="text-6xl md:text-8xl font-bold text-black mb-2">Welcome Seeker</h1>
+                    <p class="text-xl md:text-2xl text-gray-700 mb-8">grow up your skills with us for your future</p>
 
-                    <div class="bg-transparent rounded-xl p-1">
-                        <div class="flex flex-col md:flex-row gap-2">
-                            <input type="text" placeholder="Posisi/Jurusan"
-                                class="flex-1 px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500">
-
-                            <select class="px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500">
-                                <option>Lokasi</option>
-                                <option>Jakarta</option>
-                                <option>Bandung</option>
-                                <option>Surabaya</option>
-                                <option>Remote</option>
-                            </select>
-
-                            <select class="px-6 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500">
-                                <option>Jenis Pekerjaan</option>
-                                <option>Magang</option>
-                                <option>Part-time</option>
-                                <option>Freelance</option>
-                                <option>Proyek</option>
-                            </select>
+                    <div class="bg-transparent rounded-xl p-1 ">
+                        <div class="flex flex-col md:flex-row gap-2 justify-end">
+                            <input type="text" placeholder="Category Project"
+                                class="flex-1 px-4 py-3 border rounded-lg max-w-64 focus:ring-2 focus:ring-blue-500">
 
                             <button
                                 class="bg-[#3674B5] text-white px-6 py-3 rounded-lg justify-between hover:bg-[#2a5a8a] transition">
-                                Cari Lowongan
+                                Search
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </button>
                         </div>
