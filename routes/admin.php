@@ -2,9 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\PortofolioController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\SubCategoryController;
 
 Route::get('/login-admin', [AuthController::class, 'showLoginForm'])->name('admin.login');
 Route::post('/login-admin', [AuthController::class, 'login'])->name('admin.login.submit');
@@ -24,6 +26,22 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('/admin/category/store', [CategoryController::class, 'store'])->name('category.store');
     Route::put('/admin/category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
     Route::delete('/admin/category/delete/{id}', [CategoryController::class, 'destroy'])->name('category.delete');
+
+    // SubCategory Management
+    Route::get('/admin/subcategory', [SubCategoryController::class, 'index'])->name('subcategory.manage');
+    Route::get('/admin/subcategory/data', [SubCategoryController::class, 'getData'])->name('subcategory.data');
+    Route::post('/admin/subcategory/store', [SubCategoryController::class, 'store'])->name('subcategory.store');
+    Route::put('/admin/subcategory/update/{id}', [SubCategoryController::class, 'update'])->name('subcategory.update');
+    Route::delete('/admin/subcategory/delete/{id}', [SubCategoryController::class, 'destroy'])->name('subcategory.delete');
+
+    // Portofolio Management
+    Route::get('/admin/portofolio', [PortofolioController::class, 'index'])->name('portofolio.manage');
+    Route::get('/admin/portofolio/data', [PortofolioController::class, 'getData'])->name('portofolio.data');
+
+    // Project Management
+    Route::get('/admin/project', [ProjectController::class, 'index'])->name('project.manage');
+    Route::get('/admin/project/data', [ProjectController::class, 'getData'])->name('projects.data');
+
 
 });
 
