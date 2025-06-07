@@ -1,40 +1,36 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\SeekerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecruiterController;
-use App\Http\Controllers\SeekerController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleSelectionController;
 
-Route::get('/', function () {
-    return view('landingPage');
-})->name('landing');
-
-Route::get('/dashboard', function () {
-    return view('user/dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/', [UserController::class, 'landing'])->name('landing');
 
 Route::middleware('auth')->group(function () {
+    Route::post('/set-role', [RoleSelectionController::class, 'store'])->name('set.role');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // Recruiter Dashboard
-    Route::get('/dashboardRecruiter', [RecruiterController::class, 'index'])->name('recruiter.index');
+    Route::middleware('checkRole:recruiter')->group(function () {
+        Route::get('/recruiter/dashboard', [RecruiterController::class, 'index'])->name('seeker.dashboard');
+    });
 
     // Seeker Dashboard
-    Route::prefix('seeker')->name('seeker.')->group(function () {
-        Route::get('/dashboardSeeker', [SeekerController::class, 'index'])->name('index');
+    Route::middleware('checkRole:seeker')->group(function () {
+        Route::get('/seeker/dashboard', [SeekerController::class, 'index'])->name('recruiter.dashboard');
         Route::get('/portfolios', [SeekerController::class, 'portfolios'])->name('portfolios');
         Route::get('/applications', [SeekerController::class, 'applications'])->name('applications');
-     });
+    });
 });
+
+Route::get('/seeker', [SeekerController::class, 'homePage'])->name('seeker.page');
+Route::get('/recuiter', [RecruiterController::class, 'homePage'])->name('recruiter.page');
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
-
-route::get('/seeker', function () {
-    return view('user.seekerPage');
-})->name('seekerPage');
-route::get('/recuiter', function () {
-    return view('user.recuiterPage');
-})->name('recuiterPage');
