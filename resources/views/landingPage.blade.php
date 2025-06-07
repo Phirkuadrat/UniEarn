@@ -55,6 +55,7 @@
         </section>
 
 
+
         <!-- Kategori Pekerjaan -->
         <section class="py-16 bg-[#FCFEFC]">
             <div class="container mx-auto px-4">
@@ -66,7 +67,7 @@
                     <!-- Developer -->
                     <div
                         class="bg-white rounded-xl shadow-lg text-center hover:shadow-xl transition cursor-pointer hover:scale-105 duration-300">
-                        <img src="{{ asset('images/bidang1.webp') }}" class="w-full h-40 object-cover rounded-t-lg"
+                        <img src="{{ asset('images/softwaredevelopment2.png') }}" class="w-full h-40 object-cover rounded-t-lg"
                             alt="">
                         <div class="py-6">
                             <h3 class="font-semibold text-lg">Software Developer</h3>
@@ -78,7 +79,7 @@
                     <!-- Desain -->
                     <div
                         class="bg-white rounded-xl shadow-lg text-center hover:shadow-xl transition cursor-pointer hover:scale-105 duration-300">
-                        <img src="{{ asset('images/bidang2.webp') }}" class="w-full h-40 object-cover rounded-t-lg"
+                        <img src="{{ asset('images/desain.png') }}" class="w-full h-40 object-cover rounded-t-lg"
                             alt="">
                         <div class="py-6">
                             <h3 class="font-semibold text-lg">Desain & Kreatif</h3>
@@ -88,7 +89,7 @@
                     <!-- Marketing -->
                     <div
                         class="bg-white rounded-xl shadow-lg text-center hover:shadow-xl transition cursor-pointer hover:scale-105 duration-300">
-                        <img src="{{ asset('images/bidang3.webp') }}" class="w-full h-40 object-cover rounded-t-lg"
+                        <img src="{{ asset('images/marketing.png') }}" class="w-full h-40 object-cover rounded-t-lg"
                             alt="">
                         <div class="py-6">
                             <h3 class="font-semibold text-lg">Pemasaran & Komunikasi</h3>
@@ -99,7 +100,7 @@
                     <!-- Data analis -->
                     <div
                         class="bg-white rounded-xl shadow-lg text-center hover:shadow-xl transition cursor-pointer hover:scale-105 duration-300">
-                        <img src="{{ asset('images/bidang3.webp') }}" class="w-full h-40 object-cover rounded-t-lg"
+                        <img src="{{ asset('images/dataanalis.png') }}" class="w-full h-40 object-cover rounded-t-lg"
                             alt="">
                         <div class="py-6">
                             <h3 class="font-semibold text-lg">Data & Analisis</h3>
@@ -110,7 +111,7 @@
                     <!-- Manajemen -->
                     <div
                         class="bg-white rounded-xl shadow-lg text-center hover:shadow-xl transition cursor-pointer hover:scale-105 duration-300">
-                        <img src="{{ asset('images/bidang3.webp') }}" class="w-full h-40 object-cover rounded-t-lg"
+                        <img src="{{ asset('images/bisnis.png') }}" class="w-full h-40 object-cover rounded-t-lg"
                             alt="">
                         <div class="py-6">
                             <h3 class="font-semibold text-lg">Bisnis & Manajemen</h3>
@@ -121,7 +122,7 @@
                     <!-- Pendidikan -->
                     <div
                         class="bg-white rounded-xl shadow-lg text-center hover:shadow-xl transition cursor-pointer hover:scale-105 duration-300">
-                        <img src="{{ asset('images/bidang3.webp') }}" class="w-full h-40 object-cover rounded-t-lg"
+                        <img src="{{ asset('images/pendidikan.png') }}" class="w-full h-40 object-cover rounded-t-lg"
                             alt="">
                         <div class="py-6">
                             <h3 class="font-semibold text-lg">Pendidikan & Pelatihan</h3>
@@ -132,7 +133,7 @@
                     <!-- UMKM -->
                     <div
                         class="bg-white rounded-xl shadow-lg text-center hover:shadow-xl transition cursor-pointer hover:scale-105 duration-300">
-                        <img src="{{ asset('images/bidang3.webp') }}" class="w-full h-40 object-cover rounded-t-lg"
+                        <img src="{{ asset('images/umkm.png') }}" class="w-full h-40 object-cover rounded-t-lg"
                             alt="">
                         <div class="py-6">
                             <h3 class="font-semibold text-lg">E-commerce & UMKM</h3>
@@ -143,7 +144,7 @@
                     <!-- Teknik -->
                     <div
                         class="bg-white rounded-xl shadow-lg text-center hover:shadow-xl transition cursor-pointer hover:scale-105 duration-300">
-                        <img src="{{ asset('images/bidang3.webp') }}" class="w-full h-40 object-cover rounded-t-lg"
+                        <img src="{{ asset('images/mesin.png') }}" class="w-full h-40 object-cover rounded-t-lg"
                             alt="">
                         <div class="py-6">
                             <h3 class="font-semibold text-lg">Teknik & Engineering</h3>
@@ -154,7 +155,7 @@
                     <!-- Pertanian -->
                     <div
                         class="bg-white rounded-xl shadow-lg text-center hover:shadow-xl transition cursor-pointer hover:scale-105 duration-300">
-                        <img src="{{ asset('images/bidang3.webp') }}" class="w-full h-40 object-cover rounded-t-lg"
+                        <img src="{{ asset('images/lingkungan.png') }}" class="w-full h-40 object-cover rounded-t-lg"
                             alt="">
                         <div class="py-6">
                             <h3 class="font-semibold text-lg">Lingkungan & Pertanian</h3>
@@ -164,7 +165,7 @@
                     <!-- Sains -->
                     <div
                         class="bg-white rounded-xl shadow-lg text-center hover:shadow-xl transition cursor-pointer hover:scale-105 duration-300">
-                        <img src="{{ asset('images/bidang3.webp') }}" class="w-full h-40 object-cover rounded-t-lg"
+                        <img src="{{ asset('images/kesehatan.png') }}" class="w-full h-40 object-cover rounded-t-lg"
                             alt="">
                         <div class="py-6">
                             <h3 class="font-semibold text-lg">Kesehatan & Sains</h3>
