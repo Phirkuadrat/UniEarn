@@ -1,234 +1,213 @@
 <x-landing-layout>
-    <x-navbar></x-navbar>
 
-    <body class="bg-[#F2FAFC]">
+    <body class="bg-gray-100 text-gray-800 antialiased font-sans flex min-h-screen">
 
-        <div class="max-w-7xl mx-auto px-4 py-8">
-            <h1 class="text-4xl font-bold text-gray-800 mb-6">Project List</h1>
+        <x-navbar></x-navbar>
 
-            <!-- Tombol Tambah Project -->
-            <div class="fixed bottom-6 right-6">
-                <button class="bg-blue-600 text-white px-5 py-3 rounded-full shadow-lg hover:bg-blue-700 transition duration-300"
-                    onclick="openCreateModal()">
-                    + Create Project
-                </button>
+        <aside class="w-64 bg-white shadow-lg p-6 flex flex-col justify-between">
+            <div>
+                <div class="text-2xl font-bold text-blue-700 mb-8 text-center">Recruiter Panel</div>
+                <nav class="space-y-2">
+                    <a href="{{ route('recruiter.dashboard') }}"
+                        class="flex items-center p-3 rounded-lg text-blue-700 bg-blue-50 font-semibold hover:bg-blue-100 transition-colors duration-200">
+                        <i class="fas fa-home mr-3"></i> Dashboard
+                    </a>
+                    <a href="" {{-- Anda perlu membuat route ini --}}
+                        class="flex items-center p-3 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200">
+                        <i class="fas fa-briefcase mr-3"></i> My Job Listings
+                    </a>
+                    <a href="" {{-- Anda perlu membuat route ini --}}
+                        class="flex items-center p-3 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200">
+                        <i class="fas fa-file-alt mr-3"></i> Applications
+                    </a>
+                    <a href="" {{-- Anda perlu membuat route ini --}}
+                        class="flex items-center p-3 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200">
+                        <i class="fas fa-building mr-3"></i> Company Profile
+                    </a>
+                    <a href="" {{-- Anda perlu membuat route ini --}}
+                        class="flex items-center p-3 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200">
+                        <i class="fas fa-cog mr-3"></i> Settings
+                    </a>
+                </nav>
             </div>
+        </aside>
 
-            <!-- Table Project -->
-            <div class="overflow-x-auto bg-white shadow rounded-lg">
-                <table class="w-full table-auto border-collapse">
-                    <thead class="bg-blue-600 text-white">
-                        <tr>
-                            <th class="py-3 px-6 text-left">No</th>
-                            <th class="py-3 px-6 text-left">Title</th>
-                            <th class="py-3 px-6 text-left">Category</th>
-                            <th class="py-3 px-6 text-left">Status</th>
-                            <th class="py-3 px-6 text-left">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{-- BACKEND: Loop data projects --}}
-                        <tr class="border-b hover:bg-gray-50">
-                            <td class="py-3 px-6">1</td>
-                            <td class="py-3 px-6">Website Kasir</td>
-                            <td class="py-3 px-6">Programmer</td>
-                            <td class="py-3 px-6">Open</td>
-                            <td class="py-3 px-6 flex space-x-2">
-                                <button onclick="openDetailModal()">
-                                    <svg class="w-5 h-5 text-blue-600 hover:text-blue-800" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M10 3a7 7 0 100 14A7 7 0 0010 3zm0 12a5 5 0 110-10 5 5 0 010 10z" />
-                                        <path d="M10 8a1 1 0 100 2 1 1 0 000-2zm-1 4h2v1h-2v-1z" />
-                                    </svg>
-                                </button>
-                                <button onclick="openEditModal()">
-                                    <svg class="w-5 h-5 text-green-600 hover:text-green-800" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M17.414 2.586a2 2 0 010 2.828L8.414 14.414l-4.95 1.414 1.414-4.95 9-9a2 2 0 012.828 0zM4 16h12v2H4v-2z" />
-                                    </svg>
-                                </button>
-                                <button onclick="deleteProject()">
-                                    <svg class="w-5 h-5 text-red-600 hover:text-red-800" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd"
-                                            d="M6 2a1 1 0 00-1 1v1H3a1 1 0 100 2h1v11a2 2 0 002 2h8a2 2 0 002-2V6h1a1 1 0 100-2h-2V3a1 1 0 00-1-1H6zm2 4a1 1 0 012 0v8a1 1 0 11-2 0V6zm4 0a1 1 0 10-2 0v8a1 1 0 102 0V6z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </button>
-                            </td>
-                        </tr>
-                        {{-- BACKEND: Akhir loop --}}
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        <div class="flex-1 flex flex-col">
+            <main class="flex-1 p-8 overflow-y-auto">
+                <div class="max-w-7xl mx-auto">
+                    <h1 class="text-4xl font-extrabold text-gray-900 mb-8">Recruiter Dashboard</h1>
 
-        <!-- Modal Detail -->
-        <div id="detailModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
-            <div class="bg-white rounded-lg p-6 max-w-lg w-full shadow-xl">
-                <h2 class="text-2xl font-bold mb-4">Project Details</h2>
-                <div class="space-y-2">
-                    <p><strong>Title:</strong> Website Kasir</p>
-                    <p><strong>Category:</strong> Programmer</p>
-                    <p><strong>Description:</strong> Sistem kasir untuk minimarket</p>
-                    <p><strong>File:</strong> <a href="#" class="text-blue-600 underline">kasir_doc.pdf</a></p>
-                    <p><strong>Deadline:</strong> 2025-12-31 23:59</p>
-                    <p><strong>Status:</strong> Open</p>
+                    <div class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-6 rounded-lg shadow-md mb-8">
+                        <h2 class="text-2xl font-bold mb-2">Hello, {{ Auth::user()->name }}!</h2>
+                        <p class="text-blue-100">Welcome to your dashboard. Let's find your next great hire.</p>
+                        <div class="mt-4">
+                            <a href=""
+                                class="inline-flex items-center px-4 py-2 bg-white text-blue-700 font-semibold rounded-full shadow-md hover:bg-blue-100 transition-colors duration-200">
+                                <i class="fas fa-plus-circle mr-2"></i> Post a New Job
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-white p-6 rounded-lg shadow-md border border-blue-100">
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="text-lg font-semibold text-gray-700">Total Job Listings</h3>
+                                <div class="bg-blue-100 p-2 rounded-full text-blue-600">
+                                    <i class="fas fa-briefcase text-xl"></i>
+                                </div>
+                            </div>
+                            <p class="text-4xl font-bold text-gray-900">12</p> {{-- Ganti dengan data dinamis --}}
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md border border-green-100">
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="text-lg font-semibold text-gray-700">Total Applications</h3>
+                                <div class="bg-green-100 p-2 rounded-full text-green-600">
+                                    <i class="fas fa-users text-xl"></i>
+                                </div>
+                            </div>
+                            <p class="text-4xl font-bold text-gray-900">45</p> {{-- Ganti dengan data dinamis --}}
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md border border-purple-100">
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="text-lg font-semibold text-gray-700">Pending Reviews</h3>
+                                <div class="bg-purple-100 p-2 rounded-full text-purple-600">
+                                    <i class="fas fa-hourglass-half text-xl"></i>
+                                </div>
+                            </div>
+                            <p class="text-4xl font-bold text-gray-900">15</p> {{-- Ganti dengan data dinamis --}}
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-5">Recent Applications</h2>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Applicant Name
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Job Title
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Status
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Applied On
+                                        </th>
+                                        <th scope="col" class="relative px-6 py-3">
+                                            <span class="sr-only">Actions</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                            John Doe
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                            Web Developer (Intern)
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                            <span
+                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                                Pending
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                            June 5, 2025
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                            <a href="#" class="text-blue-600 hover:text-blue-900">View</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                            Jane Smith
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                            UI/UX Designer (Part-Time)
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                            <span
+                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                Reviewed
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                            June 3, 2025
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                            <a href="#" class="text-blue-600 hover:text-blue-900">View</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mt-5 text-right">
+                            <a href="" class="text-blue-600 font-semibold hover:underline">View All Applications
+                                &rarr;</a>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-5">Your Active Job Listings</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div
+                                class="border border-gray-200 rounded-lg p-5 hover:shadow-lg transition-shadow duration-200">
+                                <h3 class="font-bold text-lg text-gray-900 mb-2">Social Media Specialist</h3>
+                                <p class="text-sm text-gray-600 mb-3">Posted: May 20, 2025 | 10 Applicants</p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span
+                                        class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">Part-Time</span>
+                                    <span
+                                        class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">Marketing</span>
+                                    <span
+                                        class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Remote</span>
+                                </div>
+                                <div class="flex justify-end gap-3">
+                                    <a href="#" class="text-blue-600 hover:underline text-sm">Edit</a>
+                                    <a href="#" class="text-red-600 hover:underline text-sm">Delete</a>
+                                    <a href="#" class="text-gray-600 hover:underline text-sm">View
+                                        Applicants</a>
+                                </div>
+                            </div>
+                            <div
+                                class="border border-gray-200 rounded-lg p-5 hover:shadow-lg transition-shadow duration-200">
+                                <h3 class="font-bold text-lg text-gray-900 mb-2">Product Management Intern</h3>
+                                <p class="text-sm text-gray-600 mb-3">Posted: June 1, 2025 | 5 Applicants</p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span
+                                        class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">Internship</span>
+                                    <span
+                                        class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">Business</span>
+                                    <span
+                                        class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">Hybrid</span>
+                                </div>
+                                <div class="flex justify-end gap-3">
+                                    <a href="#" class="text-blue-600 hover:underline text-sm">Edit</a>
+                                    <a href="#" class="text-red-600 hover:underline text-sm">Delete</a>
+                                    <a href="#" class="text-gray-600 hover:underline text-sm">View
+                                        Applicants</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-5 text-right">
+                            <a href="" class="text-blue-600 font-semibold hover:underline">View All Job
+                                Listings &rarr;</a>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="flex justify-end mt-6">
-                    <button class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400" onclick="closeDetailModal()">Close</button>
-                </div>
-            </div>
+            </main>
         </div>
-
-        <!-- Modal Edit -->
-        <div id="editModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
-            <div class="bg-white rounded-lg p-6 max-w-lg w-full shadow-xl">
-                <h2 class="text-2xl font-bold mb-4">Edit Project</h2>
-                <form method="POST" action="#">
-                    @csrf
-                    <div class="mb-3">
-                        <label class="block mb-1">Title</label>
-                        <input type="text" name="edit_title" id="edit_title" class="w-full border rounded px-3 py-2 focus:ring-2 focus:ring-blue-500" />
-                    </div>
-                    <div class="mb-3">
-                        <label class="block mb-1">Description</label>
-                        <textarea name="edit_description" id="edit_description" class="w-full border rounded px-3 py-2 focus:ring-2 focus:ring-blue-500"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label class="block mb-1">File URI</label>
-                        <input type="text" name="edit_file_uri" id="edit_file_uri" class="w-full border rounded px-3 py-2 focus:ring-2 focus:ring-blue-500" />
-                    </div>
-                    <div class="mb-3">
-                        <label class="block mb-1">Category</label>
-                        <select name="edit_category" id="edit_category" class="w-full border rounded px-3 py-2 focus:ring-2 focus:ring-blue-500">
-                            <option value="Programmer">Programmer</option>
-                            <option value="Designer">Designer</option>
-                            <option value="Analyst">Analyst</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label class="block mb-1">Deadline</label>
-                        <input type="datetime-local" name="edit_deadline" id="edit_deadline" class="w-full border rounded px-3 py-2 focus:ring-2 focus:ring-blue-500" />
-                    </div>
-                    <div class="mb-4">
-                        <label class="block mb-1">Status</label>
-                        <select name="edit_status" id="edit_status" class="w-full border rounded px-3 py-2 focus:ring-2 focus:ring-blue-500">
-                            <option value="Open">Open</option>
-                            <option value="Ongoing">Ongoing</option>
-                            <option value="Done">Done</option>
-                        </select>
-                    </div>
-                    <div class="flex justify-end space-x-2">
-                        <button type="button" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400" onclick="closeEditModal()">Cancel</button>
-                        <button type="button" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700" onclick="updateProject()">Update</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <!-- Modal Create -->
-        <div id="createModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
-            <div class="bg-white rounded-lg p-6 max-w-lg w-full shadow-xl">
-                <h2 class="text-2xl font-bold mb-4">Create Project</h2>
-                <form method="POST" action="#">
-                    @csrf
-                    <div class="mb-3">
-                        <label class="block mb-1">Title</label>
-                        <input type="text" name="title" class="w-full border rounded px-3 py-2 focus:ring-2 focus:ring-blue-500" />
-                    </div>
-                    <div class="mb-3">
-                        <label class="block mb-1">Description</label>
-                        <textarea name="description" class="w-full border rounded px-3 py-2 focus:ring-2 focus:ring-blue-500"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label class="block mb-1">File URI</label>
-                        <input type="text" name="file_uri" class="w-full border rounded px-3 py-2 focus:ring-2 focus:ring-blue-500" />
-                    </div>
-                    <div class="mb-3">
-                        <label class="block mb-1">Category</label>
-                        <input type="text" name="category" class="w-full border rounded px-3 py-2 focus:ring-2 focus:ring-blue-500" />
-                    </div>
-                    <div class="mb-3">
-                        <label class="block mb-1">Deadline</label>
-                        <input type="datetime-local" name="deadline" class="w-full border rounded px-3 py-2 focus:ring-2 focus:ring-blue-500" />
-                    </div>
-                    <div class="mb-4">
-                        <label class="block mb-1">Status</label>
-                        <select name="status" class="w-full border rounded px-3 py-2 focus:ring-2 focus:ring-blue-500">
-                            <option value="Open">Open</option>
-                            <option value="Ongoing">Ongoing</option>
-                            <option value="Done">Done</option>
-                        </select>
-                    </div>
-                    <div class="flex justify-end space-x-2">
-                        <button type="button" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400" onclick="closeCreateModal()">Cancel</button>
-                        <button type="button" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" onclick="saveProject()">Save</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <!-- Notifikasi -->
-        <div id="notif" class="fixed top-6 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded shadow-lg hidden">
-            <span id="notifMessage"></span>
-        </div>
-
-        <script>
-            function openDetailModal() {
-                document.getElementById('detailModal').classList.remove('hidden');
-            }
-
-            function closeDetailModal() {
-                document.getElementById('detailModal').classList.add('hidden');
-            }
-
-            function openEditModal() {
-                document.getElementById('edit_title').value = 'Website Kasir';
-                document.getElementById('edit_description').value = 'Sistem kasir untuk minimarket';
-                document.getElementById('edit_file_uri').value = 'kasir_doc.pdf';
-                document.getElementById('edit_category').value = 'Programmer';
-                document.getElementById('edit_deadline').value = '2025-12-31T23:59';
-                document.getElementById('edit_status').value = 'Open';
-                document.getElementById('editModal').classList.remove('hidden');
-            }
-
-            function closeEditModal() {
-                document.getElementById('editModal').classList.add('hidden');
-            }
-
-            function updateProject() {
-                closeEditModal();
-                showNotif("Project berhasil diupdate.");
-            }
-
-            function openCreateModal() {
-                document.getElementById('createModal').classList.remove('hidden');
-            }
-
-            function closeCreateModal() {
-                document.getElementById('createModal').classList.add('hidden');
-            }
-
-            function saveProject() {
-                closeCreateModal();
-                showNotif("Project berhasil dibuat.");
-            }
-
-            function deleteProject() {
-                showNotif("Project telah dihapus.");
-            }
-
-            function showNotif(message) {
-                const notif = document.getElementById('notif');
-                document.getElementById('notifMessage').innerText = message;
-                notif.classList.remove('hidden');
-                notif.classList.add('animate-bounce');
-
-                setTimeout(() => {
-                    notif.classList.add('hidden');
-                    notif.classList.remove('animate-bounce');
-                }, 2000);
-            }
-        </script>
 
     </body>
-
 </x-landing-layout>
+
+

@@ -7,6 +7,12 @@ use Illuminate\Support\Facades\Auth;
 
 class SeekerController extends Controller
 {
+    // Halaman untuk mencari project
+    public function homePage()
+    {
+        return view('user.seekerPage');
+    }
+
     public function index()
     {
         $user = Auth::user();

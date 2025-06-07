@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Seeker extends Model
 {
     protected $fillable = [
-        'name',
-        'email',
         'phone',
         'address',
         'profile_picture',
