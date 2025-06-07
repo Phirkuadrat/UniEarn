@@ -18,8 +18,8 @@
             <!-- Desktop Menu -->
             <div class="hidden md:flex items-center space-x-8">
                 <a href="/" class="text-gray-700 hover:text-blue-600 font-medium">Home</a>
-                <a href="#lowongan" class="text-gray-700 hover:text-blue-600 font-medium">Project</a>
-                <a href="#event" class="text-gray-700 hover:text-blue-600 font-medium">Portofolio</a>
+                <a href="{{ route('seeker.page') }}" class="text-gray-700 hover:text-blue-600 font-medium">Project</a>
+                <a href="{{ route('recruiter.page') }}" class="text-gray-700 hover:text-blue-600 font-medium">Portofolio</a>
             </div>
 
             <!-- Auth Buttons / Profile Dropdown -->
@@ -45,7 +45,7 @@
 
                 <!-- Dropdown Menu (Hidden by default) -->
                 <div id="profile-menu" class="hidden absolute right-0 mt-48 w-48 bg-white rounded-lg shadow-lg py-1 z-50 border border-collapse">
-                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dashboard</a>
+                    <a href="{{ auth()->user()->is_recruiter ? route('recruiter.dashboard') : route('seeker.dashboard') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dashboard</a>
                     <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profil</a>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
@@ -87,7 +87,7 @@
             @auth
             <!-- Menu untuk user yang sudah login (mobile) -->
             <div class="border-t border-gray-200 pt-2">
-                <a href="#"
+                <a href="{{ auth()->user()->is_recruiter ? route('recruiter.dashboard') : route('seeker.dashboard') }}"
                     class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Dashboard</a>
                 <a href="{{ route('profile.edit') }}"
                     class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Profil Saya</a>

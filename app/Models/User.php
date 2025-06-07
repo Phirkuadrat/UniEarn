@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -45,7 +46,7 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    
+
     public function seeker()
     {
         return $this->hasOne(seeker::class);
@@ -56,5 +57,22 @@ class User extends Authenticatable
         return $this->hasOne(recruiter::class);
     }
 
+    const ROLE_UNASSIGNED = 'unassigned';
+    const ROLE_SEEKER = 'seeker';
+    const ROLE_RECRUITER = 'recruiter';
 
+    public function isUnassigned(): bool
+    {
+        return $this->role === self::ROLE_UNASSIGNED;
+    }   
+
+    public function isSeeker(): bool
+    {
+        return $this->role === self::ROLE_SEEKER;
+    }
+
+    public function isRecruiter(): bool
+    {
+        return $this->role === self::ROLE_RECRUITER;
+    }
 }

@@ -10,6 +10,11 @@ use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
 {
+    function landing(){
+        
+        return view('landingPage');
+    }
+
     function index(Request $request)
     {
         $users = User::latest()->get();

@@ -1,8 +1,8 @@
 <x-admin-layout>
     <div class="p-6 h-[100vh]">
         {{-- Page Title --}}
-        <h1 class="text-2xl font-semibold mb-4">User Management</h1>
-
+        <h1 class="text-3xl font-extrabold text-gray-800 mb-6 border-b-2 border-blue-500 pb-2">User Management</h1>
+        
         {{-- Stat Cards --}}
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <div class="bg-white rounded-2xl shadow p-4 flex items-center justify-between">

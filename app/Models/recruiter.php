@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Recruiter extends Model
 {
     protected $fillable = [
-        'name',
-        'email',
-        'phone',
-        'address',
-        'profile_picture',
-        'bio',
+        'user_id',
+        'company_name',
+        'company_website',
+        'company_phone',
+        'company_address',
+        'company_logo',
     ];
 
     public function user()
