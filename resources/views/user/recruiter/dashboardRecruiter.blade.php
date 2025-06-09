@@ -4,7 +4,7 @@
 
         <x-navbar></x-navbar>
 
-        <aside class="w-64 bg-white shadow-lg p-6 flex flex-col justify-between">
+        <aside class="w-64 bg-white shadow-lg p-6 mt-16 flex flex-col justify-between">
             <div>
                 <div class="text-2xl font-bold text-blue-700 mb-8 text-center">Recruiter Panel</div>
                 <nav class="space-y-2">
@@ -32,7 +32,7 @@
             </div>
         </aside>
 
-        <div class="flex-1 flex flex-col">
+        <div class="flex-1 flex flex-col mt-16">
             <main class="flex-1 p-8 overflow-y-auto">
                 <div class="max-w-7xl mx-auto">
                     <h1 class="text-4xl font-extrabold text-gray-900 mb-8">Recruiter Dashboard</h1>

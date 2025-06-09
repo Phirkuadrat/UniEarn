@@ -18,14 +18,14 @@ Route::middleware('auth')->group(function () {
 
     // Recruiter Dashboard
     Route::middleware('checkRole:recruiter')->group(function () {
-        Route::get('/recruiter/dashboard', [RecruiterController::class, 'index'])->name('seeker.dashboard');
+        Route::get('/recruiter/dashboard', [RecruiterController::class, 'index'])->name('recruiter.dashboard');
     });
 
     // Seeker Dashboard
     Route::middleware('checkRole:seeker')->group(function () {
-        Route::get('/seeker/dashboard', [SeekerController::class, 'index'])->name('recruiter.dashboard');
-        Route::get('/portfolios', [SeekerController::class, 'portfolios'])->name('portfolios');
-        Route::get('/applications', [SeekerController::class, 'applications'])->name('applications');
+        Route::get('/seeker/dashboard', [SeekerController::class, 'index'])->name('seeker.dashboard');
+        Route::get('/portfolios', [SeekerController::class, 'portfolios'])->name('seeker.portfolios');
+        Route::get('/applications', [SeekerController::class, 'applications'])->name('seeker.applications');
     });
 });
 

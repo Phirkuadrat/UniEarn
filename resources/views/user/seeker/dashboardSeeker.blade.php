@@ -1,5 +1,5 @@
 <x-landing-layout>
-    <x-navbar></x-navbar> 
+    <x-navbar></x-navbar>
 {{-- Asumsi Anda menggunakan layout ini --}}
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -9,7 +9,7 @@
 
     <div class="py-12 bg-white">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6 md:p-8">
+            <div class="bg-white overflow-hidden shadow-xl border border-collapse sm:rounded-lg p-6 mt-12 md:p-8">
                 <h3 class="text-2xl font-bold text-[#3674B5] mb-6">Selamat Datang, {{ $userName ?? 'Seeker' }}!</h3>
 
                 <p class="text-gray-700 mb-4">

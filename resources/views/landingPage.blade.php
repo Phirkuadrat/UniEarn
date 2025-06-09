@@ -20,671 +20,681 @@
         @endauth
 
         <!-- Hero Section (Modifikasi) -->
-        <section style="background-image: url('{{ asset('images/fotoHero.webp') }}')"
-            class="bg-cover bg-center py-32 flex items-center h-screen">
-            <div class="container mx-auto px-4 text-center md:text-right">
-                <div class="bg-white bg-opacity-80 rounded-xl shadow-md text-clip px-8 py-14 inline-block max-w-4xl">
-                    <h1 class="text-4xl md:text-6xl font-bold text-[#3674B5] mb-2">uniEarn can help you</h1>
-                    <h1 class="text-6xl md:text-8xl font-bold text-black mb-2">Welcome Seeker</h1>
-                    <p class="text-xl md:text-2xl text-gray-700 mb-8">grow up your skills with us for your future</p>
+        <section style="background-image: url('{{ asset('images/fotoHero.webp') }}')" class="bg-cover bg-center">
+            <div class="bg-black bg-opacity-20">
+                <div class="container mx-auto px-4 flex items-center min-h-screen justify-center md:justify-end">
+                    <div class="w-full md:w-3/4 lg:w-2/3 xl:w-1/2">
+                        <div
+                            class="bg-white bg-opacity-75 backdrop-blur-sm rounded-2xl shadow-xl p-8 md:p-12 text-center md:text-right">
 
-                    <div class="bg-transparent rounded-xl p-1 ">
-                        <div class="flex flex-col md:flex-row gap-2 justify-end">
-                            <input type="text" placeholder="Category Project"
-                                class="flex-1 px-4 py-3 border rounded-lg max-w-64 focus:ring-2 focus:ring-blue-500">
+                            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-black tracking-tight mb-4">
+                                Hello, Future Leader!
+                            </h1>
 
-                            <button
-                                class="bg-[#3674B5] text-white px-6 py-3 rounded-lg justify-between hover:bg-[#2a5a8a] transition">
-                                Search
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </button>
+                            <h2 class="text-2xl md:text-4xl font-bold text-[#3674B5] tracking-tight mb-6">
+                                Your Next Chapter, Powered by uniEarn.
+                            </h2>
+
+                            <p class="text-lg md:text-xl text-gray-800 mb-8 max-w-2xl mx-auto md:mx-0">
+                                Unlock your potential. We connect you to the skills and jobs for a meaningful career.
+                            </p>
+
+                            <form class="flex flex-col sm:flex-row gap-3 mb-6">
+                                <input type="text" placeholder="Search for jobs or projects..."
+                                    class="flex-grow px-5 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3674B5] focus:border-transparent transition duration-300 w-full" />
+
+                                <button type="submit"
+                                    class="bg-[#3674B5] text-white px-6 py-3 rounded-lg font-semibold flex items-center justify-center gap-2 hover:bg-[#2a5a8a] transition-transform transform hover:scale-105">
+                                    <span>Search</span>
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </button>
+                            </form>
                         </div>
                     </div>
-
-                    {{-- <div class="mt-6 flex flex-wrap justify-center md:justify-end gap-4">
-                        <button
-                            class="bg-white border border-[#3674B5] text-[#3674B5] px-6 py-2 rounded-lg hover:bg-blue-50">
-                            Upload CV
-                        </button>
-                        <button class="bg-[#FF9E1B] text-white px-6 py-2 rounded-lg hover:bg-[#e08a15]">
-                            Daftar Sekarang
-                        </button>
-                    </div> --}}
                 </div>
             </div>
         </section>
-
-
 
         <!-- Kategori Pekerjaan -->
         <section class="py-16 bg-[#FCFEFC]">
             <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center mb-4">Temukan Bidang Kerja Populer</h2>
-                <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">Pilih bidang pekerjaan yang sesuai dengan
-                    kebutuhan dan jadwal kuliahmu</p>
-
-                <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
-                    <!-- Developer -->
-                    <div
-                        class="bg-white rounded-xl shadow-lg text-center hover:shadow-xl transition cursor-pointer hover:scale-105 duration-300">
-                        <img src="{{ asset('images/softwaredevelopment2.png') }}" class="w-full h-40 object-cover rounded-t-lg"
-                            alt="">
-                        <div class="py-6">
-                            <h3 class="font-semibold text-lg">Software Developer</h3>
-                            <p class="text-sm text-gray-500 mt-1">Front-end Developer, Back-end Developer, Full-stack
-                                Developer</p>
-
-                        </div>
-                    </div>
-                    <!-- Desain -->
-                    <div
-                        class="bg-white rounded-xl shadow-lg text-center hover:shadow-xl transition cursor-pointer hover:scale-105 duration-300">
-                        <img src="{{ asset('images/desain.png') }}" class="w-full h-40 object-cover rounded-t-lg"
-                            alt="">
-                        <div class="py-6">
-                            <h3 class="font-semibold text-lg">Desain & Kreatif</h3>
-                            <p class="text-sm text-gray-500 mt-1">UI/UX Designer, Graphic Designer,Illustrator</p>
-                        </div>
-                    </div>
-                    <!-- Marketing -->
-                    <div
-                        class="bg-white rounded-xl shadow-lg text-center hover:shadow-xl transition cursor-pointer hover:scale-105 duration-300">
-                        <img src="{{ asset('images/marketing.png') }}" class="w-full h-40 object-cover rounded-t-lg"
-                            alt="">
-                        <div class="py-6">
-                            <h3 class="font-semibold text-lg">Pemasaran & Komunikasi</h3>
-                            <p class="text-sm text-gray-500 mt-1">Digital Marketing, Social Media Specialist, SEO
-                                Specialist</p>
-                        </div>
-                    </div>
-                    <!-- Data analis -->
-                    <div
-                        class="bg-white rounded-xl shadow-lg text-center hover:shadow-xl transition cursor-pointer hover:scale-105 duration-300">
-                        <img src="{{ asset('images/dataanalis.png') }}" class="w-full h-40 object-cover rounded-t-lg"
-                            alt="">
-                        <div class="py-6">
-                            <h3 class="font-semibold text-lg">Data & Analisis</h3>
-                            <p class="text-sm text-gray-500 mt-1">Data Analyst, Data Scientist, Business Intelligence
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Manajemen -->
-                    <div
-                        class="bg-white rounded-xl shadow-lg text-center hover:shadow-xl transition cursor-pointer hover:scale-105 duration-300">
-                        <img src="{{ asset('images/bisnis.png') }}" class="w-full h-40 object-cover rounded-t-lg"
-                            alt="">
-                        <div class="py-6">
-                            <h3 class="font-semibold text-lg">Bisnis & Manajemen</h3>
-                            <p class="text-sm text-gray-500 mt-1">Business Development, Project Management, Human
-                                Resources (HR)</p>
-                        </div>
-                    </div>
-                    <!-- Pendidikan -->
-                    <div
-                        class="bg-white rounded-xl shadow-lg text-center hover:shadow-xl transition cursor-pointer hover:scale-105 duration-300">
-                        <img src="{{ asset('images/pendidikan.png') }}" class="w-full h-40 object-cover rounded-t-lg"
-                            alt="">
-                        <div class="py-6">
-                            <h3 class="font-semibold text-lg">Pendidikan & Pelatihan</h3>
-                            <p class="text-sm text-gray-500 mt-1">Tutor / Pengajar Online, Content Creator Edukasi,
-                                Mentor Bootcamp</p>
-                        </div>
-                    </div>
-                    <!-- UMKM -->
-                    <div
-                        class="bg-white rounded-xl shadow-lg text-center hover:shadow-xl transition cursor-pointer hover:scale-105 duration-300">
-                        <img src="{{ asset('images/umkm.png') }}" class="w-full h-40 object-cover rounded-t-lg"
-                            alt="">
-                        <div class="py-6">
-                            <h3 class="font-semibold text-lg">E-commerce & UMKM</h3>
-                            <p class="text-sm text-gray-500 mt-1">Admin Toko Online, Marketplace Specialist, Customer
-                                Service</p>
-                        </div>
-                    </div>
-                    <!-- Teknik -->
-                    <div
-                        class="bg-white rounded-xl shadow-lg text-center hover:shadow-xl transition cursor-pointer hover:scale-105 duration-300">
-                        <img src="{{ asset('images/mesin.png') }}" class="w-full h-40 object-cover rounded-t-lg"
-                            alt="">
-                        <div class="py-6">
-                            <h3 class="font-semibold text-lg">Teknik & Engineering</h3>
-                            <p class="text-sm text-gray-500 mt-1">Mechanical Engineer, Electrical Engineer, Civil
-                                Engineer</p>
-                        </div>
-                    </div>
-                    <!-- Pertanian -->
-                    <div
-                        class="bg-white rounded-xl shadow-lg text-center hover:shadow-xl transition cursor-pointer hover:scale-105 duration-300">
-                        <img src="{{ asset('images/lingkungan.png') }}" class="w-full h-40 object-cover rounded-t-lg"
-                            alt="">
-                        <div class="py-6">
-                            <h3 class="font-semibold text-lg">Lingkungan & Pertanian</h3>
-                            <p class="text-sm text-gray-500 mt-1">Agribisnis, Ahli Lingkungan, Teknologi Pangan</p>
-                        </div>
-                    </div>
-                    <!-- Sains -->
-                    <div
-                        class="bg-white rounded-xl shadow-lg text-center hover:shadow-xl transition cursor-pointer hover:scale-105 duration-300">
-                        <img src="{{ asset('images/kesehatan.png') }}" class="w-full h-40 object-cover rounded-t-lg"
-                            alt="">
-                        <div class="py-6">
-                            <h3 class="font-semibold text-lg">Kesehatan & Sains</h3>
-                            <p class="text-sm text-gray-500 mt-1">Analis Kesehatan, Asisten Apoteker, Peneliti Lab</p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- Kategori Pekerjaan -->
-        <section class="py-16 bg-[#F2FAFC]">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center mb-4">Temukan Berdasarkan Kategori</h2>
-                <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">Pilih jenis pekerjaan yang sesuai dengan
-                    kebutuhan dan jadwal kuliahmu</p>
-
-                <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
-                    <!-- Magang -->
-                    <div
-                        class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition cursor-pointer">
-                        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                                </path>
-                            </svg>
-                        </div>
-                        <h3 class="font-semibold text-lg">Magang</h3>
-                        <p class="text-sm text-gray-500 mt-1">120+ Lowongan</p>
-                    </div>
-
-                    <!-- Part-Time -->
-                    <div
-                        class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition cursor-pointer">
-                        <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="font-semibold text-lg">Part-Time</h3>
-                        <p class="text-sm text-gray-500 mt-1">85+ Lowongan</p>
-                    </div>
-
-                    <!-- Freelance -->
-                    <div
-                        class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition cursor-pointer">
-                        <div
-                            class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
-                                </path>
-                            </svg>
-                        </div>
-                        <h3 class="font-semibold text-lg">Freelance</h3>
-                        <p class="text-sm text-gray-500 mt-1">64+ Proyek</p>
-                    </div>
-
-                    <!-- Beasiswa -->
-                    <div
-                        class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition cursor-pointer">
-                        <div
-                            class="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 14l9-5-9-5-9 5 9 5z"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z">
-                                </path>
-                            </svg>
-                        </div>
-                        <h3 class="font-semibold text-lg">Beasiswa</h3>
-                        <p class="text-sm text-gray-500 mt-1">32+ Program</p>
-                    </div>
-
-                    <!-- Volunteer -->
-                    <div
-                        class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition cursor-pointer">
-                        <div class="bg-pink-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8 text-pink-600" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
-                                </path>
-                            </svg>
-                        </div>
-                        <h3 class="font-semibold text-lg">Volunteer</h3>
-                        <p class="text-sm text-gray-500 mt-1">28+ Kegiatan</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Lowongan Rekomendasi -->
-        <section class="py-16 bg-white">
-            <div class="container mx-auto px-4">
-                <div class="flex justify-between items-center mb-8">
-                    <div>
-                        <h2 class="text-3xl font-bold">Rekomendasi untuk Kamu</h2>
-                        <p class="text-gray-600">Lowongan yang cocok dengan jurusan dan minatmu</p>
-                    </div>
-                    <a href="#" class="text-blue-600 font-semibold hover:underline">Lihat Semua</a>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Lowongan 1 -->
-                    <div
-                        class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition">
-                        <div class="p-6">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h3 class="font-bold text-xl">Web Developer Magang</h3>
-                                    <p class="text-gray-600">PT. Tech Innovasi</p>
-                                </div>
-                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                                    <i class="fa-solid fa-building fa-2xl text-[#7a7f81]"></i>
-                                </div>
-                                {{-- <img src="{{ asset('images/company-logo1.png') }}" alt="Company Logo"
-                                    class="w-12 h-12 object-contain"> --}}
-                            </div>
-
-                            <div class="mt-4 flex flex-wrap gap-2">
-                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Magang</span>
-                                <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">IT</span>
-                                <span
-                                    class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Remote</span>
-                            </div>
-
-                            <div class="mt-4 space-y-2">
-                                <div class="flex items-center text-gray-600">
-                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z">
-                                        </path>
-                                    </svg>
-                                    <span>Rp3-4jt/bulan</span>
-                                </div>
-                                <div class="flex items-center text-gray-600">
-                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
-                                        </path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                    </svg>
-                                    <span>Jakarta</span>
-                                </div>
-                                <div class="flex items-center text-gray-600">
-                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
-                                        </path>
-                                    </svg>
-                                    <span>Deadline: 30 Juni 2023</span>
-                                </div>
-                            </div>
-
-                            <div class="mt-6 flex justify-between items-center">
-                                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm">
-                                    Lamar Sekarang
-                                </button>
-                                <button class="text-gray-500 hover:text-blue-600">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Lowongan 2 -->
-                    <div
-                        class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition">
-                        <div class="p-6">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h3 class="font-bold text-xl">Web Developer Magang</h3>
-                                    <p class="text-gray-600">PT. Tech Innovasi</p>
-                                </div>
-                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                                    <i class="fa-solid fa-building fa-2xl text-[#7a7f81]"></i>
-                                </div>
-                                {{-- atau --}}
-                                {{-- <img src="{{ asset('images/company-logo1.png') }}" alt="Company Logo"
-                                    class="w-12 h-12 object-contain"> --}}
-                            </div>
-
-                            <div class="mt-4 flex flex-wrap gap-2">
-                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Magang</span>
-                                <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">IT</span>
-                                <span
-                                    class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Remote</span>
-                            </div>
-
-                            <div class="mt-4 space-y-2">
-                                <div class="flex items-center text-gray-600">
-                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z">
-                                        </path>
-                                    </svg>
-                                    <span>Rp3-4jt/bulan</span>
-                                </div>
-                                <div class="flex items-center text-gray-600">
-                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
-                                        </path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                    </svg>
-                                    <span>Jakarta</span>
-                                </div>
-                                <div class="flex items-center text-gray-600">
-                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
-                                        </path>
-                                    </svg>
-                                    <span>Deadline: 30 Juni 2023</span>
-                                </div>
-                            </div>
-
-                            <div class="mt-6 flex justify-between items-center">
-                                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm">
-                                    Lamar Sekarang
-                                </button>
-                                <button class="text-gray-500 hover:text-blue-600">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Lowongan 3 -->
-                    <div
-                        class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition">
-                        <div class="p-6">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h3 class="font-bold text-xl">Web Developer Magang</h3>
-                                    <p class="text-gray-600">PT. Tech Innovasi</p>
-                                </div>
-                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                                    <i class="fa-solid fa-building fa-2xl text-[#7a7f81]"></i>
-                                </div>
-                                {{-- <img src="{{ asset('images/company-logo1.png') }}" alt="Company Logo"
-                                    class="w-12 h-12 object-contain"> --}}
-                            </div>
-
-                            <div class="mt-4 flex flex-wrap gap-2">
-                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Magang</span>
-                                <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">IT</span>
-                                <span
-                                    class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Remote</span>
-                            </div>
-
-                            <div class="mt-4 space-y-2">
-                                <div class="flex items-center text-gray-600">
-                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z">
-                                        </path>
-                                    </svg>
-                                    <span>Rp3-4jt/bulan</span>
-                                </div>
-                                <div class="flex items-center text-gray-600">
-                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
-                                        </path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                    </svg>
-                                    <span>Jakarta</span>
-                                </div>
-                                <div class="flex items-center text-gray-600">
-                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
-                                        </path>
-                                    </svg>
-                                    <span>Deadline: 30 Juni 2023</span>
-                                </div>
-                            </div>
-
-                            <div class="mt-6 flex justify-between items-center">
-                                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm">
-                                    Lamar Sekarang
-                                </button>
-                                <button class="text-gray-500 hover:text-blue-600">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- Perusahaan Mitra -->
-        <section class="py-16 bg-[#F2FAFC]">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold mb-4">Perusahaan Mitra Kami</h2>
-                    <p class="text-gray-600 max-w-2xl mx-auto">Perusahaan-perusahaan yang aktif merekrut mahasiswa
-                        melalui platform kami</p>
-                </div>
-
-                <div class="xl:px-96">
-                    <div class="grid grid-cols-2 md:grid-cols-7 gap-3 md:gap-2 sm:gap-5 items-center ">
-
-                        <div class="flex justify-center p-0">
-                            <img src="{{ asset('assets/Google.svg') }}" alt="Gojek"
-                                class="max-w-full max-h-16 object-contain p-0">
-                        </div>
-
-                        <!-- Gojek - Versi yang diperbaiki -->
-                        <div class="flex justify-center p-0">
-                            <img src="{{ asset('assets/Gojek.svg') }}" alt="Gojek"
-                                class="max-w-full max-h-16 object-contain p-0">
-                        </div>
-
-                        <!-- Perusahaan lain -->
-                        <div class="flex justify-center">
-                            <i class="fa-brands fa-microsoft fa-2xl text-4xl text-blue-600"></i>
-                        </div>
-
-                        <div class="flex justify-center">
-                            <i class="fa-brands fa-apple fa-2xl text-4xl text-gray-800"></i>
-                        </div>
-
-                        <div class="flex justify-center">
-                            <i class="fa-brands fa-amazon fa-2xl text-4xl text-yellow-600"></i>
-                        </div>
-
-                        <div class="flex justify-center p-0">
-                            <img src="{{ asset('assets/Sinarmas.svg') }}" alt="Gojek"
-                                class="max-w-full max-h-16 object-contain p-0">
-                        </div>
-
-                        <div class="flex justify-center p-0">
-                            <img src="{{ asset('assets/Samsung.svg') }}" alt="Gojek"
-                                class="max-w-full max-h-16 object-contain p-0">
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonial Mahasiswa -->
-        <section class="py-16 bg-gradient-to-r from-indigo-50 to-blue-50">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold mb-4">Kisah Sukses Mahasiswa</h2>
-                    <p class="text-gray-600 max-w-2xl mx-auto">Pengalaman langsung dari mahasiswa yang telah
-                        mendapatkan pekerjaan melalui platform kami</p>
-                </div>
-
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Testimonial 1 -->
-                    <div class="bg-white rounded-xl shadow-lg p-6 relative">
-                        <div
-                            class="absolute -top-4 left-6 bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center">
-                            <i class="fa-regular fa-comment"></i>
-                        </div>
-                        <div class="flex items-center mb-4">
-                            <img src="{{ asset('images/bidang3.webp') }}" alt="Student"
-                                class="w-12 h-12 rounded-full object-cover">
-                            <div class="ml-4">
-                                <h4 class="font-semibold">Ani Wijaya</h4>
-                                <p class="text-sm text-gray-600">Teknik Informatika - Universitas Indonesia</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-700 italic">
-                            "Magang di Gojek sebagai Frontend Developer membantu saya menerapkan ilmu kampus
-                            di dunia nyata. Timnya sangat supportive untuk mahasiswa!"
-                        </p>
-                        <div class="mt-4 flex text-yellow-400">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                    </div>
-
-                    <!-- Testimonial 2 -->
-                    <div class="bg-white rounded-xl shadow-lg p-6 relative">
-                        <div
-                            class="absolute -top-4 left-6 bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center">
-                            <i class="fa-regular fa-comment"></i>
-                        </div>
-                        <div class="flex items-center mb-4">
-                            {{-- <img src="{{ asset('images/bidang1.webp') }}" alt="Student"
-                                class="w-12 h-12 rounded-full object-cover"> --}}
-                            {{-- atau --}}
-                            <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
-                                <i class="fa-solid fa-user fa-xl"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="font-semibold">Ade Hermawan Saputra</h4>
-                                <p class="text-sm text-gray-600">Teknik Mesin - Universitas Terbuka</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-700 italic">
-                            "Magang di Sinarmas sebagai Mechine Engiener membantu saya menerapkan ilmu kampus
-                            di dunia nyata. Timnya sangat supportive untuk mahasiswa!"
-                        </p>
-                        <div class="mt-4 flex text-yellow-400">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Final CTA -->
-        <section class="py-16 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
-            <div class="container mx-auto px-4 text-center">
-                <h3 class="text-3xl md:text-4xl font-bold mb-4">Siap Memulai Karir Pertamamu?</h3>
-                <p class="text-xl mb-8 max-w-2xl mx-auto">Daftar sekarang dan dapatkan rekomendasi lowongan personal!
+                <h2 class="text-3xl font-bold text-center mb-4">Discover In-Demand Career Paths</h2>
+                <p class="text-gray-600 text-center mb-8 max-w-2xl mx-auto">
+                    Select fields that align with your abilities and college timetable
                 </p>
 
-                <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <button
-                        class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition text-lg">
-                        Daftar Gratis
-                    </button>
-                    {{-- <button
-                        class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition text-lg">
-                        Download Aplikasi
-                    </button> --}}
-                </div>
+                <!-- Swiper -->
+                <div class="swiper category-carousel">
+                    <div class="swiper-wrapper px-4">
+                        @foreach ($categories as $category)
+                            <div class="swiper-slide">
+                                <div
+                                    class="bg-white mb-10 mt-3 rounded-xl shadow-lg text-center hover:shadow-xl transition cursor-pointer hover:scale-105 duration-300">
+                                    <img src="{{ asset('storage/' . $category->image) }}"
+                                        class="w-full h-40 object-cover rounded-t-lg" alt="{{ $category->slug }}">
+                                    <div class="py-6">
+                                        <h3 class="font-semibold text-lg">{{ $category->name }}</h3>
+                                        <p class="text-sm text-gray-500 mt-1">
+                                            @forelse ($category->subCategories->take(3) as $sub)
+                                                {{ $sub->name }}@if (!$loop->last)
+                                                    ,
+                                                @endif
+                                                @empty
+                                                    <span class="text-gray-400 italic">No subcategories</span>
+                                                @endforelse
+                                            </p>
 
-                <div class="mt-8 flex flex-wrap justify-center gap-4 text-blue-200">
-                    <div class="flex items-center">
-                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                        <span>Gratis untuk Mahasiswa</span>
-                    </div>
-                    <div class="flex items-center">
-                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                        <span>Proses Lamar 1-Klik</span>
-                    </div>
-                    <div class="flex items-center">
-                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                        <span>Notifikasi Lowongan Instan</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        <!-- Optional: Navigasi dan Pagination -->
+                        <div class="swiper-button-next text-gray-500"></div>
+                        <div class="swiper-button-prev text-gray-500"></div>
+                        <div class="swiper-pagination mt-4"></div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Footer -->
-        <x-footer></x-footer>
+            <!-- Menapa UniEarn -->
+            <section class="py-16 bg-[#F2FAFC]">
+                <div class="container mx-auto px-4">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl font-bold mb-4">Why Choose uniEarn?</h2>
+                        <p class="text-gray-600 max-w-2xl mx-auto">A platform specifically for students, designed to help
+                            you find job opportunities that fit your class schedule and career interests</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div
+                            class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                            <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                                <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-xl mb-2">Specifically for Students</h3>
+                            <p class="text-gray-600">Our platform is designed specifically for student needs with flexible
+                                jobs that fit class schedules</p>
+                        </div>
+
+                        <div
+                            class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                            <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                                <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-xl mb-2">Verified Job Vacancies</h3>
+                            <p class="text-gray-600">All job vacancies go through a strict verification process to ensure
+                                the security and credibility of the company</p>
+                        </div>
+
+                        <div
+                            class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                            <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                                <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-xl mb-2">Easy Application Process</h3>
+                            <p class="text-gray-600">The "Instant Apply" feature allows you to apply with just one click
+                                using your uploaded CV</p>
+                        </div>
+
+                        <div
+                            class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                            <div class="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                                <svg class="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-xl mb-2">Flexible with Your Schedule</h3>
+                            <p class="text-gray-600">Jobs with flexible working hours that can be adjusted to your class and
+                                exam schedules</p>
+                        </div>
+
+                        <div
+                            class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                            <div class="bg-pink-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                                <svg class="w-8 h-8 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-xl mb-2">Digital Portfolio</h3>
+                            <p class="text-gray-600">Create a professional portfolio to showcase your projects and
+                                achievements to companies</p>
+                        </div>
+
+                        <div
+                            class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                            <div class="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                                <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-xl mb-2">Student Community</h3>
+                            <p class="text-gray-600">Join the student community to share experiences and get career support
+                            </p>
+                        </div>
+
+                        <div
+                            class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                            <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                                <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-xl mb-2">Continuous Learning</h3>
+                            <p class="text-gray-600">Access to webinars, workshops, and resources to develop your
+                                professional skills</p>
+                        </div>
+
+                        <div
+                            class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                            <div class="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                                <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-xl mb-2">No Hidden Fees</h3>
+                            <p class="text-gray-600">100% free for students. No registration fees or commissions from your
+                                earnings</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-16 bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl p-8 text-white">
+                        <div class="max-w-4xl mx-auto text-center">
+                            <h3 class="text-2xl font-bold mb-6">Join 50,000+ Students Who Have Already Benefited</h3>
+
+                            <div class="flex flex-col md:flex-row justify-center items-center gap-6">
+                                <div class="text-center">
+                                    <div class="text-4xl font-bold">4.8/5</div>
+                                    <div class="flex justify-center mt-2">
+                                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                        </svg>
+                                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                        </svg>
+                                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                        </svg>
+                                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                        </svg>
+                                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                        </svg>
+                                    </div>
+                                    <p class="mt-1 text-blue-100">User Rating</p>
+                                </div>
+
+                                <div class="h-12 w-px bg-blue-400 hidden md:block"></div>
+
+                                <div class="text-center">
+                                    <div class="text-4xl font-bold">10,000+</div>
+                                    <p class="mt-2 text-blue-100">Available Vacancies</p>
+                                </div>
+
+                                <div class="h-12 w-px bg-blue-400 hidden md:block"></div>
+
+                                <div class="text-center">
+                                    <div class="text-4xl font-bold">250+</div>
+                                    <p class="mt-2 text-blue-100">Partner Companies</p>
+                                </div>
+                            </div>
+
+                            <div class="mt-8 flex justify-center">
+                                <a href="{{ route('register') }}"
+                                    class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition text-lg">
+                                    Register Now - It's Free!
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Lowongan Rekomendasi -->
+            <section class="py-16 bg-white">
+                <div class="container mx-auto px-4">
+                    <div class="flex justify-between items-center mb-8">
+                        <div>
+                            <h2 class="text-3xl font-bold">Rekomendasi untuk Kamu</h2>
+                            <p class="text-gray-600">Lowongan yang cocok dengan jurusan dan minatmu</p>
+                        </div>
+                        <a href="#" class="text-blue-600 font-semibold hover:underline">Lihat Semua</a>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Lowongan 1 -->
+                        <div
+                            class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition">
+                            <div class="p-6">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h3 class="font-bold text-xl">Web Developer Magang</h3>
+                                        <p class="text-gray-600">PT. Tech Innovasi</p>
+                                    </div>
+                                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                                        <i class="fa-solid fa-building fa-2xl text-[#7a7f81]"></i>
+                                    </div>
+                                    {{-- <img src="{{ asset('images/company-logo1.png') }}" alt="Company Logo"
+                                    class="w-12 h-12 object-contain"> --}}
+                                </div>
+
+                                <div class="mt-4 flex flex-wrap gap-2">
+                                    <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Magang</span>
+                                    <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">IT</span>
+                                    <span
+                                        class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Remote</span>
+                                </div>
+
+                                <div class="mt-4 space-y-2">
+                                    <div class="flex items-center text-gray-600">
+                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z">
+                                            </path>
+                                        </svg>
+                                        <span>Rp3-4jt/bulan</span>
+                                    </div>
+                                    <div class="flex items-center text-gray-600">
+                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                            </path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        </svg>
+                                        <span>Jakarta</span>
+                                    </div>
+                                    <div class="flex items-center text-gray-600">
+                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                            </path>
+                                        </svg>
+                                        <span>Deadline: 30 Juni 2023</span>
+                                    </div>
+                                </div>
+
+                                <div class="mt-6 flex justify-between items-center">
+                                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm">
+                                        Lamar Sekarang
+                                    </button>
+                                    <button class="text-gray-500 hover:text-blue-600">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Lowongan 2 -->
+                        <div
+                            class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition">
+                            <div class="p-6">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h3 class="font-bold text-xl">Web Developer Magang</h3>
+                                        <p class="text-gray-600">PT. Tech Innovasi</p>
+                                    </div>
+                                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                                        <i class="fa-solid fa-building fa-2xl text-[#7a7f81]"></i>
+                                    </div>
+                                    {{-- atau --}}
+                                    {{-- <img src="{{ asset('images/company-logo1.png') }}" alt="Company Logo"
+                                    class="w-12 h-12 object-contain"> --}}
+                                </div>
+
+                                <div class="mt-4 flex flex-wrap gap-2">
+                                    <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Magang</span>
+                                    <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">IT</span>
+                                    <span
+                                        class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Remote</span>
+                                </div>
+
+                                <div class="mt-4 space-y-2">
+                                    <div class="flex items-center text-gray-600">
+                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z">
+                                            </path>
+                                        </svg>
+                                        <span>Rp3-4jt/bulan</span>
+                                    </div>
+                                    <div class="flex items-center text-gray-600">
+                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                            </path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        </svg>
+                                        <span>Jakarta</span>
+                                    </div>
+                                    <div class="flex items-center text-gray-600">
+                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                            </path>
+                                        </svg>
+                                        <span>Deadline: 30 Juni 2023</span>
+                                    </div>
+                                </div>
+
+                                <div class="mt-6 flex justify-between items-center">
+                                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm">
+                                        Lamar Sekarang
+                                    </button>
+                                    <button class="text-gray-500 hover:text-blue-600">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Lowongan 3 -->
+                        <div
+                            class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition">
+                            <div class="p-6">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h3 class="font-bold text-xl">Web Developer Magang</h3>
+                                        <p class="text-gray-600">PT. Tech Innovasi</p>
+                                    </div>
+                                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                                        <i class="fa-solid fa-building fa-2xl text-[#7a7f81]"></i>
+                                    </div>
+                                    {{-- <img src="{{ asset('images/company-logo1.png') }}" alt="Company Logo"
+                                    class="w-12 h-12 object-contain"> --}}
+                                </div>
+
+                                <div class="mt-4 flex flex-wrap gap-2">
+                                    <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Magang</span>
+                                    <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">IT</span>
+                                    <span
+                                        class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Remote</span>
+                                </div>
+
+                                <div class="mt-4 space-y-2">
+                                    <div class="flex items-center text-gray-600">
+                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z">
+                                            </path>
+                                        </svg>
+                                        <span>Rp3-4jt/bulan</span>
+                                    </div>
+                                    <div class="flex items-center text-gray-600">
+                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                            </path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        </svg>
+                                        <span>Jakarta</span>
+                                    </div>
+                                    <div class="flex items-center text-gray-600">
+                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                            </path>
+                                        </svg>
+                                        <span>Deadline: 30 Juni 2023</span>
+                                    </div>
+                                </div>
+
+                                <div class="mt-6 flex justify-between items-center">
+                                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm">
+                                        Lamar Sekarang
+                                    </button>
+                                    <button class="text-gray-500 hover:text-blue-600">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Perusahaan Mitra -->
+            <section class="py-16 bg-[#F2FAFC]">
+                <div class="container mx-auto px-4">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl font-bold mb-4">Our Partner Companies</h2>
+                        <p class="text-gray-600 max-w-2xl mx-auto">Companies that are actively recruiting students through
+                            our platform</p>
+                    </div>
+
+                    <div class="xl:px-96">
+                        <div class="grid grid-cols-2 md:grid-cols-7 gap-3 md:gap-2 sm:gap-5 items-center ">
+
+                            <div class="flex justify-center p-0">
+                                <img src="{{ asset('assets/Google.svg') }}" alt="Gojek"
+                                    class="max-w-full max-h-16 object-contain p-0">
+                            </div>
+
+                            <!-- Gojek - Versi yang diperbaiki -->
+                            <div class="flex justify-center p-0">
+                                <img src="{{ asset('assets/Gojek.svg') }}" alt="Gojek"
+                                    class="max-w-full max-h-16 object-contain p-0">
+                            </div>
+
+                            <!-- Perusahaan lain -->
+                            <div class="flex justify-center">
+                                <i class="fa-brands fa-microsoft fa-2xl text-4xl text-blue-600"></i>
+                            </div>
+
+                            <div class="flex justify-center">
+                                <i class="fa-brands fa-apple fa-2xl text-4xl text-gray-800"></i>
+                            </div>
+
+                            <div class="flex justify-center">
+                                <i class="fa-brands fa-amazon fa-2xl text-4xl text-yellow-600"></i>
+                            </div>
+
+                            <div class="flex justify-center p-0">
+                                <img src="{{ asset('assets/Sinarmas.svg') }}" alt="Gojek"
+                                    class="max-w-full max-h-16 object-contain p-0">
+                            </div>
+
+                            <div class="flex justify-center p-0">
+                                <img src="{{ asset('assets/Samsung.svg') }}" alt="Gojek"
+                                    class="max-w-full max-h-16 object-contain p-0">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonial Mahasiswa -->
+            <section class="py-16 bg-gradient-to-r from-indigo-50 to-blue-50">
+                <div class="container mx-auto px-4">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl font-bold mb-4">Student Success Stories</h2>
+                        <p class="text-gray-600 max-w-2xl mx-auto">First-hand experiences from students who have
+                            found jobs through our platform</p>
+                    </div>
 
 
-        <script>
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Testimonial 1 -->
+                        <div class="bg-white rounded-xl shadow-lg p-6 relative">
+                            <div
+                                class="absolute -top-4 left-6 bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center">
+                                <i class="fa-regular fa-comment"></i>
+                            </div>
+                            <div class="flex items-center mb-4">
+                                <img src="{{ asset('images/bidang3.webp') }}" alt="Student"
+                                    class="w-12 h-12 rounded-full object-cover">
+                                <div class="ml-4">
+                                    <h4 class="font-semibold">Ani Wijaya</h4>
+                                    <p class="text-sm text-gray-600">Teknik Informatika - Universitas Indonesia</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 italic">
+                                "Magang di Gojek sebagai Frontend Developer membantu saya menerapkan ilmu kampus
+                                di dunia nyata. Timnya sangat supportive untuk mahasiswa!"
+                            </p>
+                            <div class="mt-4 flex text-yellow-400">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
 
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
+                        <!-- Testimonial 2 -->
+                        <div class="bg-white rounded-xl shadow-lg p-6 relative">
+                            <div
+                                class="absolute -top-4 left-6 bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center">
+                                <i class="fa-regular fa-comment"></i>
+                            </div>
+                            <div class="flex items-center mb-4">
+                                {{-- <img src="{{ asset('images/bidang1.webp') }}" alt="Student"
+                                class="w-12 h-12 rounded-full object-cover"> --}}
+                                {{-- atau --}}
+                                <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
+                                    <i class="fa-solid fa-user fa-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="font-semibold">Ade Hermawan Saputra</h4>
+                                    <p class="text-sm text-gray-600">Teknik Mesin - Universitas Terbuka</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 italic">
+                                "Magang di Sinarmas sebagai Mechine Engiener membantu saya menerapkan ilmu kampus
+                                di dunia nyata. Timnya sangat supportive untuk mahasiswa!"
+                            </p>
+                            <div class="mt-4 flex text-yellow-400">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Final CTA -->
+            <section class="py-16 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+                <div class="container mx-auto px-4 text-center">
+                    <h3 class="text-3xl md:text-4xl font-bold mb-4">Ready to Start Your First Career?</h3>
+                    <p class="text-xl mb-8 max-w-2xl mx-auto">Register now and get personalized job recommendations!</p>
+
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <button
+                            class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition text-lg">
+                            Register for Free
+                        </button>
+                        {{-- <button
+            class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition text-lg">
+            Download App
+            </button> --}}
+                    </div>
+
+                    <div class="mt-8 flex flex-wrap justify-center gap-4 text-blue-200">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Free for Students</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            <span>1-Click Apply Process</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Instant Job Notifications</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <x-footer></x-footer>
+
+
+            <script>
+                // Smooth scrolling for anchor links
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function(e) {
+                        e.preventDefault();
+
+                        document.querySelector(this.getAttribute('href')).scrollIntoView({
+                            behavior: 'smooth'
+                        });
                     });
                 });
-            });
 
-            // Add event listener to the navbar links
-            const navbarLinks = document.querySelectorAll('.navbar a');
-            navbarLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    navbarLinks.forEach(navLink => navLink.classList.remove('active'));
-                    link.classList.add('active');
+                // Add event listener to the navbar links
+                const navbarLinks = document.querySelectorAll('.navbar a');
+                navbarLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        navbarLinks.forEach(navLink => navLink.classList.remove('active'));
+                        link.classList.add('active');
+                    });
                 });
-            });
-        </script>
+            </script>
 
-    </body>
+        </body>
 
-</x-landing-layout>
+    </x-landing-layout>
