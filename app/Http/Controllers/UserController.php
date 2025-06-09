@@ -17,6 +17,11 @@ class UserController extends Controller
         return view('landingPage', compact('categories'));
     }
 
+    public function viewProjectPage()
+    {
+        return view('user.projectPage');
+    }
+
     function index(Request $request)
     {
         $users = User::latest()->get();

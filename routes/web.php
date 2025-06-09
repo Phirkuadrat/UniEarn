@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-Route::get('/seeker', [SeekerController::class, 'homePage'])->name('seeker.page');
+Route::get('/project', [UserController::class, 'viewProjectPage'])->name('project.page');
 Route::get('/recuiter', [RecruiterController::class, 'homePage'])->name('recruiter.page');
 
 require __DIR__ . '/auth.php';

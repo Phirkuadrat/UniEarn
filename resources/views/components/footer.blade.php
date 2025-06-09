@@ -3,13 +3,7 @@
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
                 <div class="flex items-center mb-4">
-                    <svg class="h-8 w-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 14l9-5-9-5-9 5 9 5z" />
-                        <path
-                            d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
-                    </svg>
+                    <img src="{{ asset('assets/uniearn.png') }}" alt="" class="max-h-9 m-0 p-0">
                     <span class="ml-2 text-xl font-bold">uniEarn</span>
                 </div>
                 <p class="text-gray-300 mb-4">
@@ -61,7 +55,7 @@
                                 d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
                             </path>
                         </svg>
-                        <span>info@uniearn.id</span>
+                        <span>uniearn@itenas.co.id</span>
                     </li>
                     <li class="flex items-start">
                         <svg class="h-5 w-5 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor"
@@ -81,7 +75,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                         </svg>
-                        <span>Student Building, Jl. Pendidikan No. 123 South Jakarta, Indonesia 12345</span>
+                        <span>Student Center, Jl. PHH Mustofa no. 14, RT 01/15 Kel, Cikutra, Cibeunying Kidul, Bandung City, West Java 40124</span>
                     </li>
                 </ul>
             </div>
