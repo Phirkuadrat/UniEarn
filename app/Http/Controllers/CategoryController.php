@@ -15,6 +15,12 @@ class CategoryController extends Controller
         return view('admin.category-management.index');
     }
 
+    public function getCategories()
+    {
+        $categories = Category::select('id', 'name')->get(); 
+        return response()->json($categories);
+    }
+
     public function getData()
     {
         $categories = Category::select(['id', 'name', 'image']);
