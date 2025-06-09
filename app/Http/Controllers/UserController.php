@@ -5,14 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Seeker;
 use App\Models\Recruiter;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
 {
-    function landing(){
-        
-        return view('landingPage');
+    function landing()
+    {
+        $categories = Category::with('subCategories')->get();
+        return view('landingPage', compact('categories'));
+    }
+
+    public function viewProjectPage()
+    {
+        return view('user.projectPage');
     }
 
     function index(Request $request)

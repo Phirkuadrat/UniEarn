@@ -3,6 +3,7 @@
     <body class="bg-gray-100 text-gray-800 antialiased font-sans flex min-h-screen">
         <x-navbar></x-navbar>
 
+
         <div class="flex-1 flex flex-col">
             <main class="flex-1 p-8 overflow-y-auto">
                 <div class="max-w-7xl mx-auto">

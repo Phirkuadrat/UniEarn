@@ -43,7 +43,7 @@ Route::get('/portfolio/{portfolio}/details', [PortofolioController::class, 'getD
 Route::get('/categories/get', [CategoryController::class, 'getCategories']);
 Route::get('/sub-categories/get', [SubCategoryController::class, 'getSubCategories']);
 
-Route::get('/seeker', [SeekerController::class, 'homePage'])->name('seeker.page');
+Route::get('/project', [UserController::class, 'viewProjectPage'])->name('project.page');
 Route::get('/recuiter', [RecruiterController::class, 'homePage'])->name('recruiter.page');
 
 require __DIR__ . '/auth.php';

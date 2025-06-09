@@ -9,10 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class SeekerController extends Controller
 {
-    public function homePage()
-    {
-        return view('user.seekerPage');
-    }
 
     public function index()
     {
