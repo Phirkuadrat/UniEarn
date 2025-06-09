@@ -19,47 +19,52 @@
             <div class="hidden md:flex items-center space-x-8">
                 <a href="/" class="text-gray-700 hover:text-blue-600 font-medium">Home</a>
                 <a href="{{ route('seeker.page') }}" class="text-gray-700 hover:text-blue-600 font-medium">Project</a>
-                <a href="{{ route('recruiter.page') }}" class="text-gray-700 hover:text-blue-600 font-medium">Portofolio</a>
+                <a href="{{ route('recruiter.page') }}"
+                    class="text-gray-700 hover:text-blue-600 font-medium">Portofolio</a>
             </div>
 
             <!-- Auth Buttons / Profile Dropdown -->
             @auth
-            <!-- Profile Dropdown (Tampil jika user sudah login) -->
-            <div class="hidden md:flex items-center ml-4 relative">
-                <button id="profile-menu-button" class="flex items-center space-x-2 focus:outline-none">
-                    <span class="text-gray-700 font-medium">{{ auth()->user()->name }}</span>
-                    <!-- Foto profil atau placeholder -->
-                    @if(auth()->user()->profile_photo_path)
-                    <img class="h-8 w-8 rounded-full object-cover"
-                         src="{{ asset('storage/' . auth()->user()->profile_photo_path) }}"
-                         alt="Profile Photo">
-                    @else
-                    <div class="bg-secondary border border-collapse rounded-full w-8 h-8 flex items-center justify-center">
-                        <i class="fa-solid fa-user"></i>
-                    </div>
-                    @endif
-                    <svg class="h-4 w-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </button>
+                <!-- Profile Dropdown (Tampil jika user sudah login) -->
+                <div class="hidden md:flex items-center ml-4 relative">
+                    <button id="profile-menu-button" class="flex items-center space-x-2 focus:outline-none">
+                        <span class="text-gray-700 font-medium">{{ auth()->user()->name }}</span>
+                        <!-- Foto profil atau placeholder -->
+                        @if (auth()->user()->profile_photo_path)
+                            <img class="h-8 w-8 rounded-full object-cover"
+                                src="{{ asset('storage/' . auth()->user()->profile_photo_path) }}" alt="Profile Photo">
+                        @else
+                            <div
+                                class="bg-secondary border border-collapse rounded-full w-8 h-8 flex items-center justify-center">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                        @endif
+                        <svg class="h-4 w-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
 
-                <!-- Dropdown Menu (Hidden by default) -->
-                <div id="profile-menu" class="hidden absolute right-0 mt-48 w-48 bg-white rounded-lg shadow-lg py-1 z-50 border border-collapse">
-                    <a href="{{ auth()->user()->is_recruiter ? route('recruiter.dashboard') : route('seeker.dashboard') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dashboard</a>
-                    <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profil</a>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">Keluar</button>
-                    </form>
+                    <!-- Dropdown Menu (Hidden by default) -->
+                    <div id="profile-menu"
+                        class="hidden absolute right-0 mt-48 w-48 bg-white rounded-lg shadow-lg py-1 z-50 border border-collapse">
+                        <a href="{{ auth()->user()->is_recruiter ? route('recruiter.dashboard') : route('seeker.dashboard') }}"
+                            class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dashboard</a>
+                        <a href="{{ route('seeker.portfolios') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Portfolios</a>
+                        <a href="" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Applications</a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit"
+                                class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-red-100">Logout</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
             @else
-            <!-- Tombol Masuk/Daftar (Tampil jika user belum login) -->
-            <div class="hidden md:flex items-center space-x-4">
-                <a href="{{ route('login') }}" class="text-gray-700 hover:text-blue-600 font-medium">Masuk</a>
-                <a href="{{ route('register') }}"
-                    class="bg-[#3674B5] text-white px-4 py-2 rounded-lg hover:bg-[#2a5a8a] transition">Daftar</a>
-            </div>
+                <!-- Tombol Masuk/Daftar (Tampil jika user belum login) -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="{{ route('login') }}" class="text-gray-700 hover:text-blue-600 font-medium">Masuk</a>
+                    <a href="{{ route('register') }}"
+                        class="bg-[#3674B5] text-white px-4 py-2 rounded-lg hover:bg-[#2a5a8a] transition">Daftar</a>
+                </div>
             @endauth
 
             <!-- Mobile Menu Button -->
@@ -85,28 +90,29 @@
                 class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Portofolio</a>
 
             @auth
-            <!-- Menu untuk user yang sudah login (mobile) -->
-            <div class="border-t border-gray-200 pt-2">
-                <a href="{{ auth()->user()->is_recruiter ? route('recruiter.dashboard') : route('seeker.dashboard') }}"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Dashboard</a>
-                <a href="{{ route('profile.edit') }}"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Profil Saya</a>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit"
-                        class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">
-                        Keluar
-                    </button>
-                </form>
-            </div>
+                <!-- Menu untuk user yang sudah login (mobile) -->
+                <div class="border-t border-gray-200 pt-2">
+                    <a href="{{ auth()->user()->is_recruiter ? route('recruiter.dashboard') : route('seeker.dashboard') }}"
+                        class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Dashboard</a>
+                    <a href="{{ route('profile.edit') }}"
+                        class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Profil
+                        Saya</a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit"
+                            class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">
+                            Keluar
+                        </button>
+                    </form>
+                </div>
             @else
-            <!-- Menu untuk user yang belum login (mobile) -->
-            <div class="border-t border-gray-200 pt-2">
-                <a href="{{ route('login') }}"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Masuk</a>
-                <a href="{{ route('register') }}"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-white bg-[#3674B5] hover:bg-[#2a5a8a] mx-3">Daftar</a>
-            </div>
+                <!-- Menu untuk user yang belum login (mobile) -->
+                <div class="border-t border-gray-200 pt-2">
+                    <a href="{{ route('login') }}"
+                        class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Masuk</a>
+                    <a href="{{ route('register') }}"
+                        class="block px-3 py-2 rounded-md text-base font-medium text-white bg-[#3674B5] hover:bg-[#2a5a8a] mx-3">Daftar</a>
+                </div>
             @endauth
         </div>
     </div>

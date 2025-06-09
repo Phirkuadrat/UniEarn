@@ -17,6 +17,21 @@ class SubCategoryController extends Controller
         return view('admin.subcategory-management.index', compact('categories'));
     }
 
+    public function getSubCategories(Request $request)
+    {
+        $categoryId = $request->query('category_id');
+
+        if (!$categoryId) {
+            return response()->json([], 400); 
+        }
+
+        $subCategories = SubCategory::where('category_id', $categoryId)
+            ->select('id', 'name')
+            ->get();
+
+        return response()->json($subCategories);
+    }
+
     public function getData()
     {
         $categories = SubCategory::with('category')->select(['id', 'category_id', 'name', 'image']);
