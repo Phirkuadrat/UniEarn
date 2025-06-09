@@ -7,16 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class PortofolioImages extends Model
 {
     protected $fillable = [
-        'portfolio_id',
+        'portofolio_id',
         'image_path'
     ];
 
     public function portfolio(){
-        return $this->belongsTo(Portofolio::class, 'portfolio_id');
+        return $this->belongsTo(Portofolio::class, 'portofolio_id');
     }
 
     public function getImagePathAttribute(){
-        return $this->image_path;
+        return $this->attributes['image_path'];
     }
     
     public function setImagePathAttribute($value){

@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PortofolioController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SeekerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecruiterController;
 use App\Http\Controllers\RoleSelectionController;
+use App\Http\Controllers\SubCategoryController;
 
 Route::get('/', [UserController::class, 'landing'])->name('landing');
 
@@ -18,16 +21,27 @@ Route::middleware('auth')->group(function () {
 
     // Recruiter Dashboard
     Route::middleware('checkRole:recruiter')->group(function () {
-        Route::get('/recruiter/dashboard', [RecruiterController::class, 'index'])->name('seeker.dashboard');
+        Route::get('/recruiter/dashboard', [RecruiterController::class, 'index'])->name('recruiter.dashboard');
     });
 
     // Seeker Dashboard
     Route::middleware('checkRole:seeker')->group(function () {
-        Route::get('/seeker/dashboard', [SeekerController::class, 'index'])->name('recruiter.dashboard');
-        Route::get('/portfolios', [SeekerController::class, 'portfolios'])->name('portfolios');
-        Route::get('/applications', [SeekerController::class, 'applications'])->name('applications');
+        Route::get('/seeker/dashboard', [SeekerController::class, 'index'])->name('seeker.dashboard');
+        Route::get('/seeker/portfolios', [SeekerController::class, 'portfolios'])->name('seeker.portfolios');
+        Route::get('/applications', [SeekerController::class, 'applications'])->name('seeker.applications');
+
+        // Portfolio Routes
+        Route::get('/seeker/portfolios', [SeekerController::class, 'portfoliosIndex'])->name('seeker.portfolios');
+        Route::post('/portfolio/store', [PortofolioController::class, 'storePortfolio'])->name('portfolio.store');
+        Route::delete('/portfolio/delete/{id}', [PortofolioController::class, 'deletePortofolio'])->name('portfolio.delete');
+        Route::put('portfolio/{portfolio}', [PortofolioController::class, 'update'])->name('portfolio.update');
+        Route::get('portfolio/{portfolio}/edit-data', [PortofolioController::class, 'getEditData']);
     });
 });
+
+Route::get('/portfolio/{portfolio}/details', [PortofolioController::class, 'getDetails']);
+Route::get('/categories/get', [CategoryController::class, 'getCategories']);
+Route::get('/sub-categories/get', [SubCategoryController::class, 'getSubCategories']);
 
 Route::get('/seeker', [SeekerController::class, 'homePage'])->name('seeker.page');
 Route::get('/recuiter', [RecruiterController::class, 'homePage'])->name('recruiter.page');

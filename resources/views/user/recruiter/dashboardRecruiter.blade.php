@@ -1,41 +1,12 @@
 <x-landing-layout>
 
     <body class="bg-gray-100 text-gray-800 antialiased font-sans flex min-h-screen">
-
         <x-navbar></x-navbar>
-
-        <aside class="w-64 bg-white shadow-lg p-6 flex flex-col justify-between">
-            <div>
-                <div class="text-2xl font-bold text-blue-700 mb-8 text-center">Recruiter Panel</div>
-                <nav class="space-y-2">
-                    <a href="{{ route('recruiter.dashboard') }}"
-                        class="flex items-center p-3 rounded-lg text-blue-700 bg-blue-50 font-semibold hover:bg-blue-100 transition-colors duration-200">
-                        <i class="fas fa-home mr-3"></i> Dashboard
-                    </a>
-                    <a href="" {{-- Anda perlu membuat route ini --}}
-                        class="flex items-center p-3 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200">
-                        <i class="fas fa-briefcase mr-3"></i> My Job Listings
-                    </a>
-                    <a href="" {{-- Anda perlu membuat route ini --}}
-                        class="flex items-center p-3 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200">
-                        <i class="fas fa-file-alt mr-3"></i> Applications
-                    </a>
-                    <a href="" {{-- Anda perlu membuat route ini --}}
-                        class="flex items-center p-3 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200">
-                        <i class="fas fa-building mr-3"></i> Company Profile
-                    </a>
-                    <a href="" {{-- Anda perlu membuat route ini --}}
-                        class="flex items-center p-3 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200">
-                        <i class="fas fa-cog mr-3"></i> Settings
-                    </a>
-                </nav>
-            </div>
-        </aside>
 
         <div class="flex-1 flex flex-col">
             <main class="flex-1 p-8 overflow-y-auto">
                 <div class="max-w-7xl mx-auto">
-                    <h1 class="text-4xl font-extrabold text-gray-900 mb-8">Recruiter Dashboard</h1>
+                    <h1 class="text-4xl font-extrabold text-gray-900 mt-10 mb-8">Recruiter Dashboard</h1>
 
                     <div class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-6 rounded-lg shadow-md mb-8">
                         <h2 class="text-2xl font-bold mb-2">Hello, {{ Auth::user()->name }}!</h2>
@@ -43,7 +14,7 @@
                         <div class="mt-4">
                             <a href=""
                                 class="inline-flex items-center px-4 py-2 bg-white text-blue-700 font-semibold rounded-full shadow-md hover:bg-blue-100 transition-colors duration-200">
-                                <i class="fas fa-plus-circle mr-2"></i> Post a New Job
+                                <i class="fas fa-plus-circle mr-2"></i> Post a New Project
                             </a>
                         </div>
                     </div>
@@ -209,5 +180,3 @@
 
     </body>
 </x-landing-layout>
-
-
