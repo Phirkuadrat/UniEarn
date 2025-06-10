@@ -44,7 +44,7 @@ Route::get('/categories/get', [CategoryController::class, 'getCategories']);
 Route::get('/sub-categories/get', [SubCategoryController::class, 'getSubCategories']);
 
 Route::get('/project', [UserController::class, 'viewProjectPage'])->name('project.page');
-Route::get('/recuiter', [RecruiterController::class, 'homePage'])->name('recruiter.page');
+Route::get('/portofolio', [UserController::class, 'viewPortofolioPage'])->name('portofolio.page');
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';

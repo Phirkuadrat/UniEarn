@@ -6,11 +6,6 @@ use Illuminate\Http\Request;
 
 class RecruiterController extends Controller
 {
-    public function homePage()
-    {
-        return view('user.recruiterPage');
-    }
-    
 
     public function index()
     {
