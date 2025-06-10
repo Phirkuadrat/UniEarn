@@ -90,9 +90,9 @@
         <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <a href="/"
                 class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Home</a>
-            <a href="#lowongan"
+            <a href="{{ route('project.page') }}"
                 class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Project</a>
-            <a href="#event"
+            <a href="{{ route('portofolio.page') }}"
                 class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Portofolio</a>
 
 

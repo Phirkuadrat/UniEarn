@@ -61,6 +61,11 @@ class UserController extends Controller
         ]);
     }
 
+    public function viewPortofolioPage()
+    {
+        return view('user.portofolioPage');
+    }
+
     function index(Request $request)
     {
         $users = User::latest()->get();

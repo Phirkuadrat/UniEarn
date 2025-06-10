@@ -9,12 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class RecruiterController extends Controller
 {
-    public function homePage()
-    {
-        return view('user.recruiterPage');
-    }
-
-
     public function index()
     {
         $user = Auth::user();
