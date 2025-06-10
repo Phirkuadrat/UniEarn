@@ -68,7 +68,7 @@
                     <div class="swiper-wrapper px-4">
                         @foreach ($categories as $category)
                             <div class="swiper-slide">
-                                <a href="{{ route('perCategory.byId', $category->id) }}">
+                                {{-- <a href="{{ route('perCategory.byId', $category->id) }}"> --}}
                                     <div
                                         class="bg-white mb-10 mt-3 rounded-xl shadow-lg text-center hover:shadow-xl transition cursor-pointer hover:scale-105 duration-300">
                                         <img src="{{ asset('storage/' . $category->image) }}"
@@ -86,7 +86,7 @@
                                                 </p>
                                             </div>
                                         </div>
-                                    </a>
+                                    {{-- </a> --}}
                                 </div>
                             @endforeach
                         </div>
