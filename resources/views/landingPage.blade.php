@@ -68,24 +68,25 @@
                     <div class="swiper-wrapper px-4">
                         @foreach ($categories as $category)
                             <div class="swiper-slide">
-                                <div
-                                    class="bg-white mb-10 mt-3 rounded-xl shadow-lg text-center hover:shadow-xl transition cursor-pointer hover:scale-105 duration-300">
-                                    <img src="{{ asset('storage/' . $category->image) }}"
-                                        class="w-full h-40 object-cover rounded-t-lg" alt="{{ $category->slug }}">
-                                    <div class="py-6">
-                                        <h3 class="font-semibold text-lg">{{ $category->name }}</h3>
-                                        <p class="text-sm text-gray-500 mt-1">
-                                            @forelse ($category->subCategories->take(3) as $sub)
-                                                {{ $sub->name }}@if (!$loop->last)
-                                                    ,
-                                                @endif
-                                                @empty
-                                                    <span class="text-gray-400 italic">No subcategories</span>
-                                                @endforelse
-                                            </p>
-
+                                <a href="{{ route('perCategory.byId', $category->id) }}">
+                                    <div
+                                        class="bg-white mb-10 mt-3 rounded-xl shadow-lg text-center hover:shadow-xl transition cursor-pointer hover:scale-105 duration-300">
+                                        <img src="{{ asset('storage/' . $category->image) }}"
+                                            class="w-full h-40 object-cover rounded-t-lg" alt="{{ $category->slug }}">
+                                        <div class="py-6">
+                                            <h3 class="font-semibold text-lg">{{ $category->name }}</h3>
+                                            <p class="text-sm text-gray-500 mt-1">
+                                                @forelse ($category->subCategories->take(3) as $sub)
+                                                    {{ $sub->name }}@if (!$loop->last)
+                                                        ,
+                                                    @endif
+                                                    @empty
+                                                        <span class="text-gray-400 italic">No subcategories</span>
+                                                    @endforelse
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
                             @endforeach
                         </div>
