@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Validation\ValidationException;
 
 class ProjectController extends Controller
 {
@@ -43,5 +46,138 @@ class ProjectController extends Controller
             })
             ->rawColumns(['user', 'sub_category_id', 'category', 'action'])
             ->make(true);
+    }
+
+    public function storeProject(Request $request)
+    {
+        $user = Auth::user();
+
+        if (!$user->recruiter) {
+            return redirect()->back()->with('error', 'Only recruiters can post projects/jobs.');
+        }
+
+        try {
+            $validatedData = $request->validate([
+                'user_id' => 'required|exists:users,id',
+                'category_id' => 'required|exists:categories,id',
+                'sub_category_id' => 'nullable|exists:sub_categories,id',
+                'title' => 'required|string|max:255',
+                'description' => 'required|string',
+                'budget' => 'required|numeric|min:0',
+                'due_date' => 'required|date|after_or_equal:today',
+                'status' => 'required|in:Open,Closed,In Progress',
+            ]);
+        } catch (ValidationException $e) {
+            return redirect()->back()->withErrors($e->errors())->withInput()->with('from_add_project_modal', true);
+        }
+
+        $project = new Project();
+        $project->user_id = $validatedData['user_id'];
+        $project->category_id = $validatedData['category_id'];
+        $project->sub_category_id = $validatedData['sub_category_id'];
+        $project->title = $validatedData['title'];
+        $project->description = $validatedData['description'];
+        $project->budget = $validatedData['budget'];
+        $project->due_date = $validatedData['due_date'];
+        $project->status = $validatedData['status'];
+        $project->save();
+
+        return redirect()->route('recruiter.dashboard')->with('success', 'Project posted successfully!');
+    }
+
+    public function deleteProject(Request $request, $id)
+    {
+        $project = Project::findOrFail($id);
+
+        if ($project->user_id !== Auth::id()) {
+            return redirect()->back()->with('error', 'You do not have permission to delete this project.');
+        }
+
+        $project->delete();
+
+        return redirect()->route('seeker.dashboard')->with('success', 'Project deleted successfully!');
+    }
+
+    public function getEditData(Project $job)
+    {
+        $user = Auth::user();
+
+        if (!$user->recruiter || $user->id !== $job->user_id) {
+            return response()->json(['message' => 'Unauthorized'], 403);
+        }
+
+        $job->load(['category', 'subCategory']);
+
+        return response()->json([
+            'id' => $job->id,
+            'title' => $job->title,
+            'description' => $job->description,
+            'budget' => $job->budget,
+            'due_date' => $job->due_date,
+            'status' => $job->status,
+            'category_id' => $job->category_id,
+            'category_name' => $job->category->name ?? null,
+            'sub_category_id' => $job->sub_category_id,
+            'sub_category_name' => $job->subCategory->name ?? null,
+        ]);
+    }
+
+    public function update(Request $request, Project $job)
+    {
+        $user = Auth::user();
+
+        if (!$user->recruiter || $user->id !== $job->user_id) {
+            return redirect()->back()->with('error', 'You are not authorized to edit this project/job.');
+        }
+
+        try {
+            $validatedData = $request->validate([
+                'title' => 'required|string|max:255',
+                'description' => 'required|string',
+                'category_id' => 'required|exists:categories,id',
+                'sub_category_id' => 'required|exists:sub_categories,id',
+                'budget' => 'required|numeric|min:0',
+                'due_date' => 'required|date|after_or_equal:today',
+                'status' => 'required|in:open,draft',
+            ]);
+        } catch (ValidationException $e) {
+            return redirect()->back()->withErrors($e->errors())->withInput()
+                ->with('from_edit_project_modal', true)
+                ->with('project_id_for_edit', $job->id);
+        }
+
+        $job->title = $validatedData['title'];
+        $job->description = $validatedData['description'];
+        $job->category_id = $validatedData['category_id'];
+        $job->sub_category_id = $validatedData['sub_category_id'] ?? null;
+        $job->budget = $validatedData['budget'];
+        $job->due_date = $validatedData['due_date'];
+        $job->status = $validatedData['status'];
+        $job->save();
+
+        return redirect()->route('recruiter.dashboard')->with('success', 'Project updated successfully!');
+    }
+
+    public function getDetails(Project $job)
+    {
+        $job->load(['category', 'subCategory', 'user']);
+        return response()->json([
+            'id' => $job->id,
+            'title' => $job->title,
+            'description' => $job->description,
+            'budget' => $job->budget,
+            'due_date' => $job->due_date,
+            'status' => $job->status,
+            'category_name' => $job->category->name ?? null,
+            'sub_category_name' => $job->subCategory->name ?? null,
+            'recruiter' => [
+                'id' => $job->user->id,
+                'company_name' => $job->user->recruiter->company_name ?? $job->user->name ?? null,
+                'company_logo' => $job->user->recruiter->company_logo ? Storage::url($job->user->recruiter->company_logo) : null,
+                'user' => [
+                    'name' => $job->recruiter->user->name ?? null,
+                ],
+            ],
+        ]);
     }
 }
