@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'admin@localhost',
         //     'password' => bcrypt('12345678')
         // ]);
-        
+
         // User::factory(10)->create();
 
         // User::factory()->create([
@@ -27,5 +27,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         $this->call(AdminSeeder::class);
+        $this->call(CategoriesSeeder::class);
+        $this->call(SubCategorySeeder::class);
     }
 }

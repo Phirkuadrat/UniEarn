@@ -1,26 +1,50 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PortofolioController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\SeekerController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RecruiterController;
+use App\Http\Controllers\RoleSelectionController;
+use App\Http\Controllers\SubCategoryController;
 
-Route::get('/', function () { return view('landingPage'); })->name('landing');
-
-Route::get('/dashboard', function () {
-    return view('user/dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/', [UserController::class, 'landing'])->name('landing');
 
 Route::middleware('auth')->group(function () {
+    Route::post('/set-role', [RoleSelectionController::class, 'store'])->name('set.role');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Recruiter Dashboard
+    Route::middleware('checkRole:recruiter')->group(function () {
+        Route::get('/recruiter/dashboard', [RecruiterController::class, 'index'])->name('recruiter.dashboard');
+    });
+
+    // Seeker Dashboard
+    Route::middleware('checkRole:seeker')->group(function () {
+        Route::get('/seeker/dashboard', [SeekerController::class, 'index'])->name('seeker.dashboard');
+        Route::get('/seeker/portfolios', [SeekerController::class, 'portfolios'])->name('seeker.portfolios');
+        Route::get('/applications', [SeekerController::class, 'applications'])->name('seeker.applications');
+
+        // Portfolio Routes
+        Route::get('/seeker/portfolios', [SeekerController::class, 'portfoliosIndex'])->name('seeker.portfolios');
+        Route::post('/portfolio/store', [PortofolioController::class, 'storePortfolio'])->name('portfolio.store');
+        Route::delete('/portfolio/delete/{id}', [PortofolioController::class, 'deletePortofolio'])->name('portfolio.delete');
+        Route::put('portfolio/{portfolio}', [PortofolioController::class, 'update'])->name('portfolio.update');
+        Route::get('portfolio/{portfolio}/edit-data', [PortofolioController::class, 'getEditData']);
+    });
 });
 
-require __DIR__.'/auth.php';
-require __DIR__.'/admin.php';
+Route::get('/portfolio/{portfolio}/details', [PortofolioController::class, 'getDetails']);
+Route::get('/categories/get', [CategoryController::class, 'getCategories']);
+Route::get('/sub-categories/get', [SubCategoryController::class, 'getSubCategories']);
 
-route::get('/seeker', function () {
-    return view('user.seekerPage');
-})->name('seekerPage');
-route::get('/recuiter', function () {
-    return view('user.recuiterPage');
-})->name('recuiterPage');
+Route::get('/project', [UserController::class, 'viewProjectPage'])->name('project.page');
+Route::get('/portofolio', [UserController::class, 'viewPortofolioPage'])->name('portofolio.page');
+
+require __DIR__ . '/auth.php';
+require __DIR__ . '/admin.php';
