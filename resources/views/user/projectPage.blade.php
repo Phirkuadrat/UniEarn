@@ -4,7 +4,7 @@
         <x-navbar></x-navbar>
 
         {{-- Header Dinamis --}}
-        <header class="bg-gradient-to-r from-primary to-secondary text-white py-20">
+        <header class="bg-gradient-to-r from-primary to-blue-600 text-white py-20">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-20">
                 <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ $headerTitle }}</h1>
                 <p class="text-xl max-w-3xl mx-auto mb-8 opacity-90">

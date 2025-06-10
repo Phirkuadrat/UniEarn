@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Seeker;
 use App\Models\Project;
 use App\Models\Category;
+use App\Models\Portofolio;
 use App\Models\Recruiter;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -34,8 +35,6 @@ class UserController extends Controller
                 $query->where('title', 'like', '%' . $search . '%')
                     ->orWhere('description', 'like', '%' . $search . '%');
             });
-            $headerTitle = 'Search Results for "' . $search . '"';
-            $headerDescription = 'Projects matching your search query.';
         }
 
         if (!empty($categoryId)) {
@@ -61,9 +60,44 @@ class UserController extends Controller
         ]);
     }
 
-    public function viewPortofolioPage()
+    public function viewPortofolioPage(Request $request)
     {
-        return view('user.portofolioPage');
+        $portfolios = Portofolio::with('category', 'subCategory', 'user', 'images')->latest();
+
+        $headerTitle = 'All Available Portfolios';
+        $headerDescription = 'Showcase your best work across various categories—from stunning UI/UX designs and robust code implementations to compelling content and insightful research—crafted specifically for your career journey.';
+
+        $search = $request->input('search');
+        $categoryId = $request->input('category');
+
+        if (!empty($search)) {
+            $portfolios->where(function ($query) use ($search) {
+                $query->where('title', 'like', '%' . $search . '%')
+                    ->orWhere('description', 'like', '%' . $search . '%');
+            });
+        }
+
+        if (!empty($categoryId)) {
+            $portfolios->where('category_id', $categoryId);
+            $category = Category::find($categoryId);
+            if ($category) {
+                $headerTitle = $category->name . ' Portfolios';
+                $headerDescription = 'Browse portfolios specializing in ' . $category->name . '.';
+            }
+        }
+
+        $portfolios = $portfolios->paginate(12)->withQueryString();
+
+        $categories = Category::select('id', 'name')->get();
+
+        return view('user.portofolioPage', [
+            'portfolios' => $portfolios,
+            'categories' => $categories,
+            'oldSearch' => $search,
+            'oldCategory' => $categoryId,
+            'headerTitle' => $headerTitle,
+            'headerDescription' => $headerDescription,
+        ]);
     }
 
     function index(Request $request)

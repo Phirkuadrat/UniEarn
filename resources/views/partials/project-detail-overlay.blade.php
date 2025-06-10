@@ -61,6 +61,7 @@
 
         <div class="pt-4 mt-auto border-t border-gray-200 flex-shrink-0"> 
             <div id="detail-project-action-button">
+                {{-- Tombol akan diisi oleh JavaScript berdasarkan role pengguna --}}
             </div>
         </div>
 

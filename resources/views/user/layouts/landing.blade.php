@@ -17,7 +17,6 @@
 </head>
 
 <body>
-    @include('partials.portfolio-detail-overlay')
     @include('partials.delete-confirm-modal')
     @include('partials.notification')
 

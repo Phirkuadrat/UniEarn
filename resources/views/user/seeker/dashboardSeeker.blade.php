@@ -219,6 +219,8 @@
                 @endif
             });
         </script>
+
+        @include('partials.portfolio-detail-overlay')
         @include('partials.add-portfolio-modal')
         @include('partials.edit-portfolio-modal')
     </body>
