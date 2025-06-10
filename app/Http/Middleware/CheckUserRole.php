@@ -28,9 +28,9 @@ class CheckUserRole
 
         if (! in_array($user->role, $roles)) {
             if ($user->role === 'seeker') {
-                return redirect()->route('seeker.dashboard')->with('error', 'Access denied. You are a Seeker.');
+                return redirect()->route('seeker.dashboard');
             } elseif ($user->role === 'recruiter') {
-                return redirect()->route('recruiter.dashboard')->with('error', 'Access denied. You are a Recruiter.');
+                return redirect()->route('recruiter.dashboard');
             }
             return redirect('/dashboard')->with('error', 'Access denied. Invalid role.');
         }
