@@ -22,6 +22,11 @@ class UserController extends Controller
         return view('user.projectPage');
     }
 
+    public function viewPortofolioPage()
+    {
+        return view('user.portofolioPage');
+    }
+
     function index(Request $request)
     {
         $users = User::latest()->get();

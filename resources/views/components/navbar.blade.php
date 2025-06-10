@@ -13,7 +13,7 @@
             <div class="hidden md:flex items-center space-x-8">
                 <a href="/" class="text-gray-700 hover:text-blue-600 font-medium">Home</a>
                 <a href="{{ route('project.page') }}" class="text-gray-700 hover:text-blue-600 font-medium">Project</a>
-                <a href="{{ route('recruiter.page') }}" class="text-gray-700 hover:text-blue-600 font-medium">Portofolio</a>
+                <a href="{{ route('portofolio.page') }}" class="text-gray-700 hover:text-blue-600 font-medium">Portofolio</a>
             </div>
 
             <!-- Auth Buttons / Profile Dropdown -->
@@ -78,9 +78,9 @@
         <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <a href="/"
                 class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Home</a>
-            <a href="#lowongan"
+            <a href="{{ route('project.page') }}"
                 class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Project</a>
-            <a href="#event"
+            <a href="{{ route('portofolio.page') }}"
                 class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Portofolio</a>
 
             @auth
