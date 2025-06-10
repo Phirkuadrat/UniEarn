@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Seeker;
-use App\Models\Recruiter;
+use App\Models\Project;
 use App\Models\Category;
+use App\Models\Recruiter;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -17,9 +18,47 @@ class UserController extends Controller
         return view('landingPage', compact('categories'));
     }
 
-    public function viewProjectPage()
+    public function viewProjectPage(Request $request)
     {
-        return view('user.projectPage');
+        $projects = Project::with('category', 'subCategory', 'user')->where('status', 'open')->latest();
+
+        $headerTitle = 'All Available Projects';
+        $headerDescription = 'Explore various project and internships categories—from tech, design, and writing to research—all designed
+                    specifically for students like you.';
+
+        $search = $request->input('search');
+        $categoryId = $request->input('category');
+
+        if (!empty($search)) {
+            $projects->where(function ($query) use ($search) {
+                $query->where('title', 'like', '%' . $search . '%')
+                    ->orWhere('description', 'like', '%' . $search . '%');
+            });
+            $headerTitle = 'Search Results for "' . $search . '"';
+            $headerDescription = 'Projects matching your search query.';
+        }
+
+        if (!empty($categoryId)) {
+            $projects->where('category_id', $categoryId);
+            $category = Category::find($categoryId);
+            if ($category) {
+                $headerTitle = $category->name . ' Projects';
+                $headerDescription = 'Projects in ' . $category->name . ' category.';
+            }
+        }
+
+        $projects = $projects->paginate(12)->withQueryString();
+
+        $categories = Category::select('id', 'name')->get();
+
+        return view('user.projectPage', [
+            'projects' => $projects,
+            'categories' => $categories,
+            'oldSearch' => $search,
+            'oldCategory' => $categoryId,
+            'headerTitle' => $headerTitle,
+            'headerDescription' => $headerDescription,
+        ]);
     }
 
     public function viewPortofolioPage()
