@@ -97,7 +97,7 @@
                         <canvas id="userPerMonth" width="300" height="100"></canvas>
                     </div>
 
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                         <!-- LEFT SIDE (CHARTS) -->
                         <div class="flex flex-col gap-6">
                             <!-- Project by Categories Chart -->
@@ -137,41 +137,93 @@
                             </div>
                         </div>
 
-                        <!-- RIGHT SIDE (TABLE) -->
-                        <div class="bg-white border rounded-xl shadow p-5">
-                            <h3 class="text-lg font-semibold mb-4">Detail Data</h3>
-                            <table class="min-w-full divide-y divide-gray-200 text-sm">
-                                <thead class="bg-gray-100">
-                                    <tr>
-                                        <th class="px-4 py-2 text-left font-medium text-gray-700">No</th>
-                                        <th class="px-4 py-2 text-left font-medium text-gray-700">Kategori</th>
-                                        <th class="px-4 py-2 text-left font-medium text-gray-700">Jumlah Project</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y divide-gray-200">
-                                    <tr>
-                                        <td class="px-4 py-2">1</td>
-                                        <td class="px-4 py-2">Web Development</td>
-                                        <td class="px-4 py-2">40</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-4 py-2">2</td>
-                                        <td class="px-4 py-2">Mobile App</td>
-                                        <td class="px-4 py-2">30</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-4 py-2">3</td>
-                                        <td class="px-4 py-2">Data Science</td>
-                                        <td class="px-4 py-2">25</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                        <!-- RIGHT SIDE (TABLES) -->
+                        <div class="flex flex-col gap-6">
+                            <!-- Detail Data Table -->
+                            <div class="bg-white border rounded-xl shadow p-5">
+                                <h3 class="text-lg font-semibold mb-4">Detail Data</h3>
+                                <div class="overflow-x-auto">
+                                    <table class="min-w-full divide-y divide-gray-200 text-sm">
+                                        <thead class="bg-gray-100">
+                                            <tr>
+                                                <th class="px-4 py-2 text-left font-medium text-gray-700">No</th>
+                                                <th class="px-4 py-2 text-left font-medium text-gray-700">Kategori</th>
+                                                <th class="px-4 py-2 text-left font-medium text-gray-700">Jumlah
+                                                    Project</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-gray-200">
+                                            <tr>
+                                                <td class="px-4 py-2">1</td>
+                                                <td class="px-4 py-2">Web Development</td>
+                                                <td class="px-4 py-2">40</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-4 py-2">2</td>
+                                                <td class="px-4 py-2">Mobile App</td>
+                                                <td class="px-4 py-2">30</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-4 py-2">3</td>
+                                                <td class="px-4 py-2">Data Science</td>
+                                                <td class="px-4 py-2">25</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
 
+                            <!-- New Table: Project Participants -->
+                            <div class="bg-white border rounded-xl shadow p-5">
+                                <h3 class="text-lg font-semibold mb-4">Project Participants</h3>
+                                <div class="overflow-x-auto">
+                                    <table class="min-w-full divide-y divide-gray-200 text-sm">
+                                        <thead class="bg-gray-100">
+                                            <tr>
+                                                <th class="px-4 py-2 text-left font-medium text-gray-700">No</th>
+                                                <th class="px-4 py-2 text-left font-medium text-gray-700">Project</th>
+                                                <th class="px-4 py-2 text-left font-medium text-gray-700">Category</th>
+                                                <th class="px-4 py-2 text-left font-medium text-gray-700">Application</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-gray-200">
+                                            <tr>
+                                                <td class="px-4 py-2">1</td>
+                                                <td class="px-4 py-2">E-Commerce Website</td>
+                                                <td class="px-4 py-2">Web Development</td>
+                                                <td class="px-4 py-2">
+                                                    <span class="font-medium text-blue-600">12</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-4 py-2">2</td>
+                                                <td class="px-4 py-2">Fitness Mobile App</td>
+                                                <td class="px-4 py-2">Mobile App</td>
+                                                <td class="px-4 py-2">
+                                                    <span class="font-medium text-blue-600">8</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-4 py-2">3</td>
+                                                <td class="px-4 py-2">Data Analysis Tool</td>
+                                                <td class="px-4 py-2">Data Science</td>
+                                                <td class="px-4 py-2">
+                                                    <span class="font-medium text-blue-600">5</span>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                            </div>
+                        </div>
                 </div>
+
             </div>
         </div>
+    </div>
     </div>
 </x-admin-layout>
 
