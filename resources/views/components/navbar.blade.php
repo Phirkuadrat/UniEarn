@@ -13,7 +13,7 @@
             <div class="hidden md:flex items-center space-x-8">
                 <a href="/" class="text-gray-700 hover:text-blue-600 font-medium">Home</a>
                 <a href="{{ route('project.page') }}" class="text-gray-700 hover:text-blue-600 font-medium">Project</a>
-                <a href="{{ route('recruiter.page') }}"
+                <a href="{{ route('portofolio.page') }}"
                     class="text-gray-700 hover:text-blue-600 font-medium">Portofolio</a>
             </div>
 
