@@ -54,7 +54,7 @@
                     </div>
                 </div>
             </form>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
                 @forelse ($projects as $project)
                     <div onclick="showProjectDetailOverlay({{ $project->id }})"
@@ -90,7 +90,6 @@
                                 </div>
                             @endif
 
-                            <!-- Category and description -->
                             <div class="mb-4">
                                 <span
                                     class="inline-flex items-center px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-medium">
@@ -107,7 +106,6 @@
                             </p>
                         </div>
 
-                        <!-- Footer with details and CTA -->
                         <div class="p-6 pt-0">
                             <div class="flex flex-wrap gap-2 mb-4">
                                 <span
@@ -130,16 +128,22 @@
                                         Apply Now <i class="fas fa-arrow-right ml-1 text-xs"></i>
                                     </span>
                                 @else
-                                    @if (Auth::user()->isSeeker() && $project->status === 'Open')
-                                        <a href="{{ route('seeker.apply.project', $project->id) }}"
-                                            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-md text-sm text-center block transition-colors duration-200">
-                                            Apply Now <i class="fas fa-arrow-right ml-1 text-xs"></i>
-                                        </a>
+                                    @if (Auth::user()->isSeeker() && $project->status === 'open')
+                                        <form id="apply-form-{{ $project->id }}"
+                                            action="{{ route('apply.project', $project->id) }}" method="POST"
+                                            onsubmit="event.preventDefault(); showApplyConfirmModal(this);"
+                                            onclick="event.stopPropagation();">
+                                            @csrf
+                                            <button type="submit"
+                                                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-md text-sm text-center block transition-colors duration-200">
+                                                Apply Now <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                                            </button>
+                                        </form>
                                     @elseif (Auth::user()->isRecruiter())
-                                        <a href="{{ route('recruiter.jobs.applicants', $project->id) }}"
-                                            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-md text-sm text-center block transition-colors duration-200">
-                                            View Applicants <i class="fas fa-users ml-1 text-xs"></i>
-                                        </a>
+                                        <span
+                                            class="w-full bg-gray-200 text-gray-700 font-semibold py-2.5 rounded-md text-sm text-center block cursor-not-allowed">
+                                            Status: {{ $project->status }}
+                                        </span>
                                     @else
                                         <span
                                             class="w-full bg-gray-200 text-gray-700 font-semibold py-2.5 rounded-md text-sm text-center block cursor-not-allowed">

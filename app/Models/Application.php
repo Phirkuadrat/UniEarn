@@ -24,7 +24,7 @@ class Application extends Model
         return $this->belongsTo(Project::class); 
     }
     
-    const STATUS_PENDING = 'Pending';
-    const STATUS_APPROVED = 'Approved';
-    const STATUS_REJECTED = 'Rejected';
+    const STATUS_PENDING = 'pending';
+    const STATUS_APPROVED = 'approved';
+    const STATUS_REJECTED = 'rejected';
 }

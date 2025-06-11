@@ -1,15 +1,16 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\PortofolioController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SeekerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RecruiterController;
-use App\Http\Controllers\RoleSelectionController;
+use App\Http\Controllers\PortofolioController;
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\RoleSelectionController;
 
 Route::get('/', [UserController::class, 'landing'])->name('landing');
 
@@ -25,17 +26,22 @@ Route::middleware('auth')->group(function () {
         Route::get('/recruiter/dashboard', [RecruiterController::class, 'index'])->name('recruiter.dashboard');
 
         // Project Routes
+        Route::get('/recruiter/projects', [RecruiterController::class, 'projectIndex'])->name('recruiter.project');
         Route::post('/project/store', [ProjectController::class, 'storeProject'])->name('project.store');
         Route::delete('/project/delete/{id}', [ProjectController::class, 'deleteProject'])->name('project.delete');
         Route::get('/project/{job}/edit-data', [ProjectController::class, 'getEditData'])->name('project.getEditData');
         Route::put('/project/{job}', [ProjectController::class, 'update'])->name('project.update');
+
+        // Application Routes
+        Route::get('/recruiter/applications', [RecruiterController::class, 'recruiterApplicationIndex'])->name('recruiter.application');
+        Route::get('/application/{job}/list', [ApplicationController::class, 'index'])->name('application.list');
+        Route::put('/application/{application}/approve', [ApplicationController::class, 'approve'])->name('application.approve');
+        Route::put('/application/{application}/reject', [ApplicationController::class, 'reject'])->name('application.reject');
     });
 
     // Seeker Dashboard
     Route::middleware('checkRole:seeker')->group(function () {
         Route::get('/seeker/dashboard', [SeekerController::class, 'index'])->name('seeker.dashboard');
-        Route::get('/seeker/portfolios', [SeekerController::class, 'portfolios'])->name('seeker.portfolios');
-        Route::get('/applications', [SeekerController::class, 'applications'])->name('seeker.applications');
 
         // Portfolio Routes
         Route::get('/seeker/portfolios', [SeekerController::class, 'portfoliosIndex'])->name('seeker.portfolios');
@@ -43,9 +49,14 @@ Route::middleware('auth')->group(function () {
         Route::delete('/portfolio/delete/{id}', [PortofolioController::class, 'deletePortofolio'])->name('portfolio.delete');
         Route::put('portfolio/{portfolio}', [PortofolioController::class, 'update'])->name('portfolio.update');
         Route::get('portfolio/{portfolio}/edit-data', [PortofolioController::class, 'getEditData']);
+
+        // Application Routes
+        Route::get('/seeker/applications', [SeekerController::class, 'applicationIndex'])->name('seeker.application');
+        Route::post('/seeker/apply/project/{project}', [ApplicationController::class, 'apply'])->name('apply.project');
     });
 });
 
+Route::get('/recruiter/seekers/{user}/profile', [SeekerController::class, 'getSeekerProfile']);
 Route::get('/project/{job}/details', [ProjectController::class, 'getDetails']);
 Route::get('/portfolio/{portfolio}/details', [PortofolioController::class, 'getDetails']);
 Route::get('/categories/get', [CategoryController::class, 'getCategories']);

@@ -49,12 +49,12 @@ class User extends Authenticatable
 
     public function seeker()
     {
-        return $this->hasOne(seeker::class);
+        return $this->hasOne(Seeker::class);
     }
 
     public function recruiter()
     {
-        return $this->hasOne(recruiter::class);
+        return $this->hasOne(Recruiter::class);
     }
 
     const ROLE_UNASSIGNED = 'unassigned';
@@ -74,5 +74,10 @@ class User extends Authenticatable
     public function isRecruiter(): bool
     {
         return $this->role === self::ROLE_RECRUITER;
+    }
+
+    public function portfolios() 
+    {
+        return $this->hasMany(Portofolio::class); 
     }
 }

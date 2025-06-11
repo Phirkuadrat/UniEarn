@@ -57,14 +57,14 @@
                                         <div class="flex justify-end items-center pt-3 border-gray-100">
                                             <div class="flex items-center gap-1.5">
                                                 <a href="#" title="Edit Project"
-                                                    onclick="event.preventDefault(); showEditPortfolioModal({{ $portfolio->id }});"
+                                                    onclick="event.preventDefault(); event.stopPropagation(); showEditPortfolioModal({{ $portfolio->id }});"
                                                     class="text-blue-600 hover:text-blue-800 transition-colors duration-200 p-1 rounded-full hover:bg-blue-50 flex items-center justify-center">
                                                     <i class="fas fa-edit text-base md:text-lg"></i>
                                                 </a>
 
                                                 <form action="{{ route('portfolio.delete', $portfolio->id) }}"
                                                     method="POST"
-                                                    onsubmit="event.preventDefault(); showDeleteConfirmModal(this);"
+                                                    onsubmit="event.preventDefault(); showDeleteConfirmModal(this);"onclick="event.stopPropagation();"
                                                     class="inline-block flex items-center justify-center">
                                                     @csrf
                                                     @method('DELETE')
@@ -108,7 +108,7 @@
                                         </th>
                                         <th scope="col"
                                             class="px-4 py-2 md:px-6 md:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Company
+                                            Company / Client
                                         </th>
                                         <th scope="col"
                                             class="px-4 py-2 md:px-6 md:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -124,80 +124,49 @@
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
-                                    <tr>
-                                        <td
-                                            class="px-4 py-3 md:px-6 md:py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                            Junior Frontend Developer (Intern)
-                                        </td>
-                                        <td class="px-4 py-3 md:px-6 md:py-4 whitespace-nowrap text-sm text-gray-600">
-                                            PT. Tech Innovasi
-                                        </td>
-                                        <td class="px-4 py-3 md:px-6 md:py-4 whitespace-nowrap text-sm">
-                                            <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                                Pending
-                                            </span>
-                                        </td>
-                                        <td class="px-4 py-3 md:px-6 md:py-4 whitespace-nowrap text-sm text-gray-600">
-                                            June 5, 2025
-                                        </td>
-                                        <td
-                                            class="px-4 py-3 md:px-6 md:py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <a href="#" class="text-blue-600 hover:text-blue-900">View
-                                                Details</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            class="px-4 py-3 md:px-6 md:py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                            UX Researcher (Part-Time)
-                                        </td>
-                                        <td class="px-4 py-3 md:px-6 md:py-4 whitespace-nowrap text-sm text-gray-600">
-                                            Creative Solutions
-                                        </td>
-                                        <td class="px-4 py-3 md:px-6 md:py-4 whitespace-nowrap text-sm">
-                                            <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                Interview Scheduled
-                                            </span>
-                                        </td>
-                                        <td class="px-4 py-3 md:px-6 md:py-4 whitespace-nowrap text-sm text-gray-600">
-                                            May 28, 2025
-                                        </td>
-                                        <td
-                                            class="px-4 py-3 md:px-6 md:py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <a href="#" class="text-blue-600 hover:text-blue-900">View
-                                                Details</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            class="px-4 py-3 md:px-6 md:py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                            Digital Marketing Intern
-                                        </td>
-                                        <td class="px-4 py-3 md:px-6 md:py-4 whitespace-nowrap text-sm text-gray-600">
-                                            Global Marketing Co.
-                                        </td>
-                                        <td class="px-4 py-3 md:px-6 md:py-4 whitespace-nowrap text-sm">
-                                            <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                Rejected
-                                            </span>
-                                        </td>
-                                        <td class="px-4 py-3 md:px-6 md:py-4 whitespace-nowrap text-sm text-gray-600">
-                                            April 15, 2025
-                                        </td>
-                                        <td
-                                            class="px-4 py-3 md:px-6 md:py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <a href="#" class="text-blue-600 hover:text-blue-900">View
-                                                Details</a>
-                                        </td>
-                                    </tr>
+                                    @forelse ($applications as $application)
+                                        <tr>
+                                            <td
+                                                class="px-4 py-3 md:px-6 md:py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                                {{ $application->project->title }}
+                                            </td>
+                                            <td
+                                                class="px-4 py-3 md:px-6 md:py-4 whitespace-nowrap text-sm text-gray-600">
+                                                {{ $application->project->user->recruiter->company_name ?? $application->project->user->name }}
+                                            </td>
+                                            <td class="px-4 py-3 md:px-6 md:py-4 whitespace-nowrap text-sm">
+                                                <span
+                                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                                    {{ Str::upper($application->status) }}
+                                                </span>
+                                            </td>
+                                            <td
+                                                class="px-4 py-3 md:px-6 md:py-4 whitespace-nowrap text-sm text-gray-600">
+                                                {{ $application->created_at->format('M d, Y') }}
+                                            </td>
+                                            <td
+                                                class="px-4 py-3 md:px-6 md:py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                <button
+                                                    onclick="showProjectDetailOverlay({{ $application->project_id }})"
+                                                    class="text-blue-600
+                                                    hover:text-blue-900">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="5"
+                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">No
+                                                recent applications.</td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
                         <div class="mt-4 md:mt-5 text-right">
-                            <a href=""
+                            <a href="{{ route('seeker.application') }}"
                                 class="text-blue-600 font-semibold hover:underline text-sm md:text-base">View All
                                 Applications &rarr;</a>
                         </div>
@@ -220,6 +189,7 @@
             });
         </script>
 
+        @include('partials.project-detail-overlay')
         @include('partials.portfolio-detail-overlay')
         @include('partials.add-portfolio-modal')
         @include('partials.edit-portfolio-modal')
