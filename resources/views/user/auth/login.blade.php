@@ -102,7 +102,7 @@
                 </form>
 
                 <!-- Social Login (Optional) -->
-                {{-- <div class="mt-6">
+                <div class="mt-6">
                     <div class="relative">
                         <div class="absolute inset-0 flex items-center">
                             <div class="w-full border-t border-gray-300"></div>
@@ -114,15 +114,15 @@
                         </div>
                     </div>
 
-                    <div class="mt-6 grid grid-cols-2 gap-3">
-                        <a href="#" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                    <div class="mt-6 gap-3 justify-center flex flex-col sm:flex-row">
+                        <a href="{{ route('auth.google') }}" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
                             <i class="fab fa-google text-red-500 mr-2"></i> Google
                         </a>
-                        <a href="#" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                        {{-- <a href="#" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
                             <i class="fab fa-facebook-f text-blue-600 mr-2"></i> Facebook
-                        </a>
+                        </a> --}}
                     </div>
-                </div> --}}
+                </div>
             </div>
         </div>
     </div>

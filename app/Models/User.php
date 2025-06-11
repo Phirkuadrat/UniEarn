@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'google_id',
         'role',
     ];
 
@@ -64,7 +65,7 @@ class User extends Authenticatable
     public function isUnassigned(): bool
     {
         return $this->role === self::ROLE_UNASSIGNED;
-    }   
+    }
 
     public function isSeeker(): bool
     {

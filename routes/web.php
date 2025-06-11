@@ -11,8 +11,15 @@ use App\Http\Controllers\PortofolioController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\RoleSelectionController;
+use App\Http\Controllers\SocialiteController;
+
 
 Route::get('/', [UserController::class, 'landing'])->name('landing');
+
+Route::controller(SocialiteController::class)->group(function () {
+    Route::get('auth/google', 'googleLogin')->name('auth.google');
+    Route::get('auth/google-callback', 'googleAuthentication')->name('auth.google-callback');
+});
 
 Route::middleware('auth')->group(function () {
     Route::post('/set-role', [RoleSelectionController::class, 'store'])->name('set.role');
