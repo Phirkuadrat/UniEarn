@@ -6,11 +6,18 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SeekerController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RecruiterController;
 use App\Http\Controllers\RoleSelectionController;
 use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\SocialiteController;
 
 Route::get('/', [UserController::class, 'landing'])->name('landing');
+
+Route::controller(SocialiteController::class)->group(function () {
+    Route::get('auth/google', 'googleLogin')->name('auth.google');
+    Route::get('auth/google-callback', 'googleAuthentication')->name('auth.google-callback');
+});
 
 Route::middleware('auth')->group(function () {
     Route::post('/set-role', [RoleSelectionController::class, 'store'])->name('set.role');
@@ -22,6 +29,12 @@ Route::middleware('auth')->group(function () {
     // Recruiter Dashboard
     Route::middleware('checkRole:recruiter')->group(function () {
         Route::get('/recruiter/dashboard', [RecruiterController::class, 'index'])->name('recruiter.dashboard');
+
+        // Project Routes
+        Route::post('/project/store', [ProjectController::class, 'storeProject'])->name('project.store');
+        Route::delete('/project/delete/{id}', [ProjectController::class, 'deleteProject'])->name('project.delete');
+        Route::get('/project/{job}/edit-data', [ProjectController::class, 'getEditData'])->name('project.getEditData');
+        Route::put('/project/{job}', [ProjectController::class, 'update'])->name('project.update');
     });
 
     // Seeker Dashboard
@@ -39,6 +52,7 @@ Route::middleware('auth')->group(function () {
     });
 });
 
+Route::get('/project/{job}/details', [ProjectController::class, 'getDetails']);
 Route::get('/portfolio/{portfolio}/details', [PortofolioController::class, 'getDetails']);
 Route::get('/categories/get', [CategoryController::class, 'getCategories']);
 Route::get('/sub-categories/get', [SubCategoryController::class, 'getSubCategories']);

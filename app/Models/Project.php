@@ -31,4 +31,8 @@ class Project extends Model
     {
         return $this->belongsTo(SubCategory::class);
     }
+
+    public function applications(){
+        return $this->hasMany(Application::class);
+    }
 }

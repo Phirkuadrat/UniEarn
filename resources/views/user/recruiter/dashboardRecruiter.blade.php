@@ -1,57 +1,92 @@
 <x-landing-layout>
 
-    <body class="bg-gray-100 text-gray-800 antialiased font-sans flex min-h-screen">
-        <x-navbar></x-navbar>
+    <body class="bg-gray-100 text-gray-800 antialiased font-sans flex flex-col min-h-screen">
+        <x-navbar class="w-full sticky top-0 z-20"></x-navbar>
 
+        <div class="flex-1 flex flex-col pt-12 md:pt-16 sm:pt-20">
 
-        <div class="flex-1 flex flex-col">
-            <main class="flex-1 p-8 overflow-y-auto">
+            <main class="flex-1 p-4 md:p-8 overflow-y-auto">
                 <div class="max-w-7xl mx-auto">
-                    <h1 class="text-4xl font-extrabold text-gray-900 mt-10 mb-8">Recruiter Dashboard</h1>
-
-                    <div class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-6 rounded-lg shadow-md mb-8">
-                        <h2 class="text-2xl font-bold mb-2">Hello, {{ Auth::user()->name }}!</h2>
-                        <p class="text-blue-100">Welcome to your dashboard. Let's find your next great hire.</p>
-                        <div class="mt-4">
+                    <div
+                        class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-6 rounded-lg shadow-md mb-8 flex flex-col sm:flex-row items-center sm:text-left text-center">
+                        @if ($recruiter->company_logo)
+                            <img src="{{ Storage::url($recruiter->company_logo) }}"
+                                alt="{{ $recruiter->company_name }} Logo"
+                                class="w-20 h-20 object-contain bg-white rounded-full p-2 border-2 border-white mb-4 sm:mb-0 sm:mr-4">
+                        @else
+                            <div
+                                class="w-20 h-20 rounded-full bg-blue-400 flex items-center justify-center text-3xl text-white mb-4 sm:mb-0 sm:mr-4">
+                                <i class="fas fa-building"></i>
+                            </div>
+                        @endif
+                        <div class="flex-1">
+                            <h2 class="text-2xl font-bold mb-1">{{ $recruiter->company_name ?? 'Your Company Name' }}
+                            </h2>
+                            <p class="text-blue-100 text-sm md:text-base mb-2">
+                                @if ($recruiter->company_website)
+                                    <a href="{{ $recruiter->company_website }}" target="_blank"
+                                        class="hover:underline text-blue-100">
+                                        {{ $recruiter->company_website }}
+                                    </a>
+                                @else
+                                    No website provided.
+                                @endif
+                            </p>
+                            <p class="text-blue-100 text-sm md:text-base mb-3">
+                                {{ $recruiter->company_address ?? 'No address provided.' }}
+                                @if ($recruiter->company_phone)
+                                    &bull; {{ $recruiter->company_phone }}
+                                @endif
+                            </p>
                             <a href=""
-                                class="inline-flex items-center px-4 py-2 bg-white text-blue-700 font-semibold rounded-full shadow-md hover:bg-blue-100 transition-colors duration-200">
-                                <i class="fas fa-plus-circle mr-2"></i> Post a New Project
+                                class="inline-flex items-center px-4 py-2 bg-white text-blue-700 font-semibold rounded-full shadow-md hover:bg-blue-100 transition-colors duration-200 text-sm">
+                                <i class="fas fa-edit mr-2"></i> Edit Company Profile
                             </a>
                         </div>
                     </div>
 
+                    {{-- Summary Cards --}}
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                        <div class="bg-white p-6 rounded-lg shadow-md border border-blue-100">
-                            <div class="flex items-center justify-between mb-3">
-                                <h3 class="text-lg font-semibold text-gray-700">Total Job Listings</h3>
-                                <div class="bg-blue-100 p-2 rounded-full text-blue-600">
-                                    <i class="fas fa-briefcase text-xl"></i>
-                                </div>
+                        <div
+                            class="bg-white p-6 rounded-lg shadow-md border border-blue-100 flex items-center justify-between">
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-700">Total Project Listings</h3>
+                                <p class="text-4xl font-bold text-gray-900 mt-2">{{ $totalJobListings ?? 0 }}</p>
                             </div>
-                            <p class="text-4xl font-bold text-gray-900">12</p> {{-- Ganti dengan data dinamis --}}
+                            <div class="bg-blue-50 p-3 rounded-full text-blue-600">
+                                <i class="fas fa-briefcase text-2xl"></i>
+                            </div>
                         </div>
-                        <div class="bg-white p-6 rounded-lg shadow-md border border-green-100">
-                            <div class="flex items-center justify-between mb-3">
+                        <div
+                            class="bg-white p-6 rounded-lg shadow-md border border-green-100 flex items-center justify-between">
+                            <div>
                                 <h3 class="text-lg font-semibold text-gray-700">Total Applications</h3>
-                                <div class="bg-green-100 p-2 rounded-full text-green-600">
-                                    <i class="fas fa-users text-xl"></i>
-                                </div>
+                                <p class="text-4xl font-bold text-gray-900 mt-2">{{ $totalApplications ?? 0 }}</p>
                             </div>
-                            <p class="text-4xl font-bold text-gray-900">45</p> {{-- Ganti dengan data dinamis --}}
+                            <div class="bg-green-50 p-3 rounded-full text-green-600">
+                                <i class="fas fa-users text-2xl"></i>
+                            </div>
                         </div>
-                        <div class="bg-white p-6 rounded-lg shadow-md border border-purple-100">
-                            <div class="flex items-center justify-between mb-3">
+                        <div
+                            class="bg-white p-6 rounded-lg shadow-md border border-purple-100 flex items-center justify-between">
+                            <div>
                                 <h3 class="text-lg font-semibold text-gray-700">Pending Reviews</h3>
-                                <div class="bg-purple-100 p-2 rounded-full text-purple-600">
-                                    <i class="fas fa-hourglass-half text-xl"></i>
-                                </div>
+                                <p class="text-4xl font-bold text-gray-900 mt-2">{{ $pendingReviews ?? 0 }}</p>
                             </div>
-                            <p class="text-4xl font-bold text-gray-900">15</p> {{-- Ganti dengan data dinamis --}}
+                            <div class="bg-purple-50 p-3 rounded-full text-purple-600">
+                                <i class="fas fa-hourglass-half text-2xl"></i>
+                            </div>
                         </div>
                     </div>
 
+                    {{-- Recent Applications --}}
                     <div class="bg-white p-6 rounded-lg shadow-md mb-8">
-                        <h2 class="text-2xl font-bold text-gray-800 mb-5">Recent Applications</h2>
+                        <div class="flex justify-between items-center mb-5">
+                            <h2 class="text-2xl font-bold text-gray-800">Recent Applications</h2>
+                            <a href=""
+                                class="text-blue-600 font-semibold hover:underline text-sm md:text-base">View
+                                All &rarr;</a>
+                        </div>
                         <div class="overflow-x-auto">
                             <table class="min-w-full divide-y divide-gray-200">
                                 <thead class="bg-gray-50">
@@ -62,7 +97,7 @@
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Job Title
+                                            Project Title
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -78,106 +113,112 @@
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                            John Doe
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                            Web Developer (Intern)
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm">
-                                            <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                                Pending
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                            June 5, 2025
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <a href="#" class="text-blue-600 hover:text-blue-900">View</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                            Jane Smith
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                            UI/UX Designer (Part-Time)
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm">
-                                            <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                Reviewed
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                            June 3, 2025
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <a href="#" class="text-blue-600 hover:text-blue-900">View</a>
-                                        </td>
-                                    </tr>
+                                    @forelse ($recentApplications as $application)
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                                {{ $application->user->name ?? 'N/A' }}
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                                {{ $application->Project->title ?? 'N/A' }}
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                                <span
+                                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
+                                                @if ($application->status === 'Pending') bg-yellow-100 text-yellow-800
+                                                @elseif($application->status === 'Reviewed' || $application->status === 'Interview Scheduled') bg-green-100 text-green-800
+                                                @else bg-red-100 text-red-800 @endif">
+                                                    {{ $application->status }}
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                                {{ $application->created_at->format('M d, Y') }}
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                <a href="" class="text-blue-600 hover:text-blue-900">View</a>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="5"
+                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">No
+                                                recent applications.</td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
-                        <div class="mt-5 text-right">
-                            <a href="" class="text-blue-600 font-semibold hover:underline">View All Applications
-                                &rarr;</a>
-                        </div>
                     </div>
 
+                    {{-- Your Active Project Listings --}}
                     <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h2 class="text-2xl font-bold text-gray-800 mb-5">Your Active Job Listings</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <div
-                                class="border border-gray-200 rounded-lg p-5 hover:shadow-lg transition-shadow duration-200">
-                                <h3 class="font-bold text-lg text-gray-900 mb-2">Social Media Specialist</h3>
-                                <p class="text-sm text-gray-600 mb-3">Posted: May 20, 2025 | 10 Applicants</p>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span
-                                        class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">Part-Time</span>
-                                    <span
-                                        class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">Marketing</span>
-                                    <span
-                                        class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Remote</span>
-                                </div>
-                                <div class="flex justify-end gap-3">
-                                    <a href="#" class="text-blue-600 hover:underline text-sm">Edit</a>
-                                    <a href="#" class="text-red-600 hover:underline text-sm">Delete</a>
-                                    <a href="#" class="text-gray-600 hover:underline text-sm">View
-                                        Applicants</a>
-                                </div>
-                            </div>
-                            <div
-                                class="border border-gray-200 rounded-lg p-5 hover:shadow-lg transition-shadow duration-200">
-                                <h3 class="font-bold text-lg text-gray-900 mb-2">Product Management Intern</h3>
-                                <p class="text-sm text-gray-600 mb-3">Posted: June 1, 2025 | 5 Applicants</p>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span
-                                        class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">Internship</span>
-                                    <span
-                                        class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">Business</span>
-                                    <span
-                                        class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">Hybrid</span>
-                                </div>
-                                <div class="flex justify-end gap-3">
-                                    <a href="#" class="text-blue-600 hover:underline text-sm">Edit</a>
-                                    <a href="#" class="text-red-600 hover:underline text-sm">Delete</a>
-                                    <a href="#" class="text-gray-600 hover:underline text-sm">View
-                                        Applicants</a>
-                                </div>
-                            </div>
+                        <div class="flex justify-between items-center mb-5">
+                            <h2 class="text-2xl font-bold text-gray-800">Your Active Project Listings</h2>
+                            <a href=""
+                                class="text-blue-600 font-semibold hover:underline text-sm md:text-base">View
+                                All &rarr;</a>
                         </div>
-                        <div class="mt-5 text-right">
-                            <a href="" class="text-blue-600 font-semibold hover:underline">View All Job
-                                Listings &rarr;</a>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            @forelse ($activeJobListings as $job)
+                                <div
+                                    class="border border-gray-200 rounded-lg p-5 hover:shadow-lg transition-shadow duration-200">
+                                    <h3 class="font-bold text-lg text-gray-900 mb-2">{{ $job->title }}</h3>
+                                    <p class="text-sm text-gray-600 mb-3">Posted:
+                                        {{ $job->created_at->format('M d, Y') }}
+                                        | {{ $job->applications_count ?? 0 }} Applicants</p>
+                                    <div class="flex flex-wrap gap-2 mb-4">
+                                        <span
+                                            class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">{{ $job->category->name ?? 'N/A' }}</span>
+                                        <span
+                                            class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">{{ $job->subCategory->name ?? 'N/A' }}</span>
+                                    </div>
+                                    <div class="flex justify-end gap-3">
+                                        <div class="flex items-center gap-1.5" onclick="event.stopPropagation();">
+                                            @if ($job->status === 'open' || $job->status === 'draft')
+                                                <button title="Edit Project"
+                                                    onclick="event.preventDefault(); showEditProjectModal({{ $job->id }});"
+                                                    class="text-blue-600 hover:text-blue-800 transition-colors duration-200 p-1 rounded-full hover:bg-blue-50 flex items-center justify-center">
+                                                    <i class="fas fa-edit text-base"></i>
+                                                </button>
+                                            @else
+                                                <button title="Can only edit Open or Draft jobs"
+                                                    class="text-gray-600 cursor-not-allowed transition-colors duration-200 p-1 rounded-full flex items-center justify-center">
+                                                    <i class="fas fa-edit text-base"></i>
+                                                </button>
+                                            @endif
+
+                                            <form id="delete-form-{{ $job->id }}"
+                                                action="{{ route('project.delete', $job->id) }}" method="POST"
+                                                onsubmit="event.preventDefault(); showDeleteConfirmModal(this);"
+                                                class="inline-block flex items-center justify-center">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" title="Delete Project"
+                                                    class="text-red-600 hover:text-red-800 transition-colors duration-200 bg-transparent border-none p-1 rounded-full hover:bg-red-50 cursor-pointer focus:outline-none flex items-center justify-center">
+                                                    <i class="fas fa-trash-alt text-base"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            @empty
+                                <div class="col-span-full text-center py-8 text-gray-500">
+                                    <p class="mb-2">You haven't posted any Project yet.</p>
+                                    <button onclick="showAddProjectModal()"
+                                        class="text-blue-600 hover:underline font-semibold">Post your
+                                        first
+                                        Project now!</button>
+                                </div>
+                            @endforelse
                         </div>
                     </div>
 
                 </div>
             </main>
         </div>
+
+        @include('partials.add-project-modal')
+        @include('partials.edit-project-modal')
+        @include('partials.delete-confirm-modal')
 
     </body>
 </x-landing-layout>
