@@ -61,6 +61,7 @@
 
         <div class="pt-4 mt-auto border-t border-gray-200 flex-shrink-0"> 
             <div id="detail-project-action-button">
+                {{-- Tombol akan diisi oleh JavaScript berdasarkan role pengguna --}}
             </div>
         </div>
 
@@ -189,38 +190,5 @@
             `<i class="fas fa-money-bill-wave text-green-500 mr-1"></i> ${formatRupiah(data.budget)}`;
         detailProjectDueDate.innerHTML =
             `<i class="fas fa-calendar-alt text-blue-500 mr-1"></i> ${new Date(data.due_date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}`;
-
-        let actionButtonHtml = '';
-        const userIsLoggedIn = {{ Auth::check() ? 'true' : 'false' }};
-        const userRole = "{{ Auth::check() ? Auth::user()->role : '' }}";
-        const projectId = data.id;
-
-        if (userIsLoggedIn) {
-            if (userRole === 'seeker' && data.status === 'Open') {
-                actionButtonHtml = `
-                    <a href="/seeker/apply/project/${projectId}"
-                       class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-md text-sm text-center block transition-colors duration-200">
-                        Apply Now <i class="fas fa-arrow-right ml-1 text-xs"></i>
-                    </a>`;
-            } else if (userRole === 'recruiter') {
-                actionButtonHtml = `
-                    <a href="/recruiter/jobs/${projectId}/applicants"
-                       class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-md text-sm text-center block transition-colors duration-200">
-                        View Applicants <i class="fas fa-users ml-1 text-xs"></i>
-                    </a>`;
-            } else {
-                actionButtonHtml = `
-                    <span class="w-full bg-gray-200 text-gray-700 font-semibold py-2.5 rounded-md text-sm text-center block cursor-not-allowed">
-                        Status: ${data.status}
-                    </span>`;
-            }
-        } else {
-            actionButtonHtml = `
-                <span class="w-full bg-gray-200 text-gray-700 font-semibold py-2.5 rounded-md text-sm text-center block cursor-not-allowed"
-                      title="Login to Apply">
-                    Login to Apply <i class="fas fa-arrow-right ml-1 text-xs"></i>
-                </span>`;
-        }
-        detailProjectActionButtonContainer.innerHTML = actionButtonHtml;
     }
 </script>

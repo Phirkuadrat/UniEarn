@@ -83,7 +83,7 @@
                     <div class="bg-white p-6 rounded-lg shadow-md mb-8">
                         <div class="flex justify-between items-center mb-5">
                             <h2 class="text-2xl font-bold text-gray-800">Recent Applications</h2>
-                            <a href=""
+                            <a href="{{ route('recruiter.application') }}"
                                 class="text-blue-600 font-semibold hover:underline text-sm md:text-base">View
                                 All &rarr;</a>
                         </div>
@@ -124,17 +124,50 @@
                                             <td class="px-6 py-4 whitespace-nowrap text-sm">
                                                 <span
                                                     class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
-                                                @if ($application->status === 'Pending') bg-yellow-100 text-yellow-800
-                                                @elseif($application->status === 'Reviewed' || $application->status === 'Interview Scheduled') bg-green-100 text-green-800
+                                                @if ($application->status === 'pending') bg-yellow-100 text-yellow-800
+                                                @elseif($application->status === 'approved') bg-green-100 text-green-800
                                                 @else bg-red-100 text-red-800 @endif">
-                                                    {{ $application->status }}
+                                                    {{ Str::upper($application->status) }}
                                                 </span>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
                                                 {{ $application->created_at->format('M d, Y') }}
                                             </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                <a href="" class="text-blue-600 hover:text-blue-900">View</a>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <button onclick="showSeekerProfileOverlay({{ $application->user_id }})"
+                                                    class="text-blue-600
+                                                    hover:text-blue-900">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+
+                                                @if ($application->status === 'pending')
+                                                    <form id="approve-form-{{ $application->id }}"
+                                                        action="{{ route('application.approve', $application->id) }}"
+                                                        method="POST"
+                                                        onsubmit="event.preventDefault(); showApproveConfirmModal(this);"
+                                                        class="inline-block ml-2">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <button type="submit"
+                                                            class="text-green-600 hover:text-green-800 focus:outline-none p-1"
+                                                            title="Approve Application">
+                                                            <i class="fas fa-check-circle"></i>
+                                                        </button>
+                                                    </form>
+                                                    <form id="reject-form-{{ $application->id }}"
+                                                        action="{{ route('application.reject', $application->id) }}"
+                                                        method="POST"
+                                                        onsubmit="event.preventDefault(); showRejectConfirmModal(this);"
+                                                        class="inline-block ml-2">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <button type="submit"
+                                                            class="text-red-600 hover:text-red-800 focus:outline-none p-1"
+                                                            title="Reject Application">
+                                                            <i class="fas fa-times-circle"></i>
+                                                        </button>
+                                                    </form>
+                                                @endif
                                             </td>
                                         </tr>
                                     @empty
@@ -153,7 +186,7 @@
                     <div class="bg-white p-6 rounded-lg shadow-md">
                         <div class="flex justify-between items-center mb-5">
                             <h2 class="text-2xl font-bold text-gray-800">Your Active Project Listings</h2>
-                            <a href=""
+                            <a href="{{ route('recruiter.project') }}"
                                 class="text-blue-600 font-semibold hover:underline text-sm md:text-base">View
                                 All &rarr;</a>
                         </div>
@@ -216,6 +249,10 @@
             </main>
         </div>
 
+        @include('partials.seeker-profile')
+        @include('partials.apply-confirm-modal')
+        @include('partials.approve-confirm-modal')
+        @include('partials.reject-confirm-modal')
         @include('partials.add-project-modal')
         @include('partials.edit-project-modal')
         @include('partials.delete-confirm-modal')
