@@ -65,7 +65,7 @@ class PortofolioController extends Controller
                 'category_id' => 'required|exists:categories,id',
                 'link' => 'nullable|url|max:255',
                 'images' => 'array|max:5',
-                'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5082',
             ]);
         } catch (ValidationException $e) {
             return redirect()->back()->withErrors($e->errors())->withInput();
