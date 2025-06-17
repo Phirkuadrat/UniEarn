@@ -38,7 +38,7 @@ class RecruiterController extends Controller
             ->withCount('applications')
             ->with('category')
             ->latest()
-            ->limit(6)
+            ->limit(3)
             ->get();
 
         return view('user.recruiter.dashboardRecruiter', [
