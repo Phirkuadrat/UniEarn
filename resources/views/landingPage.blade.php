@@ -69,23 +69,23 @@
                         @foreach ($categories as $category)
                             <div class="swiper-slide">
                                 {{-- <a href="{{ route('perCategory.byId', $category->id) }}"> --}}
-                                    <div
-                                        class="bg-white mb-10 mt-3 rounded-xl shadow-lg text-center hover:shadow-xl transition cursor-pointer hover:scale-105 duration-300">
-                                        <img src="{{ asset('storage/' . $category->image) }}"
-                                            class="w-full h-40 object-cover rounded-t-lg" alt="{{ $category->slug }}">
-                                        <div class="py-6">
-                                            <h3 class="font-semibold text-lg">{{ $category->name }}</h3>
-                                            <p class="text-sm text-gray-500 mt-1">
-                                                @forelse ($category->subCategories->take(3) as $sub)
-                                                    {{ $sub->name }}@if (!$loop->last)
-                                                        ,
-                                                    @endif
-                                                    @empty
-                                                        <span class="text-gray-400 italic">No subcategories</span>
-                                                    @endforelse
-                                                </p>
-                                            </div>
+                                <div
+                                    class="bg-white mb-10 mt-3 rounded-xl shadow-lg text-center hover:shadow-xl transition cursor-pointer hover:scale-105 duration-300">
+                                    <img src="{{ asset('storage/' . $category->image) }}"
+                                        class="w-full h-40 object-cover rounded-t-lg" alt="{{ $category->slug }}">
+                                    <div class="py-6">
+                                        <h3 class="font-semibold text-lg">{{ $category->name }}</h3>
+                                        <p class="text-sm text-gray-500 mt-1">
+                                            @forelse ($category->subCategories->take(3) as $sub)
+                                                {{ $sub->name }}@if (!$loop->last)
+                                                    ,
+                                                @endif
+                                                @empty
+                                                    <span class="text-gray-400 italic">No subcategories</span>
+                                                @endforelse
+                                            </p>
                                         </div>
+                                    </div>
                                     {{-- </a> --}}
                                 </div>
                             @endforeach
@@ -279,226 +279,98 @@
             </section>
 
             <!-- Lowongan Rekomendasi -->
-            <section class="py-16 bg-white">
-                <div class="container mx-auto px-4">
-                    <div class="flex justify-between items-center mb-8">
-                        <div>
-                            <h2 class="text-3xl font-bold">Rekomendasi untuk Kamu</h2>
-                            <p class="text-gray-600">Lowongan yang cocok dengan jurusan dan minatmu</p>
+            @if ($projects)
+                <section class="py-16 bg-white">
+                    <div class="container mx-auto px-4">
+                        <div class="flex justify-between items-center mb-8">
+                            <div>
+                                <h2 class="text-3xl font-bold">Recommendations for You</h2>
+                                <p class="text-gray-600">Jobs that match your major and interests</p>
+                            </div>
+                            <a href="#" class="text-blue-600 font-semibold hover:underline">See All</a>
                         </div>
-                        <a href="#" class="text-blue-600 font-semibold hover:underline">Lihat Semua</a>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            @foreach ($projects as $project)
+                                <!-- Lowongan 1 -->
+                                <div
+                                    class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition">
+                                    <div class="p-6">
+                                        <div class="flex justify-between items-start">
+                                            <div>
+                                                <h3 class="font-bold text-xl">{{ $project->title }}</h3>
+                                                <p class="text-gray-600">{{ $project->user->recruiter->company_name }}</p>
+                                            </div>
+                                            <div
+                                                class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                                                <i class="fa-solid fa-building fa-2xl text-[#7a7f81]"></i>
+                                            </div>
+                                            {{-- <img src="{{ asset('images/company-logo1.png') }}" alt="Company Logo"
+                                    class="w-12 h-12 object-contain"> --}}
+                                        </div>
+
+                                        <div class="mt-4 flex flex-wrap gap-2">
+                                            {{-- <span
+                                            class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Magang</span> --}}
+                                            <span
+                                                class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">{{ $project->status }}</span>
+                                            {{-- <span
+                                            class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Remote</span> --}}
+                                        </div>
+
+                                        <div class="mt-4 space-y-2">
+                                            <div class="flex items-center text-gray-600">
+                                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z">
+                                                    </path>
+                                                </svg>
+                                                <span>Rp.{{ $project->budget }}</span>
+                                            </div>
+                                            <div class="flex items-center text-gray-600">
+                                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                                    </path>
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                                </svg>
+                                                <span>{{ $project->user->recruiter->company_address }}</span>
+                                            </div>
+                                            <div class="flex items-center text-gray-600">
+                                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                                    </path>
+                                                </svg>
+                                                <span>Deadline: {{ $project->due_date }}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-6 flex justify-between items-center">
+                                            <button
+                                                class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm">
+                                                Lamar Sekarang
+                                            </button>
+                                            <button class="text-gray-500 hover:text-blue-600">
+                                                <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+
+                        </div>
                     </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- Lowongan 1 -->
-                        <div
-                            class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition">
-                            <div class="p-6">
-                                <div class="flex justify-between items-start">
-                                    <div>
-                                        <h3 class="font-bold text-xl">Web Developer Magang</h3>
-                                        <p class="text-gray-600">PT. Tech Innovasi</p>
-                                    </div>
-                                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                                        <i class="fa-solid fa-building fa-2xl text-[#7a7f81]"></i>
-                                    </div>
-                                    {{-- <img src="{{ asset('images/company-logo1.png') }}" alt="Company Logo"
-                                    class="w-12 h-12 object-contain"> --}}
-                                </div>
-
-                                <div class="mt-4 flex flex-wrap gap-2">
-                                    <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Magang</span>
-                                    <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">IT</span>
-                                    <span
-                                        class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Remote</span>
-                                </div>
-
-                                <div class="mt-4 space-y-2">
-                                    <div class="flex items-center text-gray-600">
-                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z">
-                                            </path>
-                                        </svg>
-                                        <span>Rp3-4jt/bulan</span>
-                                    </div>
-                                    <div class="flex items-center text-gray-600">
-                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
-                                            </path>
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                        </svg>
-                                        <span>Jakarta</span>
-                                    </div>
-                                    <div class="flex items-center text-gray-600">
-                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
-                                            </path>
-                                        </svg>
-                                        <span>Deadline: 30 Juni 2023</span>
-                                    </div>
-                                </div>
-
-                                <div class="mt-6 flex justify-between items-center">
-                                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm">
-                                        Lamar Sekarang
-                                    </button>
-                                    <button class="text-gray-500 hover:text-blue-600">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Lowongan 2 -->
-                        <div
-                            class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition">
-                            <div class="p-6">
-                                <div class="flex justify-between items-start">
-                                    <div>
-                                        <h3 class="font-bold text-xl">Web Developer Magang</h3>
-                                        <p class="text-gray-600">PT. Tech Innovasi</p>
-                                    </div>
-                                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                                        <i class="fa-solid fa-building fa-2xl text-[#7a7f81]"></i>
-                                    </div>
-                                    {{-- atau --}}
-                                    {{-- <img src="{{ asset('images/company-logo1.png') }}" alt="Company Logo"
-                                    class="w-12 h-12 object-contain"> --}}
-                                </div>
-
-                                <div class="mt-4 flex flex-wrap gap-2">
-                                    <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Magang</span>
-                                    <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">IT</span>
-                                    <span
-                                        class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Remote</span>
-                                </div>
-
-                                <div class="mt-4 space-y-2">
-                                    <div class="flex items-center text-gray-600">
-                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z">
-                                            </path>
-                                        </svg>
-                                        <span>Rp3-4jt/bulan</span>
-                                    </div>
-                                    <div class="flex items-center text-gray-600">
-                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
-                                            </path>
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                        </svg>
-                                        <span>Jakarta</span>
-                                    </div>
-                                    <div class="flex items-center text-gray-600">
-                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
-                                            </path>
-                                        </svg>
-                                        <span>Deadline: 30 Juni 2023</span>
-                                    </div>
-                                </div>
-
-                                <div class="mt-6 flex justify-between items-center">
-                                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm">
-                                        Lamar Sekarang
-                                    </button>
-                                    <button class="text-gray-500 hover:text-blue-600">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Lowongan 3 -->
-                        <div
-                            class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition">
-                            <div class="p-6">
-                                <div class="flex justify-between items-start">
-                                    <div>
-                                        <h3 class="font-bold text-xl">Web Developer Magang</h3>
-                                        <p class="text-gray-600">PT. Tech Innovasi</p>
-                                    </div>
-                                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                                        <i class="fa-solid fa-building fa-2xl text-[#7a7f81]"></i>
-                                    </div>
-                                    {{-- <img src="{{ asset('images/company-logo1.png') }}" alt="Company Logo"
-                                    class="w-12 h-12 object-contain"> --}}
-                                </div>
-
-                                <div class="mt-4 flex flex-wrap gap-2">
-                                    <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Magang</span>
-                                    <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">IT</span>
-                                    <span
-                                        class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Remote</span>
-                                </div>
-
-                                <div class="mt-4 space-y-2">
-                                    <div class="flex items-center text-gray-600">
-                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z">
-                                            </path>
-                                        </svg>
-                                        <span>Rp3-4jt/bulan</span>
-                                    </div>
-                                    <div class="flex items-center text-gray-600">
-                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
-                                            </path>
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                        </svg>
-                                        <span>Jakarta</span>
-                                    </div>
-                                    <div class="flex items-center text-gray-600">
-                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
-                                            </path>
-                                        </svg>
-                                        <span>Deadline: 30 Juni 2023</span>
-                                    </div>
-                                </div>
-
-                                <div class="mt-6 flex justify-between items-center">
-                                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm">
-                                        Lamar Sekarang
-                                    </button>
-                                    <button class="text-gray-500 hover:text-blue-600">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
+                </section>
+            @endif
 
             <!-- Perusahaan Mitra -->
             <section class="py-16 bg-[#F2FAFC]">
@@ -610,6 +482,39 @@
                             <p class="text-gray-700 italic">
                                 "Magang di Sinarmas sebagai Mechine Engiener membantu saya menerapkan ilmu kampus
                                 di dunia nyata. Timnya sangat supportive untuk mahasiswa!"
+                            </p>
+                            <div class="mt-4 flex text-yellow-400">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 3 -->
+                        <div class="bg-white rounded-xl shadow-lg p-6 relative">
+                            <div
+                                class="absolute -top-4 left-6 bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center">
+                                <i class="fa-regular fa-comment"></i>
+                            </div>
+                            <div class="flex items-center mb-4">
+                                {{-- <img src="{{ asset('images/bidang1.webp') }}" alt="Student"
+                                class="w-12 h-12 rounded-full object-cover"> --}}
+                                {{-- atau --}}
+                                <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
+                                    <i class="fa-solid fa-user fa-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="font-semibold">Budi Pratama</h4>
+                                    <p class="text-sm text-gray-600">Manajemen Bisnis - Universitas Gadjah Mada</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 italic">
+                                "Sebagai mahasiswa yang butuh penghasilan tambahan, website ini sangat membantu. Banyak
+                                sekali pilihan lowongan kerja paruh waktu (part-time) yang fleksibel dan lokasinya dekat
+                                dengan kampus. Saya berhasil dapat kerja sebagai barista di coffee shop dekat kosan hanya
+                                dalam seminggu setelah mendaftar. Fitur notifikasi via email juga sangat cepat kalau ada
+                                lamaran yang dilihat oleh perusahaan. Mantap!"
                             </p>
                             <div class="mt-4 flex text-yellow-400">
                                 <i class="fa-solid fa-star"></i>
