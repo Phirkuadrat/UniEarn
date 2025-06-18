@@ -489,59 +489,69 @@
                             <i class="fa-regular fa-comment"></i>
                         </div>
                         <div class="flex items-center mb-4">
-                            {{-- <img src="{{ asset('images/bidang1.webp') }}" alt="Student"
-                                class="w-12 h-12 rounded-full object-cover"> --}}
+                            <img src="{{ asset('images/bidang2.webp') }}" alt="Student"
+                            class="w-12 h-12 rounded-full object-cover">
                             {{-- atau --}}
-                            <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
+                            {{-- <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
                                 <i class="fa-solid fa-user fa-xl"></i>
-                            </div>
+                            </div> --}}
                             <div class="ml-4">
-                                <h4 class="font-semibold">Ade Hermawan Saputra</h4>
-                                <p class="text-sm text-gray-600">Teknik Mesin - Universitas Terbuka</p>
+                                <h4 class="font-semibold">Diana Muzafaf</h4>
+                                <p class="text-sm text-gray-600">DKV - Institut Kesenian Jakarta </p>
                             </div>
                         </div>
-
-
-                        <!-- Testimonial 3 -->
-                        <div class="bg-white rounded-xl shadow-lg p-6 relative">
-                            <div
-                                class="absolute -top-4 left-6 bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center">
-                                <i class="fa-regular fa-comment"></i>
-                            </div>
-                            <div class="flex items-center mb-4">
-                                {{-- <img src="{{ asset('images/bidang1.webp') }}" alt="Student"
-                                class="w-12 h-12 rounded-full object-cover"> --}}
-                                {{-- atau --}}
-                                <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
-                                    <i class="fa-solid fa-user fa-xl"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <h4 class="font-semibold">Budi Pratama</h4>
-                                    <p class="text-sm text-gray-600">Manajemen Bisnis - Universitas Gadjah Mada
-                                    </p>
-                                </div>
-                            </div>
-                            <p class="text-gray-700 italic">
-                                "Sebagai mahasiswa yang butuh penghasilan tambahan, website ini sangat membantu.
-                                Banyak
-                                sekali pilihan lowongan kerja paruh waktu (part-time) yang fleksibel dan
-                                lokasinya dekat
-                                dengan kampus. Saya berhasil dapat kerja sebagai barista di coffee shop dekat
-                                kosan hanya
-                                dalam seminggu setelah mendaftar. Fitur notifikasi via email juga sangat cepat
-                                kalau ada
-                                lamaran yang dilihat oleh perusahaan. Mantap!"
-                            </p>
-                            <div class="mt-4 flex text-yellow-400">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </div>
+                        <p class="text-gray-700 italic">
+                            "Suka banget sama fitur unggah portofolio di profil! Buat anak DKV seperti saya, portofolio
+                            itu adalah CV utama. Di sini, saya bisa menaruh link Behance dan juga mengunggah beberapa
+                            karya terbaik langsung. Ini sangat memudahkan rekruter untuk melihat hasil kerja saya tanpa
+                            harus download file terpisah. Banyak juga nemu lowongan freelance desain grafis dan magang
+                            di agensi kreatif. A must-have platform for creative students!"
+                        </p>
+                        <div class="mt-4 flex text-yellow-400">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
                         </div>
-
                     </div>
 
+                    <!-- Testimonial 3 -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 relative">
+                        <div
+                            class="absolute -top-4 left-6 bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center">
+                            <i class="fa-regular fa-comment"></i>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <img src="{{ asset('images/bidang1.webp') }}" alt="Student"
+                            class="w-12 h-12 rounded-full object-cover">
+                            {{-- atau --}}
+                            {{-- <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
+                                <i class="fa-solid fa-user fa-xl"></i>
+                            </div> --}}
+                            <div class="ml-4">
+                                <h4 class="font-semibold">Budi Pratama</h4>
+                                <p class="text-sm text-gray-600">Manajemen Bisnis - Universitas Gadjah Mada
+                                </p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 italic">
+                            "Sebagai mahasiswa yang butuh penghasilan tambahan, website ini sangat membantu.
+                            Banyak
+                            sekali pilihan lowongan kerja paruh waktu (part-time) yang fleksibel dan
+                            lokasinya dekat
+                            dengan kampus. Saya berhasil dapat kerja sebagai barista di coffee shop dekat
+                            kosan hanya
+                            dalam seminggu setelah mendaftar. Fitur notifikasi via email juga sangat cepat
+                            kalau ada
+                            lamaran yang dilihat oleh perusahaan. Mantap!"
+                        </p>
+                        <div class="mt-4 flex text-yellow-400">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
                 </div>
 
             </div>
