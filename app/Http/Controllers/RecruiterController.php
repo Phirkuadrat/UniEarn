@@ -29,7 +29,7 @@ class RecruiterController extends Controller
 
         $recentApplications = Application::whereHas('project', function ($query) use ($user) {
             $query->where('user_id', $user->id);
-        })->with(['seeker.user', 'job'])
+        })->with(['user', 'project'])
             ->latest()
             ->limit(5)
             ->get();
@@ -38,7 +38,7 @@ class RecruiterController extends Controller
             ->withCount('applications')
             ->with('category')
             ->latest()
-            ->limit(6)
+            ->limit(3)
             ->get();
 
         return view('user.recruiter.dashboardRecruiter', [
@@ -50,5 +50,24 @@ class RecruiterController extends Controller
             'recentApplications' => $recentApplications,
             'activeJobListings' => $activeJobListings,
         ]);
+    }
+
+    public function projectIndex()
+    {
+        $user = Auth::user();
+        $projects = Project::where('user_id', $user->id)->get();
+        return view('user.recruiter.project', compact('projects'));
+    }
+
+    public function recruiterApplicationIndex()
+    {
+        $user = Auth::user();
+
+        $applications = Application::whereHas('project', function ($query) use ($user) {
+            $query->where('user_id', $user->id);
+        })->with(['user', 'project'])
+            ->latest()
+            ->paginate(15);;
+        return view('user.recruiter.applications', compact('applications'));
     }
 }

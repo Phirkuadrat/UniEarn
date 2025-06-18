@@ -65,7 +65,7 @@ class PortofolioController extends Controller
                 'category_id' => 'required|exists:categories,id',
                 'link' => 'nullable|url|max:255',
                 'images' => 'array|max:5',
-                'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5082',
             ]);
         } catch (ValidationException $e) {
             return redirect()->back()->withErrors($e->errors())->withInput();
@@ -197,10 +197,14 @@ class PortofolioController extends Controller
 
     public function getDetails(Portofolio $portfolio)
     {
-        $portfolio->load(['images', 'category', 'subCategory']);
-        
+        $portfolio->load(['images', 'category', 'subCategory', 'user']);
+
         return response()->json([
             'id' => $portfolio->id,
+            'user' => $portfolio->user,
+            'seeker_user_name' => $portfolio->user->name ?? 'Unknown User',
+            'seeker_user_email' => $portfolio->user->email ?? 'N/A', 
+            'seeker_profile_picture' => $portfolio->user->seeker->profile_picture ? Storage::url($portfolio->seeker->profile_picture) : null,
             'title' => $portfolio->title,
             'description' => $portfolio->description,
             'link' => $portfolio->link,
@@ -211,7 +215,7 @@ class PortofolioController extends Controller
                     'id' => $image->id,
                     'image_path' => Storage::url($image->image_path),
                 ];
-            })->toArray(), 
+            })->toArray(),
         ]);
     }
 }

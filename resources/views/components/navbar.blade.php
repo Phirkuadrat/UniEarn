@@ -14,7 +14,8 @@
                 <a href="/" class="text-gray-700 hover:text-blue-600 font-medium">Home</a>
                 <a href="{{ route('project.page') }}" class="text-gray-700 hover:text-blue-600 font-medium">Project</a>
                 <a href="{{ route('portofolio.page') }}"
-                    class="text-gray-700 hover:text-blue-600 font-medium">Portofolio</a>
+                    class="text-gray-700 hover:text-blue-600 font-medium">Portfolio</a>
+
             </div>
 
             <!-- Auth Buttons / Profile Dropdown -->
@@ -44,17 +45,17 @@
                         class="hidden absolute right-0 mt-60 w-48 bg-white rounded-lg shadow-lg py-1 z-50 border border-collapse">
                         @auth
                             @if (Auth::user()->isSeeker())
-                                <a href="{{ auth()->user()->is_seeker ? route('recruiter.dashboard') : route('seeker.dashboard') }}"
+                                <a href="{{ auth()->user()->is_seeker ? route('seeker.dashboard') : route('recruiter.dashboard') }}"
                                     class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dashboard</a>
                                 <a href="{{ route('seeker.portfolios') }}"
                                     class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Portfolios</a>
-                                <a href="" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Applications</a>
+                                <a href="{{ route('seeker.application') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Applications</a>
                             @else
                                 <a href="{{ auth()->user()->is_recruiter ? route('recruiter.dashboard') : route('seeker.dashboard') }}"
                                     class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dashboard</a>
-                                <a href="{{ route('seeker.portfolios') }}"
+                                <a href="{{ route('recruiter.project') }}"
                                     class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Projects</a>
-                                <a href="" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Applications</a>
+                                <a href="{{ route('recruiter.application') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Applications</a>
                             @endif
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
@@ -100,18 +101,18 @@
 
                 @auth
                     @if (Auth::user()->isSeeker())
-                        <a href="{{ auth()->user()->is_seeker ? route('recruiter.dashboard') : route('seeker.dashboard') }}"
+                        <a href="{{ auth()->user()->is_seeker ? route('seeker.dashboard') : route('recruiter.dashboard') }}"
                             class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Dashboard</a>
                         <a href="{{ route('seeker.portfolios') }}"
                             class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Portfolios</a>
-                        <a href=""
+                        <a href="{{ route('seeker.application') }}"
                             class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Applications</a>
                     @else
                         <a href="{{ auth()->user()->is_recruiter ? route('recruiter.dashboard') : route('seeker.dashboard') }}"
                             class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Dashboard</a>
-                        <a href="{{ route('seeker.portfolios') }}"
+                        <a href="{{ route('recruiter.project') }}"
                             class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Projects</a>
-                        <a href=""
+                        <a href="{{ route('recruiter.application') }}"
                             class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Applications</a>
                     @endif
                     <form method="POST" action="{{ route('logout') }}">

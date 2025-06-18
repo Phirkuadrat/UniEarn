@@ -6,7 +6,7 @@
         <main class="flex-1 p-4 md:p-8 overflow-y-auto pt-16">
             <div class="max-w-7xl mx-auto">
                 <div class="flex flex-col sm:flex-row justify-between items-center mb-6 md:mb-8">
-                    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 mt-10 sm:mb-0">My Applications</h1>
+                    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 mt-10 sm:mb-0">All Applications</h1>
                 </div>
 
                 <div class="bg-white rounded-lg shadow-md overflow-hidden">
