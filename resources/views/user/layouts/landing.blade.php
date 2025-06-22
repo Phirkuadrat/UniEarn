@@ -19,6 +19,8 @@
 <body>
     @include('partials.apply-confirm-modal')
     @include('partials.delete-confirm-modal')
+    @include('partials.approve-confirm-project-modal')
+    @include('partials.review-modal')
     @include('partials.notification')
 
 

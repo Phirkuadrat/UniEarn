@@ -2,16 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SeekerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RecruiterController;
+use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\PortofolioController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\RoleSelectionController;
-use App\Http\Controllers\SocialiteController;
 
 
 Route::get('/', [UserController::class, 'landing'])->name('landing');
@@ -38,12 +39,16 @@ Route::middleware('auth')->group(function () {
         Route::delete('/project/delete/{id}', [ProjectController::class, 'deleteProject'])->name('project.delete');
         Route::get('/project/{job}/edit-data', [ProjectController::class, 'getEditData'])->name('project.getEditData');
         Route::put('/project/{job}', [ProjectController::class, 'update'])->name('project.update');
+        Route::put('/project/{job}', [ProjectController::class, 'done'])->name('project.done');
 
         // Application Routes
         Route::get('/recruiter/applications', [RecruiterController::class, 'recruiterApplicationIndex'])->name('recruiter.application');
         Route::get('/application/{job}/list', [ApplicationController::class, 'index'])->name('application.list');
         Route::put('/application/{application}/approve', [ApplicationController::class, 'approve'])->name('application.approve');
         Route::put('/application/{application}/reject', [ApplicationController::class, 'reject'])->name('application.reject');
+
+        // Review Routes
+        Route::post('/reviews/{jobId}', [ReviewController::class, 'store'])->name('reviews.store');
     });
 
     // Seeker Dashboard
@@ -60,10 +65,14 @@ Route::middleware('auth')->group(function () {
         // Application Routes
         Route::get('/seeker/applications', [SeekerController::class, 'applicationIndex'])->name('seeker.application');
         Route::post('/seeker/apply/project/{project}', [ApplicationController::class, 'apply'])->name('apply.project');
+
+        // Review Routes
+        Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
     });
 });
 
 Route::get('/recruiter/seekers/{user}/profile', [SeekerController::class, 'getSeekerProfile']);
+Route::get('/recruiter/seekers/{user}/email-preview', [RecruiterController::class, 'emailPreview'])->name('recruiter.seekers.emailPreview');
 Route::get('/project/{job}/details', [ProjectController::class, 'getDetails']);
 Route::get('/portfolio/{portfolio}/details', [PortofolioController::class, 'getDetails']);
 Route::get('/categories/get', [CategoryController::class, 'getCategories']);

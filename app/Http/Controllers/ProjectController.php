@@ -95,7 +95,7 @@ class ProjectController extends Controller
 
         $project->delete();
 
-        return redirect()->route('seeker.dashboard')->with('success', 'Project deleted successfully!');
+        return redirect()->route('recruiter.dashboard')->with('success', 'Project deleted successfully!');
     }
 
     public function getEditData(Project $job)
@@ -179,5 +179,14 @@ class ProjectController extends Controller
                 ],
             ],
         ]);
+    }
+
+    public function done($id)
+    {
+        $project = Project::findOrFail($id);
+
+        $project->status = 'completed_pending_review';
+        $project->save();
+        return redirect()->route('recruiter.dashboard')->with('success', 'Project status updated successfully!');
     }
 }

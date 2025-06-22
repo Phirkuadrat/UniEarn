@@ -1,20 +1,29 @@
 <x-mail::message>
     # Congratulations, {{ $applicantName }}!
 
-    We are thrilled to inform you that your application for the project **"{{ $jobTitle }}"** has been approved!
+    We are absolutely thrilled to inform you that your application for the project **"{{ $jobTitle }}"** has been
+    **approved**!
 
-    The team was very impressed with your profile and we believe you are a great fit for this opportunity.
+    The team was highly impressed with your profile and believes you are an excellent fit for this exciting opportunity.
+    This is a significant step forward in your career journey!
 
-    You can view the project details by clicking the button below:
+    You can find more details about the project and next steps by clicking the button below. Please ensure you also
+    check your dashboard for further instructions or direct communication from the recruiter.
 
+    {{-- Tombol View Project --}}
     <x-mail::button :url="$projectLink">
-        View Project
+        View Project Details
     </x-mail::button>
 
     Please check your dashboard for further instructions or communication from the recruiter.
 
-    Thank you for your interest in {{ config('app.name') }}.
+    Thank you for choosing {{ config('app.name') }} to advance your career.
 
     Regards,
-    The {{ config('app.name') }} Team
+    <br> {{-- Gunakan <br> untuk baris baru atau dua spasi di akhir baris dan enter untuk Markdown --}}
+    The **{{ config('app.name') }}** Team
+
+    <x-mail::subcopy>
+        © {{ date('Y') }} {{ config('app.name') }}. All rights reserved.
+    </x-mail::subcopy>
 </x-mail::message>

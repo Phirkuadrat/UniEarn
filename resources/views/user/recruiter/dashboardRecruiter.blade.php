@@ -134,40 +134,58 @@
                                                 {{ $application->created_at->format('M d, Y') }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                <button onclick="showSeekerProfileOverlay({{ $application->user_id }})"
-                                                    class="text-blue-600
-                                                    hover:text-blue-900">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
+                                                <div class="flex items-center justify-end space-x-2">
+                                                    {{-- Tombol View Seeker Profile --}}
+                                                    <button type="button"
+                                                        onclick="showSeekerProfileOverlay({{ $application->user_id }})"
+                                                        class="text-blue-600 hover:text-blue-800 p-1 rounded-full"
+                                                        title="View Seeker Profile">
+                                                        <i class="fas fa-eye"></i>
+                                                    </button>
 
-                                                @if ($application->status === 'pending')
-                                                    <form id="approve-form-{{ $application->id }}"
-                                                        action="{{ route('application.approve', $application->id) }}"
-                                                        method="POST"
-                                                        onsubmit="event.preventDefault(); showApproveConfirmModal(this);"
-                                                        class="inline-block ml-2">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <button type="submit"
-                                                            class="text-green-600 hover:text-green-800 focus:outline-none p-1"
-                                                            title="Approve Application">
-                                                            <i class="fas fa-check-circle"></i>
+                                                    @if ($application->status === 'pending')
+                                                        {{-- Tombol Approve --}}
+                                                        <form id="approve-form-{{ $application->id }}"
+                                                            action="{{ route('application.approve', $application->id) }}"
+                                                            method="POST"
+                                                            onsubmit="event.preventDefault(); showApproveConfirmModal(this);"
+                                                            class="inline-block">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <button type="submit"
+                                                                class="text-green-600 hover:text-green-800 focus:outline-none p-1 rounded-full"
+                                                                title="Approve Application">
+                                                                <i class="fas fa-check-circle"></i>
+                                                            </button>
+                                                        </form>
+
+                                                        <form id="reject-form-{{ $application->id }}"
+                                                            action="{{ route('application.reject', $application->id) }}"
+                                                            method="POST"
+                                                            onsubmit="event.preventDefault(); showRejectConfirmModal(this);"
+                                                            class="inline-block">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <button type="submit"
+                                                                class="text-red-600 hover:text-red-800 focus:outline-none p-1 rounded-full"
+                                                                title="Reject Application">
+                                                                <i class="fas fa-times-circle"></i>
+                                                            </button>
+                                                        </form>
+                                                    @endif
+
+                                                    @if ($application->status === 'approved' && $application->project->status === 'completed_pending_review')
+                                                        <button type="button"
+                                                            onclick="showReviewSeekerModal(
+                    {{ $application->user->seeker->id }},
+                    '{{ $application->user->name }}',
+                    {{ $application->id }},
+                    {{ $application->project_id}} )"
+                                                            class="text-yellow-600 hover:text-yellow-400 transition-colors duration-200 p-1 rounded-full">
+                                                            <i class="fas fa-star" aria-hidden="true"></i>
                                                         </button>
-                                                    </form>
-                                                    <form id="reject-form-{{ $application->id }}"
-                                                        action="{{ route('application.reject', $application->id) }}"
-                                                        method="POST"
-                                                        onsubmit="event.preventDefault(); showRejectConfirmModal(this);"
-                                                        class="inline-block ml-2">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <button type="submit"
-                                                            class="text-red-600 hover:text-red-800 focus:outline-none p-1"
-                                                            title="Reject Application">
-                                                            <i class="fas fa-times-circle"></i>
-                                                        </button>
-                                                    </form>
-                                                @endif
+                                                    @endif
+                                                </div>
                                             </td>
                                         </tr>
                                     @empty
@@ -212,6 +230,18 @@
                                                     class="text-blue-600 hover:text-blue-800 transition-colors duration-200 p-1 rounded-full hover:bg-blue-50 flex items-center justify-center">
                                                     <i class="fas fa-edit text-base"></i>
                                                 </button>
+                                            @elseif($job->status === 'in_progress')
+                                                <form id="complete-form-{{ $job->id }}"
+                                                    action="{{ route('project.done', $job->id) }}" method="POST"
+                                                    onsubmit="event.preventDefault(); showCompleteProjectModal(this);"
+                                                    class="inline-block flex items-center justify-center">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <button type="submit" title="Mark as Complete"
+                                                        class="text-blue-600 hover:text-blue-800 transition-colors duration-200 p-1 rounded-full hover:bg-blue-50 flex items-center justify-center">
+                                                        <i class="fas fa-check-circle"></i>
+                                                    </button>
+                                                </form>
                                             @else
                                                 <button title="Can only edit Open or Draft jobs"
                                                     class="text-gray-600 cursor-not-allowed transition-colors duration-200 p-1 rounded-full flex items-center justify-center">

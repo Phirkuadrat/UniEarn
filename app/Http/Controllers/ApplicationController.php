@@ -48,6 +48,12 @@ class ApplicationController extends Controller
         $application->save();
 
         $projectId = $application->project_id;
+        $project = Project::where('id', $projectId)->first();
+        if ($project) {
+            $project->status = 'in_progress';
+            $project->save();
+        }
+
         $rejectedCount = 0;
 
         $remainingApplications = Application::where('project_id', $projectId)
@@ -65,7 +71,7 @@ class ApplicationController extends Controller
             Mail::to($application->user->email)->send(
                 new ApplicationApproved(
                     $application,
-                    $application->project->title 
+                    $application->project->title
                 )
             );
         }

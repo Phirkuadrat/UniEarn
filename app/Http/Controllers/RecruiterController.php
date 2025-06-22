@@ -70,4 +70,17 @@ class RecruiterController extends Controller
             ->paginate(15);;
         return view('user.recruiter.applications', compact('applications'));
     }
+
+    public function emailPreview($userId)
+    {
+        // Fetch the full email content for the user (simulate or fetch from database)
+        // For demonstration, we will render the approved application email with dummy data
+        $applicantName = 'Lutfi Firmansyah';
+        $jobTitle = 'Backend Development (API Integration)';
+        $projectLink = url('/project/123/details');
+
+        $emailContent = view('emails.application.approved', compact('applicantName', 'jobTitle', 'projectLink'))->render();
+
+        return view('partials.email-preview', compact('emailContent'));
+    }
 }
