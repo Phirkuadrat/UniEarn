@@ -18,6 +18,7 @@ class UserController extends Controller
         $categories = Category::with('subCategories')->get();
         $projects = Project::with('category', 'subCategory', 'user')->where('status', 'open')->latest();
         $projects = $projects->paginate(6)->withQueryString();
+      
         return view('landingPage', compact('categories', 'projects'));
     }
 

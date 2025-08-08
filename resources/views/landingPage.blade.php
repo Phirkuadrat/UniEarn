@@ -296,7 +296,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </section>
 
         <!-- Lowongan Rekomendasi -->
@@ -305,10 +304,9 @@
                 <div class="flex justify-between items-center mb-8">
                     <div>
                         <h2 class="text-3xl font-bold">Recommended For You</h2>
-                        <p class="text-gray-600">Project Lowongan yang cocok dengan jurusan dan minatmu</p>
+                        <p class="text-gray-600">Jobs that match your major and interests</p>
                     </div>
-                    <a href="{{ route('project.page') }}" class="text-blue-600 font-semibold hover:underline">Lihat
-                        Semua</a>
+                    <a href="{{ route('project.page') }}" class="text-blue-600 font-semibold hover:underline"See All</a>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -399,7 +397,8 @@
             <div class="container mx-auto px-4">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl font-bold mb-4">Our Partner Companies</h2>
-                    <p class="text-gray-600 max-w-2xl mx-auto">Companies that are actively recruiting students through
+                    <p class="text-gray-600 max-w-2xl mx-auto">Companies that are actively recruiting students
+                        through
                         our platform</p>
                 </div>
 
@@ -491,16 +490,20 @@
                         </div>
                         <div class="flex items-center mb-4">
                             <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
+
                                 <i class="fa-solid fa-user fa-xl"></i>
-                            </div>
+                            </div> --}}
                             <div class="ml-4">
-                                <h4 class="font-semibold">Ade Hermawan Saputra</h4>
-                                <p class="text-sm text-gray-600">Teknik Mesin - Universitas Terbuka</p>
+                                <h4 class="font-semibold">Diana Muzafaf</h4>
+                                <p class="text-sm text-gray-600">DKV - Institut Kesenian Jakarta </p>
                             </div>
                         </div>
                         <p class="text-gray-700 italic">
-                            "Magang di Sinarmas sebagai Mechine Engiener membantu saya menerapkan ilmu kampus
-                            di dunia nyata. Timnya sangat supportive untuk mahasiswa!"
+                            "Suka banget sama fitur unggah portofolio di profil! Buat anak DKV seperti saya, portofolio
+                            itu adalah CV utama. Di sini, saya bisa menaruh link Behance dan juga mengunggah beberapa
+                            karya terbaik langsung. Ini sangat memudahkan rekruter untuk melihat hasil kerja saya tanpa
+                            harus download file terpisah. Banyak juga nemu lowongan freelance desain grafis dan magang
+                            di agensi kreatif. A must-have platform for creative students!"
                         </p>
                         <div class="mt-4 flex text-yellow-400">
                             <i class="fa-solid fa-star"></i>
@@ -511,6 +514,7 @@
                     </div>
 
                     <!-- Testimonial 2 -->
+
                     <div class="bg-white rounded-xl shadow-lg p-6 relative">
                         <div
                             class="absolute -top-4 left-6 bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center">
@@ -528,6 +532,7 @@
                         <p class="text-gray-700 italic">
                             "Magang di Sinarmas sebagai Mechine Engiener membantu saya menerapkan ilmu kampus
                             di dunia nyata. Timnya sangat supportive untuk mahasiswa!"
+
                         </p>
                         <div class="mt-4 flex text-yellow-400">
                             <i class="fa-solid fa-star"></i>
@@ -535,6 +540,7 @@
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                         </div>
+
                     </div>
                 </div>
 
