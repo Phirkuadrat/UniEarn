@@ -1,7 +1,7 @@
 <x-admin-layout>
     <div class="p-6 h-[100vh]">
         {{-- Page Title --}}
-        <h1 class="text-3xl font-extrabold text-gray-800 mb-6 border-b-2 border-blue-500 pb-2">Portfolios User</h1>
+        <h1 class="text-3xl font-extrabold text-gray-800 mb-6 border-b-2 border-blue-500 pb-2">Application User</h1>
 
         {{-- Success Message --}}
         @if (session('success'))
@@ -19,32 +19,28 @@
             </div>
         @endif
 
-        {{-- Category List Table --}}
+        {{-- Application List Table --}}
         <div class="bg-white p-6 rounded-2xl shadow-xl overflow-hidden">
-            <h2 class="text-xl font-semibold text-gray-800 mb-6">Portfolios List</h2>
+            <h2 class="text-xl font-semibold text-gray-800 mb-6">Application List</h2>
             <div class="overflow-x-auto">
-                <table id="portofolios-table" class="min-w-full divide-y divide-gray-200">
+<table id="application-table" class="min-w-full divide-y divide-gray-200">
                     <thead>
                         <tr>
                             <th
                                 class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider rounded-tl-lg">
-                                Title
+                                Applicant Name
                             </th>
                             <th
                                 class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                User
+                                Project Title
                             </th>
                             <th
                                 class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Category
+                                Status
                             </th>
                             <th
                                 class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider rounded-tr-lg">
-                                Sub Category
-                            </th>
-                            <th
-                                class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider rounded-tr-lg">
-                                Action
+                                Applied On
                             </th>
                         </tr>
                     </thead>
@@ -54,36 +50,30 @@
             </div>
         </div>
 
-        @include('partials.portfolio-detail-guest-overlay')
+        @include('partials.seeker-profile')
     </div>
 
     <script>
         $(document).ready(function() {
-            $('#portofolios-table').DataTable({
+            $('#application-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{{ route('portofolio.data') }}',
+                ajax: '{{ route('application.data') }}',
                 columns: [{
-                        data: 'title',
-                        name: 'title'
+                        data: 'applicant_name',
+                        name: 'applicant_name'
                     },
                     {
-                        data: 'user',
-                        name: 'user'
+                        data: 'project_title',
+                        name: 'project_title'
                     },
                     {
-                        data: 'category',
-                        name: 'category'
+                        data: 'status',
+                        name: 'status'
                     },
                     {
-                        data: 'sub_category_id',
-                        name: 'sub_category_id'
-                    },
-                    {
-                        data: 'action',
-                        name: 'action',
-                        orderable: false,
-                        searchable: false
+                        data: 'applied_on',
+                        name: 'applied_on'
                     }
                 ],
             });
