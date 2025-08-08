@@ -8,6 +8,8 @@ use App\Http\Controllers\PortofolioController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\ApplicationController;
+use App\Models\Application;
 
 Route::get('/login-admin', [AuthController::class, 'showLoginForm'])->name('admin.login');
 Route::post('/login-admin', [AuthController::class, 'login'])->name('admin.login.submit');
@@ -15,7 +17,6 @@ Route::post('/login-admin', [AuthController::class, 'login'])->name('admin.login
 // route after login
 Route::middleware('auth:admin')->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-    // Route::get('/admin/dashboard', fn() => view('admin.dashboard'))->name('admin.dashboard');
     Route::post('/logout-admin', [AuthController::class, 'logout'])->name('admin.logout');
 
     // User Management
@@ -39,10 +40,16 @@ Route::middleware('auth:admin')->group(function () {
     // Portofolio Management
     Route::get('/admin/portofolio', [PortofolioController::class, 'index'])->name('portofolio.manage');
     Route::get('/admin/portofolio/data', [PortofolioController::class, 'getData'])->name('portofolio.data');
+    Route::delete('/admin/portfolio/delete/{id}', [PortofolioController::class, 'deletePortofolioAdmin'])->name('portfolio.delete.admin');
 
     // Project Management
     Route::get('/admin/project', [ProjectController::class, 'index'])->name('project.manage');
     Route::get('/admin/project/data', [ProjectController::class, 'getData'])->name('projects.data');
+    Route::delete('/project/delete/{id}', [ProjectController::class, 'deleteProjectAdmin'])->name('project.delete');
+
+    // Application Management
+    Route::get('/admin/application', [ApplicationController::class, 'applicationIndex'])->name('application.manage');
+    Route::get('/admin/application/data', [ApplicationController::class, 'getData'])->name('application.data');
 });
 
 

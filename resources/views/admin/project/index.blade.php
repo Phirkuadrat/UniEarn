@@ -53,6 +53,7 @@
                 </table>
             </div>
         </div>
+        @include('partials.project-detail-overlay')
     </div>
 
     <script>

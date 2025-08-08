@@ -64,7 +64,7 @@ class DashboardController extends Controller
         $projectsByCategory = Project::select('category_id', DB::raw('COUNT(*) as total_projects'))->where('status', 'Open')
             ->groupBy('category_id')
             ->orderByDesc('total_projects')
-            ->limit(5)
+            ->limit(10)
             ->with('category')
             ->get();
 
@@ -93,7 +93,7 @@ class DashboardController extends Controller
         $projectParticipants = Project::with('category')
             ->withCount('applications')
             ->orderBy('id')
-            ->limit(5)
+            ->limit(10)
             ->get();
 
         return view('admin.dashboard', [

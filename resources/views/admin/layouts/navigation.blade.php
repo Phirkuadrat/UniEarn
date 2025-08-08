@@ -77,6 +77,16 @@
             </svg>
             <span>Project</span>
         </a>
+
+        <a href="{{ route('application.manage') }}"
+            class="flex items-center rounded-radius gap-2 px-2 py-1.5 text-sm font-medium text-on-surface underline-offset-2 hover:bg-primary/5 hover:text-on-surface-strong focus-visible:underline focus:outline-hidden dark:text-on-surface-dark dark:hover:bg-primary-dark/5 dark:hover:text-on-surface-dark-strong {{ request()->routeIs('application.manage') ? 'bg-primary/10 font-bold text-primary' : '' }}">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+            </svg>
+            <span>Application</span>
+        </a>
     </div>
 </nav>
 
@@ -105,14 +115,8 @@
                 <li class="flex items-center gap-1">
                     <a href="#"
                         class="hover:text-on-surface-strong dark:hover:text-on-surface-dark-strong">Dashboard</a>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" fill="none"
-                        stroke-width="2" class="size-4" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                    </svg>
-                </li>
 
-                <li class="flex items-center gap-1 font-bold text-on-surface-strong dark:text-on-surface-dark-strong"
-                    aria-current="page">Marketing</li>
+                </li>
             </ol>
         </nav>
 

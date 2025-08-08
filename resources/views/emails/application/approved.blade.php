@@ -20,7 +20,6 @@
     Thank you for choosing {{ config('app.name') }} to advance your career.
 
     Regards,
-    <br> {{-- Gunakan <br> untuk baris baru atau dua spasi di akhir baris dan enter untuk Markdown --}}
     The **{{ config('app.name') }}** Team
 
     <x-mail::subcopy>

@@ -39,9 +39,10 @@
                                 Unlock your potential. We connect you to the skills and jobs for a meaningful career.
                             </p>
 
-                            <form class="flex flex-col sm:flex-row gap-3 mb-6">
-                                <input type="text" placeholder="Search for jobs or projects..."
-                                    class="flex-grow px-5 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3674B5] focus:border-transparent transition duration-300 w-full" />
+                            <form class="flex flex-col sm:flex-row gap-3 mb-6" method="GET" action="{{ route('project.page') }}">
+                                <input type="text" id="search" name="search"
+                                    placeholder="Search Projects, Jobs Or Internship..."
+                                    class="w-full bg-gray-50 rounded-md border border-gray-300 text-gray-800 py-2 px-3 focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm">
 
                                 <button type="submit"
                                     class="bg-[#3674B5] text-white px-6 py-3 rounded-lg font-semibold flex items-center justify-center gap-2 hover:bg-[#2a5a8a] transition-transform transform hover:scale-105">
@@ -56,7 +57,7 @@
         </section>
 
         <section class="py-16 bg-white">
-            <div class="container mx-auto px-4">
+            <div class="container mx-auto p-12">
                 <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">Discover In-Demand Career
                     Paths</h2>
                 <p class="text-lg text-gray-700 text-center mb-12 max-w-3xl mx-auto">
@@ -67,7 +68,7 @@
                 <div class="swiper category-carousel">
                     <div class="swiper-wrapper px-4 pb-12">
                         @foreach ($categories as $category)
-                            <div class="swiper-slide h-[300px]"> 
+                            <div class="swiper-slide h-[300px]">
                                 <a href="{{ route('project.page', ['category' => $category->id]) }}"
                                     class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden transform hover:scale-[1.03] hover:shadow-xl transition-all duration-300 group cursor-pointer flex flex-col h-full">
 
@@ -127,7 +128,7 @@
                         you find job opportunities that fit your class schedule and career interests</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="p-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <div
                         class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
                         <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
@@ -186,7 +187,8 @@
                     <div
                         class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
                         <div class="bg-pink-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
-                            <svg class="w-8 h-8 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-8 h-8 text-pink-600" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                             </svg>
@@ -298,223 +300,96 @@
         </section>
 
         <!-- Lowongan Rekomendasi -->
-        <section class="py-16 bg-white">
+        <section class="p-16 py-16 bg-white">
             <div class="container mx-auto px-4">
                 <div class="flex justify-between items-center mb-8">
                     <div>
-                        <h2 class="text-3xl font-bold">Rekomendasi untuk Kamu</h2>
-                        <p class="text-gray-600">Lowongan yang cocok dengan jurusan dan minatmu</p>
+                        <h2 class="text-3xl font-bold">Recommended For You</h2>
+                        <p class="text-gray-600">Project Lowongan yang cocok dengan jurusan dan minatmu</p>
                     </div>
-                    <a href="#" class="text-blue-600 font-semibold hover:underline">Lihat Semua</a>
+                    <a href="{{ route('project.page') }}" class="text-blue-600 font-semibold hover:underline">Lihat
+                        Semua</a>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Lowongan 1 -->
-                    <div
-                        class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition">
-                        <div class="p-6">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h3 class="font-bold text-xl">Web Developer Magang</h3>
-                                    <p class="text-gray-600">PT. Tech Innovasi</p>
+                    @forelse ($projects as $project)
+                        <div
+                            class="bg-white rounded-xl shadow-md hover:shadow-xl border border-gray-100 overflow-hidden transform hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col h-full">
+
+                            <div class="p-6 pb-0 flex-grow">
+                                <div class="flex justify-between items-start mb-4">
+                                    <h3 class="text-xl font-bold text-gray-900 leading-tight line-clamp-2">
+                                        {{ $project->title }}
+                                    </h3>
                                 </div>
-                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                                    <i class="fa-solid fa-building fa-2xl text-[#7a7f81]"></i>
+
+                                @if ($project->user)
+                                    <div class="flex items-center mb-4">
+                                        @if ($project->user->recruiter->company_logo)
+                                            <img src="{{ Storage::url($project->user->recruiter->company_logo) }}"
+                                                alt="{{ $project->user->recruiter->company_name }} Logo"
+                                                class="w-10 h-10 rounded-full object-cover mr-3 border-2 border-white shadow-sm">
+                                        @else
+                                            <div
+                                                class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-50 to-gray-100 flex items-center justify-center mr-3">
+                                                <i class="fas fa-building text-gray-500"></i>
+                                            </div>
+                                        @endif
+                                        <div>
+                                            <p class="text-gray-800 font-medium text-sm">
+                                                {{ $project->user->recruiter->company_name ?? ($project->user->name ?? 'Unknown Company') }}
+                                            </p>
+                                            <p class="text-gray-500 text-xs">
+                                                {{ $project->created_at->diffForHumans() }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                @endif
+
+                                <div class="mb-4">
+                                    <span
+                                        class="inline-flex items-center px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-medium">
+                                        <i class="fas fa-tag mr-1 text-xs"></i>
+                                        {{ $project->category->name ?? 'N/A' }}
+                                        @if ($project->subCategory)
+                                            / {{ $project->subCategory->name }}
+                                        @endif
+                                    </span>
                                 </div>
-                                {{-- <img src="{{ asset('images/company-logo1.png') }}" alt="Company Logo"
-                                    class="w-12 h-12 object-contain"> --}}
+
+                                <p class="text-gray-600 mb-4 line-clamp-3 text-sm leading-relaxed">
+                                    {{ $project->description }}
+                                </p>
                             </div>
 
-                            <div class="mt-4 flex flex-wrap gap-2">
-                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Magang</span>
-                                <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">IT</span>
-                                <span
-                                    class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Remote</span>
-                            </div>
-
-                            <div class="mt-4 space-y-2">
-                                <div class="flex items-center text-gray-600">
-                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z">
-                                        </path>
-                                    </svg>
-                                    <span>Rp3-4jt/bulan</span>
+                            <div class="p-6 pt-0">
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span
+                                        class="inline-flex items-center bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs">
+                                        <i class="fas fa-money-bill-wave mr-1"></i>
+                                        Rp {{ number_format($project->budget, 0, ',', '.') }}
+                                    </span>
+                                    <span
+                                        class="inline-flex items-center bg-purple-50 text-purple-700 px-3 py-1 rounded-full text-xs">
+                                        <i class="fas fa-clock mr-1"></i>
+                                        {{ \Carbon\Carbon::parse($project->due_date)->diffForHumans() }}
+                                    </span>
                                 </div>
-                                <div class="flex items-center text-gray-600">
-                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
-                                        </path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                    </svg>
-                                    <span>Jakarta</span>
-                                </div>
-                                <div class="flex items-center text-gray-600">
-                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
-                                        </path>
-                                    </svg>
-                                    <span>Deadline: 30 Juni 2023</span>
-                                </div>
-                            </div>
-
-                            <div class="mt-6 flex justify-between items-center">
-                                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm">
-                                    Lamar Sekarang
-                                </button>
-                                <button class="text-gray-500 hover:text-blue-600">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
-                                    </svg>
-                                </button>
                             </div>
                         </div>
-                    </div>
-                    <!-- Lowongan 2 -->
-                    <div
-                        class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition">
-                        <div class="p-6">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h3 class="font-bold text-xl">Web Developer Magang</h3>
-                                    <p class="text-gray-600">PT. Tech Innovasi</p>
-                                </div>
-                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                                    <i class="fa-solid fa-building fa-2xl text-[#7a7f81]"></i>
-                                </div>
-                                {{-- atau --}}
-                                {{-- <img src="{{ asset('images/company-logo1.png') }}" alt="Company Logo"
-                                    class="w-12 h-12 object-contain"> --}}
+                    @empty
+                        <div
+                            class="col-span-full text-center py-16 bg-white rounded-xl shadow-sm border border-gray-200">
+                            <div
+                                class="mx-auto w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-search text-gray-400 text-2xl"></i>
                             </div>
-
-                            <div class="mt-4 flex flex-wrap gap-2">
-                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Magang</span>
-                                <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">IT</span>
-                                <span
-                                    class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Remote</span>
-                            </div>
-
-                            <div class="mt-4 space-y-2">
-                                <div class="flex items-center text-gray-600">
-                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z">
-                                        </path>
-                                    </svg>
-                                    <span>Rp3-4jt/bulan</span>
-                                </div>
-                                <div class="flex items-center text-gray-600">
-                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
-                                        </path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                    </svg>
-                                    <span>Jakarta</span>
-                                </div>
-                                <div class="flex items-center text-gray-600">
-                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
-                                        </path>
-                                    </svg>
-                                    <span>Deadline: 30 Juni 2023</span>
-                                </div>
-                            </div>
-
-                            <div class="mt-6 flex justify-between items-center">
-                                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm">
-                                    Lamar Sekarang
-                                </button>
-                                <button class="text-gray-500 hover:text-blue-600">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
-                                    </svg>
-                                </button>
-                            </div>
+                            <h4 class="text-gray-700 font-medium text-lg mb-2">No projects found</h4>
+                            <p class="text-gray-500 max-w-md mx-auto">Try adjusting your search filters or check back
+                                later
+                                for new opportunities.</p>
                         </div>
-                    </div>
-                    <!-- Lowongan 3 -->
-                    <div
-                        class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition">
-                        <div class="p-6">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h3 class="font-bold text-xl">Web Developer Magang</h3>
-                                    <p class="text-gray-600">PT. Tech Innovasi</p>
-                                </div>
-                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                                    <i class="fa-solid fa-building fa-2xl text-[#7a7f81]"></i>
-                                </div>
-                                {{-- <img src="{{ asset('images/company-logo1.png') }}" alt="Company Logo"
-                                    class="w-12 h-12 object-contain"> --}}
-                            </div>
-
-                            <div class="mt-4 flex flex-wrap gap-2">
-                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Magang</span>
-                                <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">IT</span>
-                                <span
-                                    class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Remote</span>
-                            </div>
-
-                            <div class="mt-4 space-y-2">
-                                <div class="flex items-center text-gray-600">
-                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z">
-                                        </path>
-                                    </svg>
-                                    <span>Rp3-4jt/bulan</span>
-                                </div>
-                                <div class="flex items-center text-gray-600">
-                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
-                                        </path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                    </svg>
-                                    <span>Jakarta</span>
-                                </div>
-                                <div class="flex items-center text-gray-600">
-                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
-                                        </path>
-                                    </svg>
-                                    <span>Deadline: 30 Juni 2023</span>
-                                </div>
-                            </div>
-
-                            <div class="mt-6 flex justify-between items-center">
-                                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm">
-                                    Lamar Sekarang
-                                </button>
-                                <button class="text-gray-500 hover:text-blue-600">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
+                    @endforelse
                 </div>
             </div>
         </section>
@@ -571,8 +446,8 @@
         </section>
 
         <!-- Testimonial Mahasiswa -->
-        <section class="py-16 bg-gradient-to-r from-indigo-50 to-blue-50">
-            <div class="container mx-auto px-4">
+        <section class="pb-24 bg-gradient-to-r from-indigo-50 to-blue-50">
+            <div class="container mx-auto p-12">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl font-bold mb-4">Student Success Stories</h2>
                     <p class="text-gray-600 max-w-2xl mx-auto">First-hand experiences from students who have
@@ -615,9 +490,6 @@
                             <i class="fa-regular fa-comment"></i>
                         </div>
                         <div class="flex items-center mb-4">
-                            {{-- <img src="{{ asset('images/bidang1.webp') }}" alt="Student"
-                                class="w-12 h-12 rounded-full object-cover"> --}}
-                            {{-- atau --}}
                             <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
                                 <i class="fa-solid fa-user fa-xl"></i>
                             </div>
@@ -638,54 +510,34 @@
                         </div>
                     </div>
 
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Final CTA -->
-        <section class="py-16 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
-            <div class="container mx-auto px-4 text-center">
-                <h3 class="text-3xl md:text-4xl font-bold mb-4">Ready to Start Your First Career?</h3>
-                <p class="text-xl mb-8 max-w-2xl mx-auto">Register now and get personalized job recommendations!</p>
-
-                <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <button
-                        class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition text-lg">
-                        Register for Free
-                    </button>
-                    {{-- <button
-            class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition text-lg">
-            Download App
-            </button> --}}
-                </div>
-
-                <div class="mt-8 flex flex-wrap justify-center gap-4 text-blue-200">
-                    <div class="flex items-center">
-                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                        <span>Free for Students</span>
-                    </div>
-                    <div class="flex items-center">
-                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                        <span>1-Click Apply Process</span>
-                    </div>
-                    <div class="flex items-center">
-                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                        <span>Instant Job Notifications</span>
+                    <!-- Testimonial 2 -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 relative">
+                        <div
+                            class="absolute -top-4 left-6 bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center">
+                            <i class="fa-regular fa-comment"></i>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
+                                <i class="fa-solid fa-user fa-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-semibold">Ade Hermawan Saputra</h4>
+                                <p class="text-sm text-gray-600">Teknik Mesin - Universitas Terbuka</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 italic">
+                            "Magang di Sinarmas sebagai Mechine Engiener membantu saya menerapkan ilmu kampus
+                            di dunia nyata. Timnya sangat supportive untuk mahasiswa!"
+                        </p>
+                        <div class="mt-4 flex text-yellow-400">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </section>
 

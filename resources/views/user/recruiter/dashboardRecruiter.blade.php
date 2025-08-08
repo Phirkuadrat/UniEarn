@@ -180,7 +180,7 @@
                     {{ $application->user->seeker->id }},
                     '{{ $application->user->name }}',
                     {{ $application->id }},
-                    {{ $application->project_id}} )"
+                    {{ $application->project_id }} )"
                                                             class="text-yellow-600 hover:text-yellow-400 transition-colors duration-200 p-1 rounded-full">
                                                             <i class="fas fa-star" aria-hidden="true"></i>
                                                         </button>
@@ -210,7 +210,7 @@
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             @forelse ($activeJobListings as $job)
-                                <div
+                                <div onclick="showProjectDetailOverlay({{ $job->id }})"
                                     class="border border-gray-200 rounded-lg p-5 hover:shadow-lg transition-shadow duration-200">
                                     <h3 class="font-bold text-lg text-gray-900 mb-2">{{ $job->title }}</h3>
                                     <p class="text-sm text-gray-600 mb-3">Posted:
@@ -221,6 +221,14 @@
                                             class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">{{ $job->category->name ?? 'N/A' }}</span>
                                         <span
                                             class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">{{ $job->subCategory->name ?? 'N/A' }}</span>
+                                        <span
+                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
+                                        @if ($job->status === 'open') bg-green-100 text-green-800
+                                        @elseif($job->status === 'draft') bg-yellow-100 text-yellow-800
+                                        @elseif($job->status === 'closed') bg-red-100 text-red-800
+                                        @else bg-gray-100 text-gray-800 @endif">
+                                            {{ Str::title($job->status) }}
+                                        </span>
                                     </div>
                                     <div class="flex justify-end gap-3">
                                         <div class="flex items-center gap-1.5" onclick="event.stopPropagation();">
@@ -279,6 +287,7 @@
             </main>
         </div>
 
+        @include('partials.project-detail-overlay')
         @include('partials.seeker-profile')
         @include('partials.apply-confirm-modal')
         @include('partials.approve-confirm-modal')

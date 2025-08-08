@@ -43,7 +43,6 @@ Route::middleware('auth')->group(function () {
 
         // Application Routes
         Route::get('/recruiter/applications', [RecruiterController::class, 'recruiterApplicationIndex'])->name('recruiter.application');
-        Route::get('/application/{job}/list', [ApplicationController::class, 'index'])->name('application.list');
         Route::put('/application/{application}/approve', [ApplicationController::class, 'approve'])->name('application.approve');
         Route::put('/application/{application}/reject', [ApplicationController::class, 'reject'])->name('application.reject');
 
@@ -65,9 +64,6 @@ Route::middleware('auth')->group(function () {
         // Application Routes
         Route::get('/seeker/applications', [SeekerController::class, 'applicationIndex'])->name('seeker.application');
         Route::post('/seeker/apply/project/{project}', [ApplicationController::class, 'apply'])->name('apply.project');
-
-        // Review Routes
-        Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
     });
 });
 

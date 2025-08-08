@@ -62,7 +62,8 @@
                                                     <i class="fas fa-edit text-base md:text-lg"></i>
                                                 </a>
 
-                                                <form action="{{ route('portfolio.delete', $portfolio->id) }}"
+                                                {{-- {{ route('portfolio.delete', $portfolio->id) }} --}}
+                                                <form action=""
                                                     method="POST"
                                                     onsubmit="event.preventDefault(); showDeleteConfirmModal(this);"onclick="event.stopPropagation();"
                                                     class="inline-block flex items-center justify-center">
