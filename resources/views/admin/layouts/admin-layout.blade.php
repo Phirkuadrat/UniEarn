@@ -21,6 +21,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/dashboard.js'])
 </head>
@@ -40,6 +43,9 @@
         <main class="bg-primary/20 h-max-screen ">
             {{ $slot }}
         </main>
+
+        @include('partials.delete-confirm-modal')
+
 
     </div>
     @stack('scripts')

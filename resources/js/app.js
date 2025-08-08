@@ -8,37 +8,31 @@ import 'swiper/css/bundle';
 
 document.addEventListener("DOMContentLoaded", () => {
     new Swiper('.category-carousel', {
-        // Optional parameters
-        slidesPerView: 1, // Default: 1 slide per view for small screens
-        spaceBetween: 20, // Jarak antar slide
+        slidesPerView: 1, 
+        spaceBetween: 20,
 
-        // If you need it to be responsive:
         breakpoints: {
-            640: { // sm breakpoint
+            640: { 
                 slidesPerView: 2,
                 spaceBetween: 30,
             },
-            768: { // md breakpoint
+            768: { 
                 slidesPerView: 3,
                 spaceBetween: 30,
             },
-            1024: { // lg breakpoint
-                slidesPerView: 4, // Misalnya, 4 slide di layar besar
+            1024: { 
+                slidesPerView: 4,
                 spaceBetween: 30,
             },
         },
 
-        // If you need fixed height, ensure autoHeight is false or remove it
-        autoHeight: false, // <-- PENTING: Set ini ke false atau hapus. Swiper tidak akan menyesuaikan tinggi container dengan konten
-        // Melainkan, kita yang akan mengatur tinggi slide.
+        autoHeight: false,
 
-        // Pagination (dots)
         pagination: {
             el: '.swiper-pagination',
             clickable: true,
         },
 
-        // Navigation arrows
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',

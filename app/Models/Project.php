@@ -35,4 +35,8 @@ class Project extends Model
     public function applications(){
         return $this->hasMany(Application::class);
     }
+
+    public function review(){
+        return $this->hasMany(Review::class, 'id_project', 'id');
+    }
 }

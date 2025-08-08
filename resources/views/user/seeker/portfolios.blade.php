@@ -98,7 +98,8 @@
 
 
                                         <form id="delete-form-{{ $portfolio->id }}"
-                                            action="{{ route('portfolio.delete', $portfolio->id) }}" method="POST"
+                                            action="" method="POST"
+                                            {{-- {{ route('portfolio.delete', $portfolio->id) }} --}}
                                             onsubmit="event.preventDefault(); showDeleteConfirmModal(this);"
                                             class="inline-block flex items-center justify-center">
                                             @csrf

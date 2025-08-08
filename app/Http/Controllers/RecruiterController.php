@@ -19,7 +19,9 @@ class RecruiterController extends Controller
 
         $recruiter = $user->recruiter;
 
-        $totalJobListings = Project::where('user_id', $user->id)->count();
+        $totalJobListings = Project::where('user_id', $user->id)
+            ->where('status', '=', 'open')                 
+            ->count();
         $totalApplications = Application::whereHas('project', function ($query) use ($user) {
             $query->where('user_id', $user->id);
         })->count();
@@ -52,22 +54,77 @@ class RecruiterController extends Controller
         ]);
     }
 
-    public function projectIndex()
+    public function projectIndex(Request $request)
     {
         $user = Auth::user();
-        $projects = Project::where('user_id', $user->id)->get();
-        return view('user.recruiter.project', compact('projects'));
+
+        $projectsQuery = Project::where('user_id', $user->id);
+
+        if ($request->has('search') && !empty($request->search)) {
+            $search = $request->search;
+            $projectsQuery->where('title', 'like', '%' . $search . '%');
+        }
+
+        if ($request->has('status') && !empty($request->status)) {
+            $projectsQuery->where('status', $request->status);
+        }
+
+        $projects = $projectsQuery->paginate(10);
+
+        return view('user.recruiter.project', [
+            'projects' => $projects,
+            'oldSearch' => $request->search,
+            'oldStatus' => $request->status,
+        ]);
     }
 
-    public function recruiterApplicationIndex()
+    public function recruiterApplicationIndex(Request $request)
     {
         $user = Auth::user();
 
-        $applications = Application::whereHas('project', function ($query) use ($user) {
+        if (!$user->recruiter) {
+            return redirect()->route('recruiter.dashboard')->with('error', 'You must be a recruiter to view applications.');
+        }
+
+        $applicationsQuery = Application::whereHas('project', function ($query) use ($user) {
             $query->where('user_id', $user->id);
         })->with(['user', 'project'])
-            ->latest()
-            ->paginate(15);;
-        return view('user.recruiter.applications', compact('applications'));
+            ->latest();
+
+        if ($request->has('search') && !empty($request->search)) {
+            $search = $request->search;
+            $applicationsQuery->where(function ($query) use ($search) {
+                $query->whereHas('user', function ($q) use ($search) {
+                    $q->where('name', 'like', '%' . $search . '%');
+                })->orWhereHas('project', function ($q) use ($search) {
+                    $q->where('title', 'like', '%' . $search . '%');
+                });
+            });
+        }
+
+        if ($request->has('status') && !empty($request->status)) {
+            $applicationsQuery->where('status', $request->status);
+        }
+
+        $applications = $applicationsQuery->paginate(10);
+
+        return view('user.recruiter.applications', [
+            'applications' => $applications,
+            'oldSearch' => $request->search,
+            'oldStatus' => $request->status,
+        ]);
+    }
+
+    public function emailPreview($userId)
+    {
+        // Fetch the full email content for the user (simulate or fetch from database)
+        // For demonstration, we will render the approved application email with dummy data
+        $applicantName = 'Lutfi Firmansyah';
+        $jobTitle = 'Backend Development (API Integration)';
+        $projectLink = url('/project/123/details');
+
+        $emailContent = view('emails.application.approved', compact('applicantName', 'jobTitle', 'projectLink'))->render();
+
+        return view('partials.email-preview', compact('emailContent'));
     }
 }

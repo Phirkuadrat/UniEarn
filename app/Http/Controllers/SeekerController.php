@@ -130,6 +130,19 @@ class SeekerController extends Controller
         })->toArray();
         Log::info("getSeekerProfile: Portfolios data mapped for User ID: {$user->id}. Count: " . count($portfoliosData));
 
+        $applications = Application::where('user_id', $user->id)
+            ->with(['project.review'])
+            ->get();
+
+        $reviews = [];
+        foreach ($applications as $application) {
+            if ($application->project && $application->project->review) {
+                foreach ($application->project->review as $review) {
+                    $reviews[] = $review;
+                }
+            }
+        }
+
         $phone = $seeker->phone ?? 'N/A';
         $address = $seeker->address ?? 'N/A';
         $profilePicture = $seeker->profile_picture ? Storage::url($seeker->profile_picture) : null;
@@ -147,6 +160,7 @@ class SeekerController extends Controller
             'profile_picture' => $profilePicture,
             'bio' => $bio,
             'portfolios' => $portfoliosData,
+            'reviews' => $reviews,
         ]);
     }
 }

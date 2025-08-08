@@ -1,4 +1,4 @@
-<div id="seekerProfileOverlay" class="fixed inset-0 bg-black bg-opacity-75 z-[250] hidden overflow-hidden">
+    <div id="seekerProfileOverlay" class="fixed inset-0 bg-black bg-opacity-75 z-[250] hidden overflow-hidden">
     {{-- z-index lebih tinggi dari modal lain --}}
     <div class="absolute top-0 bottom-0 right-0 bg-white rounded-l-2xl shadow-2xl
                 transform translate-x-full transition-transform duration-500 ease-out
@@ -55,7 +55,7 @@
             {{-- Bagian Portofolio --}}
             <div class="mb-6">
                 <div class="flex justify-between items-center mb-4">
-                    <h4 class="font-semibold text-lg text-gray-800">My Portfolio</h4>
+                    <h4 class="font-semibold text-lg text-gray-800">Portfolio</h4>
                     {{-- Link ke halaman portofolio penuh (jika ada) --}}
                     <a id="seeker-full-portfolio-link" href="#"
                         class="text-blue-600 hover:underline text-sm hidden">View All &rarr;</a>
@@ -65,6 +65,15 @@
                 </div>
                 <p id="seeker-portfolio-empty-message" class="text-gray-500 text-sm text-center py-4 hidden">No
                     portfolio items available.</p>
+            </div>
+
+            {{-- Bagian Review --}}
+            <div class="mb-6">
+                <h4 class="font-semibold text-lg text-gray-800 mb-4">Reviews</h4>
+                <div id="seeker-review-list" class="space-y-4">
+                    {{-- Reviews will be injected here --}}
+                </div>
+                <p id="seeker-review-empty-message" class="text-gray-500 text-sm text-center py-4 hidden">No reviews available.</p>
             </div>
 
             {{-- Anda dapat menambahkan bagian lain seperti skill, pendidikan, pengalaman di sini --}}
@@ -106,7 +115,7 @@
             seekerProfileContent.classList.remove('translate-x-full');
         }, 50);
 
-        fetch(`/recruiter/seekers/${user}/profile`) 
+        fetch(`/recruiter/seekers/${user}/profile`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -122,8 +131,7 @@
                 console.error('Error fetching seeker profile details:', error);
                 seekerProfileLoadingSpinner.classList.add('hidden');
                 hideSeekerProfileOverlay();
-                // Asumsikan showNotificationPopup tersedia secara global
-                // showNotificationPopup('error', 'Error', error.message || 'Failed to load seeker profile.');
+
             });
     }
 
@@ -135,7 +143,7 @@
             seekerProfilePicOverlay.src = '';
             seekerProfilePicOverlay.classList.add('hidden');
             seekerProfilePicPlaceholderOverlay.classList.remove(
-            'hidden'); // Pastikan placeholder terlihat saat reset
+                'hidden'); // Pastikan placeholder terlihat saat reset
             seekerNameOverlay.textContent = '';
             seekerEmailOverlay.textContent = '';
             seekerBioOverlay.textContent = '';
@@ -149,55 +157,84 @@
             seekerOverlayContactPhone.textContent = '';
             seekerOverlayContactAddress.textContent = '';
         }, 500);
-    }
-
-    function populateSeekerProfileOverlay(data) {
-        // Isi Header Profil
-        if (data.profile_picture) {
-            seekerProfilePicOverlay.src = data.profile_picture;
-            seekerProfilePicOverlay.classList.remove('hidden');
-            seekerProfilePicPlaceholderOverlay.classList.add('hidden');
-        } else {
-            seekerProfilePicOverlay.classList.add('hidden');
-            seekerProfilePicPlaceholderOverlay.classList.remove('hidden');
         }
-        seekerNameOverlay.textContent = data.name;
-        seekerEmailOverlay.textContent = data.email; // Email di header
 
-        // Isi Bagian Bio
-        seekerBioOverlay.textContent = data.bio || 'This seeker has not provided a bio yet.';
+        function populateSeekerProfileOverlay(data) {
+            // Isi Header Profil
+            if (data.profile_picture) {
+                seekerProfilePicOverlay.src = data.profile_picture;
+                seekerProfilePicOverlay.classList.remove('hidden');
+                seekerProfilePicPlaceholderOverlay.classList.add('hidden');
+            } else {
+                seekerProfilePicOverlay.classList.add('hidden');
+                seekerProfilePicPlaceholderOverlay.classList.remove('hidden');
+            }
+            seekerNameOverlay.textContent = data.name;
+            seekerEmailOverlay.innerHTML = data.email; // Email di header, render as HTML
 
-        // Isi Bagian Kontak Detail
-        seekerOverlayContactEmail.textContent = data.email;
-        seekerOverlayContactPhone.textContent = data.phone || 'Not provided';
-        seekerOverlayContactAddress.textContent = data.address || 'Not provided';
+            // Isi Bagian Bio
+            seekerBioOverlay.textContent = data.bio || 'This seeker has not provided a bio yet.';
+
+            // Isi Bagian Kontak Detail
+            seekerOverlayContactEmail.textContent = data.email;
+            seekerOverlayContactPhone.textContent = data.phone || 'Not provided';
+            seekerOverlayContactAddress.textContent = data.address || 'Not provided';
 
 
-        // Isi Item Portofolio
-        seekerPortfolioGridOverlay.innerHTML = ''; // Bersihkan item sebelumnya
-        if (data.portfolios && data.portfolios.length > 0) {
-            seekerPortfolioEmptyMessage.classList.add('hidden');
-            seekerFullPortfolioLink.classList.remove('hidden');
-            // Asumsi Anda memiliki route untuk daftar portofolio penuh per seeker
-            seekerFullPortfolioLink.href = `/seeker/portfolios?seeker_id=${data.id}`; // Sesuaikan route ini
+            // Isi Item Portofolio
+            seekerPortfolioGridOverlay.innerHTML = ''; // Bersihkan item sebelumnya
+            if (data.portfolios && data.portfolios.length > 0) {
+                seekerPortfolioEmptyMessage.classList.add('hidden');
+                seekerFullPortfolioLink.classList.remove('hidden');
+                // Asumsi Anda memiliki route untuk daftar portofolio penuh per seeker
+                seekerFullPortfolioLink.href = `/seeker/portfolios?seeker_id=${data.id}`; // Sesuaikan route ini
 
-            data.portfolios.forEach(portfolio => {
-                const portfolioCardHtml = `
-                    <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden cursor-pointer hover:shadow-md transition-shadow" onclick="event.stopPropagation(); showPortfolioDetail(<span class="math-inline">\{portfolio\.id\}\);"\>
-<img src\="</span>{portfolio.images && portfolio.images.length > 0 ? portfolio.images[0].image_path : 'https://via.placeholder.com/200x120/E0F2F7/2196F3?text=No+Image'}"
-                             alt="<span class="math-inline">\{portfolio\.title\}" class\="w\-full h\-24 object\-cover"\>
-<div class\="p\-3"\>
-<h5 class\="font\-semibold text\-sm text\-gray\-900 line\-clamp\-1"\></span>{portfolio.title}</h5>
-                            <p class="text-xs text-gray-600 line-clamp-2"><span class="math-inline">\{portfolio\.description\}</p\>
-<p class\="text\-xs text\-blue\-600 mt\-2"\></span>{portfolio.category_name} ${portfolio.sub_category_name ? '/ ' + portfolio.sub_category_name : ''}</p>
+                data.portfolios.forEach(portfolio => {
+                    const portfolioCardHtml = `
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden cursor-pointer hover:shadow-md transition-shadow" onclick="event.stopPropagation(); showPortfolioDetail(${portfolio.id});">
+                            <img src="${portfolio.images && portfolio.images.length > 0 ? portfolio.images[0].image_path : 'https://via.placeholder.com/200x120/E0F2F7/2196F3?text=No+Image'}"
+                                 alt="${portfolio.title}" class="w-full h-24 object-cover">
+                            <div class="p-3">
+                                <h5 class="font-semibold text-sm text-gray-900 line-clamp-1">${portfolio.title}</h5>
+                                <p class="text-xs text-gray-600 line-clamp-2">${portfolio.description}</p>
+                                <p class="text-xs text-blue-600 mt-2">${portfolio.category_name} ${portfolio.sub_category_name ? '/ ' + portfolio.sub_category_name : ''}</p>
+                            </div>
                         </div>
-                    </div>
-                `;
-                seekerPortfolioGridOverlay.insertAdjacentHTML('beforeend', portfolioCardHtml);
-            });
-        } else {
-            seekerPortfolioEmptyMessage.classList.remove('hidden');
-            seekerFullPortfolioLink.classList.add('hidden');
+                    `;
+                    seekerPortfolioGridOverlay.insertAdjacentHTML('beforeend', portfolioCardHtml);
+                });
+            } else {
+                seekerPortfolioEmptyMessage.classList.remove('hidden');
+                seekerFullPortfolioLink.classList.add('hidden');
+            }
+
+            // Isi Item Review
+            const seekerReviewList = document.getElementById('seeker-review-list');
+            const seekerReviewEmptyMessage = document.getElementById('seeker-review-empty-message');
+            seekerReviewList.innerHTML = ''; // Clear previous reviews
+
+            if (data.reviews && data.reviews.length > 0) {
+                seekerReviewEmptyMessage.classList.add('hidden');
+
+                data.reviews.forEach(review => {
+                    const stars = Array.from({ length: 5 }, (_, i) => {
+                        return i < review.rating
+                            ? '<i class="fas fa-star text-yellow-400"></i>'
+                            : '<i class="far fa-star text-gray-300"></i>';
+                    }).join('');
+
+                    const reviewHtml = `
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-4">
+                            <div class="flex items-center mb-2">
+                                <div class="flex space-x-1">${stars}</div>
+                            </div>
+                            <p class="text-gray-700 text-sm">${review.review || 'No review text provided.'}</p>
+                        </div>
+                    `;
+                    seekerReviewList.insertAdjacentHTML('beforeend', reviewHtml);
+                });
+            } else {
+                seekerReviewEmptyMessage.classList.remove('hidden');
+            }
         }
-    }
 </script>

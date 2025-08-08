@@ -48,6 +48,12 @@ class ApplicationController extends Controller
         $application->save();
 
         $projectId = $application->project_id;
+        $project = Project::where('id', $projectId)->first();
+        if ($project) {
+            $project->status = 'in_progress';
+            $project->save();
+        }
+
         $rejectedCount = 0;
 
         $remainingApplications = Application::where('project_id', $projectId)
@@ -65,7 +71,7 @@ class ApplicationController extends Controller
             Mail::to($application->user->email)->send(
                 new ApplicationApproved(
                     $application,
-                    $application->project->title 
+                    $application->project->title
                 )
             );
         }
@@ -95,5 +101,33 @@ class ApplicationController extends Controller
         $application->save();
 
         return redirect()->back()->with('success', "Application has been rejected.");
+    }
+
+    public function applicationIndex()
+    {
+        return view('admin.application.index');
+    }
+
+    public function getData(Request $request)
+    {
+        $applications = Application::with(['user', 'project'])
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return datatables()->of($applications)
+            ->addColumn('applicant_name', function ($application) {
+                return $application->user ? $application->user->name : 'N/A';
+            })
+            ->addColumn('project_title', function ($application) {
+                return $application->project ? $application->project->title : 'N/A';
+            })
+            ->addColumn('status', function ($application) {
+                return $application->status;
+            })
+            ->addColumn('applied_on', function ($application) {
+                return $application->created_at ? $application->created_at->format('Y-m-d H:i:s') : 'N/A';
+            })
+            ->rawColumns(['user', 'sub_category_id', 'category', 'action'])
+            ->make(true);
     }
 }
