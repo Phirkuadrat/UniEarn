@@ -20,7 +20,7 @@
         @endauth
 
         <!-- Hero Section (Modifikasi) -->
-        <section style="background-image: url('{{ asset('images/fotoHero.webp') }}')" class="bg-cover bg-center">
+        <section style="background-image: url('{{ asset('images/fotoHero1.jpg') }}')" class="bg-cover bg-center">
             <div class="bg-black bg-opacity-20">
                 <div class="container mx-auto px-4 flex items-center min-h-screen justify-center md:justify-end">
                     <div class="w-full md:w-3/4 lg:w-2/3 xl:w-1/2">
