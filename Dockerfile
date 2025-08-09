@@ -13,6 +13,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       unzip \
       git \
       curl \
+      libpq-dev \
+#     ^^^^^^^^^^^^^ TAMBAHKAN PAKET INI ^^^^^^^^^^^^^
       # Konfigurasi dan install ekstensi PHP
       && docker-php-ext-configure gd --with-freetype --with-jpeg \
       && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql pdo_pgsql zip \
