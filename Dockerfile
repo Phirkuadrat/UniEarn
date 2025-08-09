@@ -2,8 +2,9 @@
 # Menggunakan image resmi PHP 8.2 dengan Apache
 FROM php:8.2-apache AS base
 
-# Install dependensi sistem dan ekstensi PHP yang umum untuk Laravel
-RUN apt-get update && apt-get install -y \
+# =================== BAGIAN INI YANG DIPERBAIKI ===================
+# Install dependensi sistem dan ekstensi PHP
+RUN apt-get update && apt-get install -y --no-install-recommends \
       libpng-dev \
       libjpeg-dev \
       libfreetype6-dev \
@@ -12,8 +13,13 @@ RUN apt-get update && apt-get install -y \
       unzip \
       git \
       curl \
+      # Konfigurasi dan install ekstensi PHP
       && docker-php-ext-configure gd --with-freetype --with-jpeg \
-      && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql pdo_pgsql zip
+      && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql pdo_pgsql zip \
+      # Bersihkan cache apt untuk memperkecil ukuran image
+      && apt-get clean \
+      && rm -rf /var/lib/apt/lists/*
+# ===================================================================
 
 # Konfigurasi Apache untuk menunjuk ke folder public Laravel
 COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
@@ -30,23 +36,16 @@ COPY entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # ---- Build Stage ----
-# Tahap ini hanya untuk menginstall dependensi composer
 FROM base AS build
 COPY . .
 RUN composer install --no-interaction --no-plugins --no-scripts --no-dev --prefer-dist --optimize-autoloader
 
 # ---- Final Stage ----
-# Tahap ini adalah image akhir yang akan dijalankan
 FROM base AS final
 COPY --chown=www-data:www-data . .
-# Salin dependensi yang sudah diinstall dari tahap 'build'
 COPY --from=build /var/www/html/vendor /var/www/html/vendor
-
-# Set izin folder agar web server bisa menulis log dan cache
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
-
-# Expose port 80 untuk Apache
 EXPOSE 80
 
 # Jalankan entrypoint.sh sebagai perintah utama
